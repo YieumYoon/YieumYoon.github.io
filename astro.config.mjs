@@ -13,10 +13,12 @@ export default defineConfig({
     page !== 'https://yieumyoon.github.io/legal/terms/' &&
     page !== 'https://yieumyoon.github.io/legal/privacy/' &&
     page !== 'https://yieumyoon.github.io/work/' &&
-    page !== 'https://yieumyoon.github.io/search/',
+    page !== 'https://yieumyoon.github.io/search/' &&
+    page !== 'https://yieumyoon.github.io/blog/05-astro-sphere-writing-mdx/' &&
+    page !== 'https://yieumyoon.github.io/projects/project-1/' && 
+    page !== 'https://yieumyoon.github.io/projects/project-2/',
 
   }), solidJs(), tailwind({
     applyBaseStyles: false
   })],
-  outDir: './docs'
 });
