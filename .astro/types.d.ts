@@ -141,49 +141,49 @@ declare module 'astro:content' {
   slug: "01-astro-sphere-file-structure";
   body: string;
   collection: "blog";
-  data: any
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "02-astro-sphere-getting-started/index.md": {
 	id: "02-astro-sphere-getting-started/index.md";
   slug: "02-astro-sphere-getting-started";
   body: string;
   collection: "blog";
-  data: any
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "03-astro-sphere-add-new-post-or-projects/index.md": {
 	id: "03-astro-sphere-add-new-post-or-projects/index.md";
   slug: "03-astro-sphere-add-new-post-or-projects";
   body: string;
   collection: "blog";
-  data: any
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "04-astro-sphere-writing-markdown/index.md": {
 	id: "04-astro-sphere-writing-markdown/index.md";
   slug: "04-astro-sphere-writing-markdown";
   body: string;
   collection: "blog";
-  data: any
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "05-astro-sphere-writing-mdx/index.mdx": {
 	id: "05-astro-sphere-writing-mdx/index.mdx";
   slug: "05-astro-sphere-writing-mdx";
   body: string;
   collection: "blog";
-  data: any
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
 "06-astro-sphere-social-links/index.md": {
 	id: "06-astro-sphere-social-links/index.md";
   slug: "06-astro-sphere-social-links";
   body: string;
   collection: "blog";
-  data: any
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 "첫글: 깃허브 Astro 블로그를 열었습니다/index.md": {
 	id: "첫글: 깃허브 Astro 블로그를 열었습니다/index.md";
   slug: "첫글-깃허브-astro-블로그를-열었습니다";
   body: string;
   collection: "blog";
-  data: any
+  data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 };
 "legal": {
@@ -192,14 +192,14 @@ declare module 'astro:content' {
   slug: "privacy";
   body: string;
   collection: "legal";
-  data: any
+  data: InferEntrySchema<"legal">
 } & { render(): Render[".md"] };
 "terms.md": {
 	id: "terms.md";
   slug: "terms";
   body: string;
   collection: "legal";
-  data: any
+  data: InferEntrySchema<"legal">
 } & { render(): Render[".md"] };
 };
 "projects": {
@@ -208,58 +208,37 @@ declare module 'astro:content' {
   slug: "project-1";
   body: string;
   collection: "projects";
-  data: any
+  data: InferEntrySchema<"projects">
 } & { render(): Render[".md"] };
 "project-2/index.md": {
 	id: "project-2/index.md";
   slug: "project-2";
   body: string;
   collection: "projects";
-  data: any
+  data: InferEntrySchema<"projects">
 } & { render(): Render[".md"] };
 "project-3/index.md": {
 	id: "project-3/index.md";
   slug: "project-3";
   body: string;
   collection: "projects";
-  data: any
+  data: InferEntrySchema<"projects">
 } & { render(): Render[".md"] };
 "project-4/index.md": {
 	id: "project-4/index.md";
   slug: "project-4";
   body: string;
   collection: "projects";
-  data: any
+  data: InferEntrySchema<"projects">
 } & { render(): Render[".md"] };
 };
 "work": {
-"apple.md": {
-	id: "apple.md";
-  slug: "apple";
+"na.md": {
+	id: "na.md";
+  slug: "na";
   body: string;
   collection: "work";
-  data: any
-} & { render(): Render[".md"] };
-"facebook.md": {
-	id: "facebook.md";
-  slug: "facebook";
-  body: string;
-  collection: "work";
-  data: any
-} & { render(): Render[".md"] };
-"google.md": {
-	id: "google.md";
-  slug: "google";
-  body: string;
-  collection: "work";
-  data: any
-} & { render(): Render[".md"] };
-"mcdonalds.md": {
-	id: "mcdonalds.md";
-  slug: "mcdonalds";
-  body: string;
-  collection: "work";
-  data: any
+  data: InferEntrySchema<"work">
 } & { render(): Render[".md"] };
 };
 
@@ -271,5 +250,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = never;
+	export type ContentConfig = typeof import("../src/content/config.js");
 }
