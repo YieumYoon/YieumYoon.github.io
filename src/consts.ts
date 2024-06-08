@@ -16,19 +16,19 @@ export const WORK: Page = {
 // Blog Page
 export const BLOG: Page = {
   TITLE: "Blog",
-  DESCRIPTION: "개발하며 배우고 느낀것을 적어나가는 블로그입니다.",
+  DESCRIPTION: "Writing on topics I am passionate about. 개발하며 배우고 느낀것을 적어나가는 블로그입니다.",
 }
 
 // Projects Page 
 export const PROJECTS: Page = {
   TITLE: "Projects",
-  DESCRIPTION: "개인적으로 진행해본 프로젝트들을 소개합니다.",
+  DESCRIPTION: "Recent projects I have worked on. 개인적으로 진행해본 프로젝트들을 소개합니다.",
 }
 
 // Search Page
 export const SEARCH: Page = {
   TITLE: "Search",
-  DESCRIPTION: "제 포스트들과 프로젝트들을 키워드로 검색할 수 있습니다.",
+  DESCRIPTION: "Search all posts and projects by keyword. 제 포스트들과 프로젝트들을 키워드로 검색할 수 있습니다.",
 }
 
 // Links
