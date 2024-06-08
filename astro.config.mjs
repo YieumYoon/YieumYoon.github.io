@@ -17,5 +17,6 @@ export default defineConfig({
 
   }), solidJs(), tailwind({
     applyBaseStyles: false
-  })]
+  })],
+  outDir: './docs'
 });
