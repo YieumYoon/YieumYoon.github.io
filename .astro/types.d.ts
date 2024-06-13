@@ -136,6 +136,20 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"blog": {
+"00001-started-astro-github-blog/index.md": {
+	id: "00001-started-astro-github-blog/index.md";
+  slug: "00001-started-astro-github-blog";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"00002-taking-3p-binder-lecture/index.md": {
+	id: "00002-taking-3p-binder-lecture/index.md";
+  slug: "00002-taking-3p-binder-lecture";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "05-astro-sphere-writing-mdx/index.mdx": {
 	id: "05-astro-sphere-writing-mdx/index.mdx";
   slug: "05-astro-sphere-writing-mdx";
@@ -143,13 +157,6 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
-"첫글: 깃허브 Astro 블로그를 열었습니다/index.md": {
-	id: "첫글: 깃허브 Astro 블로그를 열었습니다/index.md";
-  slug: "첫글-깃허브-astro-블로그를-열었습니다";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
 };
 "legal": {
 "privacy.md": {
