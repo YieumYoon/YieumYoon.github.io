@@ -30,5 +30,8 @@
     "tailwind-merge": "^2.2.1",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.5.3"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^9.1.0"
   }
 }

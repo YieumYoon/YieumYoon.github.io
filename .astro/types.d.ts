@@ -150,6 +150,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"00003-as-we-may-think-review/index.md": {
+	id: "00003-as-we-may-think-review/index.md";
+  slug: "00003-as-we-may-think-review";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "05-astro-sphere-writing-mdx/index.mdx": {
 	id: "05-astro-sphere-writing-mdx/index.mdx";
   slug: "05-astro-sphere-writing-mdx";
