@@ -157,6 +157,41 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"00004-installing-pice-wifi-chip/index.md": {
+	id: "00004-installing-pice-wifi-chip/index.md";
+  slug: "00004-installing-pice-wifi-chip";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"00005-personal-dynamic-media-review/index.md": {
+	id: "00005-personal-dynamic-media-review/index.md";
+  slug: "00005-personal-dynamic-media-review";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"00006-taking-3p-book-course/index.md": {
+	id: "00006-taking-3p-book-course/index.md";
+  slug: "00006-taking-3p-book-course";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"00007-asan-doers-bootcamp/index.md": {
+	id: "00007-asan-doers-bootcamp/index.md";
+  slug: "00007-asan-doers-bootcamp";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"00008-craftsman-communication-cable-army/index.md": {
+	id: "00008-craftsman-communication-cable-army/index.md";
+  slug: "00008-craftsman-communication-cable-army";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "05-astro-sphere-writing-mdx/index.mdx": {
 	id: "05-astro-sphere-writing-mdx/index.mdx";
   slug: "05-astro-sphere-writing-mdx";
