@@ -1,0 +1,35 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content"
+import PageLayout from "@layouts/PageLayout.astro"
+import TopLayout from "@layouts/TopLayout.astro"
+import BottomLayout from "@layouts/BottomLayout.astro"
+import ArticleTopLayout from "@layouts/ArticleTopLayout.astro"
+import ArticleBottomLayout from "@layouts/ArticleBottomLayout.astro"
+
+// Create the static records pages
+export async function getStaticPaths() {
+  const records = await getCollection("records")
+  return records.map((record) => ({
+    params: { slug: record.slug },
+    props: record,
+  }))
+}
+
+// Get the requested record
+type Props = CollectionEntry<"records">;
+const record = Astro.props;
+const { title, summary } = record.data;
+---
+
+<PageLayout title={title} description={summary}>
+  <TopLayout>
+    <div class="animate">
+      <ArticleTopLayout entry={record} />
+    </div>
+  </TopLayout>
+  <BottomLayout>
+    <div class="animate">
+      <ArticleBottomLayout entry={record} />
+    </div>
+  </BottomLayout>
+</PageLayout>

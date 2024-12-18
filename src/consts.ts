@@ -24,7 +24,11 @@ export const PROJECTS: Page = {
   TITLE: "Projects",
   DESCRIPTION: "Recent projects I have worked on. 개인적으로 진행해본 프로젝트들을 소개합니다.",
 }
-
+// Daily Log Page
+export const DAILY_LOGS: Page ={
+  TITLE: "Daily Logs",
+  DESCRIPTION: "Daily logs of programming, study, or project progress. 매일 공부 및 프로젝트 업무일지를 공유합니다."
+}
 // Search Page
 export const SEARCH: Page = {
   TITLE: "Search",
@@ -49,6 +53,10 @@ export const LINKS: Links = [
     TEXT: "Projects", 
     HREF: "/projects", 
   },
+  {
+    TEXT: "Daily Records",
+    HREF: "/records"
+}
 ]
 
 // Socials
@@ -71,11 +79,11 @@ export const SOCIALS: Socials = [
     TEXT: "Junsu Lee",
     HREF: "www.linkedin.com/in/junsueddie",
   },
-  // { 
-  //   NAME: "Twitter",
-  //   ICON: "twitter-x",
-  //   TEXT: "markhorn_dev",
-  //   HREF: "https://twitter.com/markhorn_dev",
-  // },
+  { 
+    NAME: "Threads",
+    ICON: "threads",
+    TEXT: "junsueddie",
+    HREF: "https://www.threads.net/@junsueddie",
+  },
 ]
 

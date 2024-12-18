@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import TopLayout from "@layouts/TopLayout.astro";
+import BottomLayout from "@layouts/BottomLayout.astro";
+import Records from "@components/Records";
+import { DAILY_LOGS } from "@consts";
+
+// Fetch and sort records
+const records = (await getCollection("records"))
+  .filter(record => !record.data.draft) // Exclude drafts
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Extract and sort unique tags
+const tags = [...new Set(records.flatMap(record => record.data.tags || []))]
+  .sort((a, b) => a.localeCompare(b));
+---
+
+<PageLayout title={DAILY_LOGS.TITLE} description={DAILY_LOGS.DESCRIPTION}>
+  <TopLayout>
+    <div class="animate page-heading">
+      {DAILY_LOGS.TITLE}
+    </div>
+  </TopLayout>
+  <BottomLayout>
+    <div class="animate">
+      <Records client:load tags={tags} data={records} />
+    </div>
+  </BottomLayout>
+</PageLayout>
