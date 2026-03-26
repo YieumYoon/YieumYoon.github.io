@@ -10,12 +10,12 @@ type Props = {
 
 export default function Projects({ data, tags }: Props) {
   const [filter, setFilter] = createSignal(new Set<string>())
-  const [projects, setProjects] = createSignal<CollectionEntry<"projects">[]>([])
+  const [projects, setProjects] = createSignal<CollectionEntry<"projects">[]>(data)
 
   createEffect(() => {
-    setProjects(data.filter((entry) => 
-      Array.from(filter()).every((value) => 
-        entry.data.tags.some((tag:string) => 
+    setProjects(data.filter((entry) =>
+      Array.from(filter()).every((value) =>
+        entry.data.tags.some((tag: string) =>
           tag.toLowerCase() === String(value).toLowerCase()
         )
       )
@@ -23,9 +23,9 @@ export default function Projects({ data, tags }: Props) {
   })
 
   function toggleTag(tag: string) {
-    setFilter((prev) => 
-      new Set(prev.has(tag) 
-        ? [...prev].filter((t) => t !== tag) 
+    setFilter((prev) =>
+      new Set(prev.has(tag)
+        ? [...prev].filter((t) => t !== tag)
         : [...prev, tag]
       )
     )
