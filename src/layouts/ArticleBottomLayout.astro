@@ -25,24 +25,55 @@ const nextSlug = next.id.replace(/\/index$/, "");
     <Content />
   </article>
 
-  <div style="padding: 1rem;">
-    <script
-      src="https://giscus.app/client.js"
-      data-repo="YieumYoon/YieumYoon.github.io"
-      data-repo-id="R_kgDOMFPW6g"
-      data-category="Announcements"
-      data-category-id="DIC_kwDOMFPW6s4Cf82h"
-      data-mapping="pathname"
-      data-strict="0"
-      data-reactions-enabled="1"
-      data-emit-metadata="0"
-      data-input-position="top"
-      data-theme="noborder_light"
-      data-lang="en"
-      data-loading="lazy"
-      crossorigin="anonymous"
-      async></script>
+  <div class="border-t border-black/10 py-8 dark:border-white/15">
+    <button
+      id="load-comments"
+      class="rounded border border-black/15 px-3 py-2 text-sm text-black/70 transition-colors duration-300 ease-in-out hover:bg-black/5 hover:text-black dark:border-white/20 dark:text-white/70 dark:hover:bg-white/10 dark:hover:text-white"
+      type="button"
+    >
+      Load comments
+    </button>
+    <div id="comments" class="mt-6"></div>
   </div>
+
+  <script>
+    function initializeComments() {
+      const button = document.getElementById("load-comments")
+      const comments = document.getElementById("comments")
+
+      if (!button || !comments || button.dataset.ready === "true") return
+
+      button.dataset.ready = "true"
+      button.addEventListener("click", () => {
+        if (comments.querySelector("script")) return
+
+        const script = document.createElement("script")
+        script.src = "https://giscus.app/client.js"
+        script.async = true
+        script.crossOrigin = "anonymous"
+        script.dataset.repo = "YieumYoon/YieumYoon.github.io"
+        script.dataset.repoId = "R_kgDOMFPW6g"
+        script.dataset.category = "Announcements"
+        script.dataset.categoryId = "DIC_kwDOMFPW6s4Cf82h"
+        script.dataset.mapping = "pathname"
+        script.dataset.strict = "0"
+        script.dataset.reactionsEnabled = "1"
+        script.dataset.emitMetadata = "0"
+        script.dataset.inputPosition = "top"
+        script.dataset.theme = document.documentElement.classList.contains("dark")
+          ? "noborder_dark"
+          : "noborder_light"
+        script.dataset.lang = "en"
+        script.dataset.loading = "lazy"
+
+        comments.appendChild(script)
+        button.remove()
+      })
+    }
+
+    document.addEventListener("astro:after-swap", initializeComments)
+    initializeComments()
+  </script>
 
   <div class="grid grid-cols-1 gap-6 border-t border-black/10 pt-8 dark:border-white/15 sm:grid-cols-2">
     <a

@@ -46,8 +46,6 @@ function preloadTheme() {
   } else {
     element.classList.remove("dark")
   }
-
-  localStorage.theme = theme
 }
 
 window.onload = () => {

@@ -9,7 +9,7 @@ tags:
 draft: false
 ---
 
-# Study Progress - December 12, 2024
+# Study Progress - December 17, 2024
 
 Today, I dedicated time to learning and practicing the following:
 
