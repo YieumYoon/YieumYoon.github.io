@@ -3,11 +3,12 @@ interface Props {
   title: string
   description: string
   image?: string
+  type?: "website" | "article"
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
-const { title, description, image = "/open-graph.jpg" } = Astro.props
+const { title, description, image = "/open-graph.jpg", type = "website" } = Astro.props
 ---
 
 <!-- Global Metadata -->
@@ -37,7 +38,7 @@ const { title, description, image = "/open-graph.jpg" } = Astro.props
 <meta name="google-site-verification" content="I_GlhdhlhqkC_PYbhYpQ4j8aqViEKx7WQHZFGkTD8_Q" />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content={type} />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
@@ -73,4 +74,3 @@ const { title, description, image = "/open-graph.jpg" } = Astro.props
     ].forEach((link) => link.remove())
   )
 </script>
-

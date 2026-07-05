@@ -18,10 +18,10 @@ export async function getStaticPaths() {
 // Get the requested post
 type Props = CollectionEntry<"blog">
 const post = Astro.props
-const { title, summary } = post.data
+const { title, summary, image } = post.data
 ---
 
-<PageLayout title={title} description={summary}>
+<PageLayout title={title} description={summary} image={image} type="article">
   <TopLayout size="md">
     <div class="animate">
       <ArticleTopLayout entry={post}/>

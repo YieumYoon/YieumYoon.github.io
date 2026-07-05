@@ -1,6 +1,8 @@
 ---
 import { SITE, SOCIALS } from "@consts"
 import Container from "@components/Container.astro"
+
+const currentYear = new Date().getFullYear()
 ---
 
 <footer class="relative bg-white dark:bg-black">
@@ -47,7 +49,7 @@ import Container from "@components/Container.astro"
               </a>
             </div>
             <div class="text-sm mt-2">
-              &copy; 2024 | All rights reserved
+              &copy; {currentYear} | All rights reserved
             </div>
           </div>
   
@@ -58,6 +60,7 @@ import Container from "@components/Container.astro"
                   <a 
                     href={SOCIAL.HREF} 
                     target="_blank" 
+                    rel="noopener"
                     aria-label={`${SITE.TITLE} on ${SOCIAL.NAME}`} 
                     class="group size-10 rounded-full p-2 items-center justify-center hover:bg-black/5 dark:hover:bg-white/20  blend"
                   >
