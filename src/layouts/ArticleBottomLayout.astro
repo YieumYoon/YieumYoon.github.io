@@ -2,16 +2,15 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 
 type Props = {
-  entry: CollectionEntry<"blog"> | CollectionEntry<"projects"> |CollectionEntry<"records">;
+  entry: CollectionEntry<"blog">;
 };
 
 // Get the requested entry
 const { entry } = Astro.props;
-const { collection } = entry;
 const { Content } = await entry.render();
 
 // Get the next and prev entries (modulo to wrap index)
-const items = (await getCollection(collection))
+const items = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const index = items.findIndex((x) => x.slug === entry.slug);
@@ -45,7 +44,7 @@ const next = items[(index + 1) % items.length];
 
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
     <a
-      href={`/${prev.collection}/${prev.slug}`}
+      href={`/blog/${prev.slug}`}
       class="group p-4 gap-3 flex items-center border rounded-lg hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 blend"
     >
       <div
@@ -83,7 +82,7 @@ const next = items[(index + 1) % items.length];
       </svg>
     </a>
     <a
-      href={`/${next.collection}/${next.slug}`}
+      href={`/blog/${next.slug}`}
       class="group p-4 gap-3 flex items-center border rounded-lg hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 transition-colors duration-300 ease-in-out"
     >
       <div
