@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
 import partytown from "@astrojs/partytown";
+import tailwindcss from "@tailwindcss/vite";
 
 
 // https://astro.build/config
@@ -12,11 +12,12 @@ export default defineConfig({
     page !== 'https://yieumyoon.github.io/legal/terms/' &&
     page !== 'https://yieumyoon.github.io/legal/privacy/',
 
-  }), tailwind({
-    applyBaseStyles: false
   }), partytown({
     config: {
       forward: ["dataLayer.push"]
     }
-  })], 
+  })],
+  vite: {
+    plugins: [tailwindcss()]
+  }
 });

@@ -2,15 +2,15 @@ import type { Site, Page, Links, Socials } from "@types"
 
 // Global
 export const SITE: Site = {
-  TITLE: "이음의 개발블로그",
-  DESCRIPTION: "이음의 개발블로그에 어서오세요.",
+  TITLE: "Yieum Yoon",
+  DESCRIPTION: "Notes on software, books, and becoming a better builder.",
   AUTHOR: "Yieum Yoon",
 }
 
 // Blog Page
 export const BLOG: Page = {
-  TITLE: "Blog",
-  DESCRIPTION: "Writing on topics I am passionate about. 개발하며 배우고 느낀것을 적어나가는 블로그입니다.",
+  TITLE: "Writing",
+  DESCRIPTION: "Notes on software, books, study, and the process of learning in public.",
 }
 
 // Links
@@ -20,7 +20,7 @@ export const LINKS: Links = [
     HREF: "/", 
   },
   { 
-    TEXT: "Blog", 
+    TEXT: "Writing", 
     HREF: "/blog", 
   }
 ]
@@ -34,7 +34,7 @@ export const SOCIALS: Socials = [
     HREF: "mailto:junsueddie@gmail.com",
   },
   { 
-    NAME: "Github",
+    NAME: "GitHub",
     ICON: "github",
     TEXT: "Yieum Yoon",
     HREF: "https://github.com/YieumYoon"
@@ -43,7 +43,7 @@ export const SOCIALS: Socials = [
     NAME: "LinkedIn",
     ICON: "linkedin",
     TEXT: "Junsu Lee",
-    HREF: "www.linkedin.com/in/junsueddie",
+    HREF: "https://www.linkedin.com/in/junsueddie",
   },
   { 
     NAME: "Threads",

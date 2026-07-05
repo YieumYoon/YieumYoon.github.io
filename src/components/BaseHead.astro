@@ -1,6 +1,4 @@
 ---
-import { ViewTransitions } from "astro:transitions"
-
 interface Props {
   title: string
   description: string
@@ -75,5 +73,4 @@ const { title, description, image = "/open-graph.jpg" } = Astro.props
     ].forEach((link) => link.remove())
   )
 </script>
-
 

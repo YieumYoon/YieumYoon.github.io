@@ -20,7 +20,7 @@ export async function GET(context: Context) {
       title: item.data.title,
       description: item.data.summary,
       pubDate: item.data.date,
-      link: `/blog/${item.slug}/`,
+      link: `/blog/${item.id.replace(/\/index$/, "")}/`,
     })),
   })
 }
