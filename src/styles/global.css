@@ -77,11 +77,17 @@ article {
 
 /** styles for public /animation.js */
 .animate {
-  opacity: 0;
-  transform: translateY(50px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 1s ease, transform 1s ease;
 }
 
+html.js .animate {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+html.js .animate.show,
 .animate.show {
   opacity: 1;
   transform: translateY(0);

@@ -1,3 +1,5 @@
+document.documentElement.classList.add("js")
+
 function changeTheme() {
   const element = document.documentElement
   const theme = element.classList.contains("dark") ? "light" : "dark"

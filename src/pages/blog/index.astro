@@ -5,10 +5,11 @@ import TopLayout from "@layouts/TopLayout.astro"
 import BottomLayout from "@layouts/BottomLayout.astro"
 import ArrowCard from "@components/ArrowCard.astro"
 import { BLOG } from "@consts"
+import { getPostDateTime } from "@lib/utils"
 
 const posts = (await getCollection("blog"))
   .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .sort((a, b) => getPostDateTime(b.data).getTime() - getPostDateTime(a.data).getTime())
 ---
 
 <PageLayout title={BLOG.TITLE} description={BLOG.DESCRIPTION}>

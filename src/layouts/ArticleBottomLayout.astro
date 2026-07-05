@@ -1,5 +1,6 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
+import { getPostDateTime } from "@lib/utils";
 
 type Props = {
   entry: CollectionEntry<"blog">;
@@ -12,7 +13,7 @@ const { Content } = await render(entry);
 // Get the next and prev entries (modulo to wrap index)
 const items = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  .sort((a, b) => getPostDateTime(b.data).getTime() - getPostDateTime(a.data).getTime());
 const index = items.findIndex((x) => x.id === entry.id);
 const prev = items[(index - 1 + items.length) % items.length];
 const next = items[(index + 1) % items.length];

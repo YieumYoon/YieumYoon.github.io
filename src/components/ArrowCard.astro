@@ -1,5 +1,5 @@
 ---
-import { formatDate } from "@lib/utils"
+import { formatPostDateTime, getPostDateTime } from "@lib/utils"
 import type { CollectionEntry } from "astro:content"
 
 type Props = {
@@ -8,12 +8,13 @@ type Props = {
 
 const { entry } = Astro.props
 const slug = entry.id.replace(/\/index$/, "")
+const { date, time, timezone } = entry.data
 ---
 
 <a href={`/blog/${slug}`} class="group block py-5">
   <div class="grid gap-2 sm:grid-cols-[8rem_1fr] sm:gap-6">
-    <time datetime={entry.data.date.toISOString()} class="text-sm text-black/50 dark:text-white/50">
-      {formatDate(entry.data.date)}
+    <time datetime={getPostDateTime({ date, time, timezone }).toISOString()} class="text-sm text-black/50 dark:text-white/50">
+      {formatPostDateTime({ date, time, timezone })}
     </time>
     <div class="space-y-2">
       <h2 class="font-semibold text-black dark:text-white group-hover:underline group-hover:decoration-[.5px] group-hover:underline-offset-4">

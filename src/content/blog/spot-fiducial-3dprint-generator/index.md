@@ -1,7 +1,7 @@
 ---
 title: "Spot Fiducial AprilTag Plate Generator"
 summary: "Boston Dynamics Spot용 fiducial plate SVG를 브라우저에서 생성할 수 있는 웹 도구입니다. 146 mm tag36h11 AprilTag, print SVG, CAD SVG export를 지원합니다."
-date: "Mar 26 2026"
+date: "2026-03-26"
 draft: false
 tags:
   - Robotics
@@ -10,8 +10,6 @@ tags:
   - JavaScript
   - GitHub Pages
 ---
-
-# Spot Fiducial AprilTag Plate Generator
 
 Boston Dynamics Spot용 fiducial plate를 더 빠르게 만들기 위해 만든 정적 웹 프로젝트입니다. 반복적으로 CAD 파일을 열어서 텍스트와 태그 번호를 수정하는 과정을 줄이고, 브라우저에서 바로 확인하고 SVG로 내보낼 수 있도록 만들었습니다.
 

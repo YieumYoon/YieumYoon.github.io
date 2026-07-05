@@ -6,10 +6,8 @@ tags:
   - JavaScript
   - Astro
   - Daily Log
-draft: false
+draft: true
 ---
-
-# Study Progress - December 17, 2024
 
 Today, I dedicated time to learning and practicing the following:
 
