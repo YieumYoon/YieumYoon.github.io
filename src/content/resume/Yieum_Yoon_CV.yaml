@@ -1,0 +1,58 @@
+# yaml-language-server: $schema=https://github.com/rendercv/rendercv/blob/main/schema.json?raw=true
+# PDF generation powered by RenderCV: https://github.com/rendercv/rendercv
+# Internal version metadata is tracked in ./metadata.json.
+cv:
+  name: Yieum Yoon
+  headline: Undergraduate CS Student / Builder
+  location: South Korea
+  email: junsueddie@gmail.com
+  website: https://yieumyoon.github.io
+  social_networks:
+    - network: GitHub
+      username: YieumYoon
+    - network: LinkedIn
+      username: junsueddie
+  sections:
+    Summary:
+      - Undergraduate developer who moved from mechanical engineering interests toward computer science, with a focus on building, reading, writing, and learning in public.
+      - Interested in web development, human-computer interaction, robotics utilities, AR, and product-minded problem solving.
+    Projects:
+      - name: Spot Fiducial AprilTag Plate Generator
+        date: 2026-03-26
+        url: https://yieumyoon.github.io/spot-fiducial-3dprint-generator/
+        highlights:
+          - Built a browser-based SVG generator for Boston Dynamics Spot fiducial plates.
+          - Supports tag36h11 AprilTag IDs, print SVG export, CAD SVG export, editable text, and logo options.
+          - Implemented as a static HTML, CSS, and JavaScript tool deployable on GitHub Pages.
+      - name: Web AR Camera Technical Review
+        date: 2024-12-12
+        url: https://yieumyoon.github.io/blog/00009-web-ar-camera-and-chanel-ice-link
+        highlights:
+          - Investigated a web-based AR camera experience and identified likely use of 8th Wall, Three.js, WebRTC, and SLAM-related techniques.
+          - Documented technical observations from network assets, 3D model files, and browser behavior.
+    Skills:
+      - label: Languages
+        details: JavaScript, TypeScript, Python, HTML, CSS
+      - label: Interests
+        details: Web development, HCI, robotics, AR, user experience
+      - label: Practices
+        details: Reading technical materials in English, self-directed research, prototyping, documentation
+    Education:
+      - bullet: "TODO: Add school, degree, dates, and relevant coursework."
+    Experience:
+      - bullet: "TODO: Add internships, military experience, leadership, or work history."
+
+design:
+  theme: engineeringresumes
+  page:
+    size: us-letter
+    top_margin: 0.7in
+    bottom_margin: 0.7in
+    left_margin: 0.7in
+    right_margin: 0.7in
+
+locale:
+  language: english
+
+settings:
+  render_command: {}

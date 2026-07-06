@@ -1,0 +1,215 @@
+---
+import { readFileSync } from "node:fs"
+import { parse } from "yaml"
+import PageLayout from "@layouts/PageLayout.astro"
+import TopLayout from "@layouts/TopLayout.astro"
+import BottomLayout from "@layouts/BottomLayout.astro"
+import { RESUME } from "@consts"
+
+type SocialNetwork = {
+  network: string
+  username: string
+}
+
+type ResumeEntry = string | {
+  bullet?: string
+  name?: string
+  institution?: string
+  company?: string
+  organization?: string
+  position?: string
+  area?: string
+  degree?: string
+  label?: string
+  details?: string
+  summary?: string
+  date?: string
+  start_date?: string
+  end_date?: string
+  location?: string
+  url?: string
+  highlights?: string[]
+}
+
+type ResumeData = {
+  cv: {
+    name: string
+    headline?: string
+    location?: string
+    email?: string
+    website?: string
+    social_networks?: SocialNetwork[]
+    sections?: Record<string, ResumeEntry[]>
+  }
+}
+
+const resume = parse(readFileSync("src/content/resume/Yieum_Yoon_CV.yaml", "utf-8")) as ResumeData
+const { cv } = resume
+const sections = Object.entries(cv.sections ?? {})
+const contactItems = [
+  cv.location ? { label: cv.location } : undefined,
+  cv.email ? { label: cv.email, href: `mailto:${cv.email}` } : undefined,
+  cv.website ? { label: cv.website.replace(/^https?:\/\//, ""), href: cv.website } : undefined,
+  ...(cv.social_networks ?? []).map(social => {
+    const href = socialUrl(social)
+    return {
+      label: `${social.network}: ${social.username}`,
+      href,
+    }
+  }),
+].filter((item): item is { label: string; href?: string } => Boolean(item))
+
+function socialUrl(social: SocialNetwork) {
+  if (social.network === "GitHub") return `https://github.com/${social.username}`
+  if (social.network === "LinkedIn") return `https://www.linkedin.com/in/${social.username}`
+  return undefined
+}
+
+function entryTitle(entry: Exclude<ResumeEntry, string>) {
+  if (entry.name) return entry.name
+  if (entry.company && entry.position) return `${entry.company} - ${entry.position}`
+  if (entry.company) return entry.company
+  if (entry.institution && entry.area) return `${entry.institution} - ${entry.area}`
+  if (entry.institution) return entry.institution
+  if (entry.organization) return entry.organization
+  if (entry.label) return entry.label
+  return undefined
+}
+
+function entryDetails(entry: Exclude<ResumeEntry, string>) {
+  if (entry.details) return entry.details
+  if (entry.degree) return entry.degree
+  return entry.summary
+}
+
+function entryDate(entry: Exclude<ResumeEntry, string>) {
+  if (entry.date) return entry.date
+  if (entry.start_date && entry.end_date) return `${entry.start_date} - ${entry.end_date}`
+  return entry.start_date ?? entry.end_date
+}
+---
+
+<PageLayout title={RESUME.TITLE} description={RESUME.DESCRIPTION}>
+  <TopLayout>
+    <div class="animate flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+      <div class="page-heading">
+        {RESUME.TITLE}
+      </div>
+      <a href="/resume.pdf" download class="w-fit rounded-full border border-black/15 px-4 py-2 text-sm text-black transition-colors duration-300 ease-in-out hover:border-black/30 hover:bg-black/[0.03] dark:border-white/20 dark:text-white dark:hover:border-white/40 dark:hover:bg-white/[0.06]">
+        Download PDF
+      </a>
+    </div>
+  </TopLayout>
+  <BottomLayout>
+    <div class="animate space-y-4">
+      <div class="space-y-6 rounded-sm border border-black/20 bg-white p-6 text-black shadow-sm sm:p-10 dark:border-black/20 dark:bg-white dark:text-black">
+        <header class="space-y-2 text-center">
+          <h1 class="text-3xl font-semibold text-black">
+            {cv.name}
+          </h1>
+          {cv.headline && (
+            <p class="text-sm text-black/75">
+              {cv.headline}
+            </p>
+          )}
+          <div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs leading-5 text-black/70">
+            {contactItems.map((item, index) => (
+              <>
+                {item.href ? (
+                  <a href={item.href} target={item.href.startsWith("mailto:") ? undefined : "_blank"} rel={item.href.startsWith("mailto:") ? undefined : "noopener"} class="underline decoration-[.5px] decoration-black/35 underline-offset-2 hover:decoration-black">
+                    {item.label}
+                  </a>
+                ) : (
+                  <span>{item.label}</span>
+                )}
+                {index < contactItems.length - 1 && (
+                  <span aria-hidden="true">|</span>
+                )}
+              </>
+            ))}
+          </div>
+        </header>
+
+        {sections.map(([sectionName, entries]) => (
+          <section class="space-y-2">
+            <h2 class="border-b border-black pb-1 text-base font-semibold text-black">
+              {sectionName}
+            </h2>
+            <div class="space-y-3">
+              {entries.map(entry => {
+                if (typeof entry === "string") {
+                  return (
+                    <p class="text-sm leading-6 text-black/80">
+                      {entry}
+                    </p>
+                  )
+                }
+
+                if (entry.bullet) {
+                  return (
+                    <ul class="list-disc space-y-1 pl-5 text-sm leading-6 text-black/80">
+                      <li>{entry.bullet}</li>
+                    </ul>
+                  )
+                }
+
+                if (entry.label && entry.details && !entry.highlights) {
+                  return (
+                    <p class="text-sm leading-6 text-black/80">
+                      <span class="font-semibold text-black">{entry.label}:</span> {entry.details}
+                    </p>
+                  )
+                }
+
+                const title = entryTitle(entry)
+                const details = entryDetails(entry)
+                const date = entryDate(entry)
+
+                return (
+                  <article class="space-y-1">
+                    <div class="grid gap-1 sm:grid-cols-[1fr_auto] sm:items-start">
+                      <div>
+                        {title && (
+                          <h3 class="text-sm font-semibold text-black">
+                            {entry.url ? (
+                              <a href={entry.url} target="_blank" rel="noopener" class="underline decoration-[.5px] decoration-black/35 underline-offset-3 hover:decoration-black">
+                                {title}
+                              </a>
+                            ) : title}
+                          </h3>
+                        )}
+                        {details && (
+                          <p class="text-sm italic leading-6 text-black/70">
+                            {details}
+                          </p>
+                        )}
+                      </div>
+                      {(date || entry.location) && (
+                        <p class="text-sm text-black/70 sm:text-right">
+                          {[date, entry.location].filter(Boolean).join(" | ")}
+                        </p>
+                      )}
+                    </div>
+                    {entry.highlights && (
+                      <ul class="list-disc space-y-1 pl-5 text-sm leading-6 text-black/80">
+                        {entry.highlights.map(highlight => (
+                          <li>
+                            {highlight}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </article>
+                )
+              })}
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <p class="border-t border-black/10 pt-5 text-sm text-black/45 dark:border-white/15 dark:text-white/45">
+        Resume PDF generated with <a href="https://github.com/rendercv/rendercv" target="_blank" rel="noopener" class="underline decoration-[.5px] decoration-black/25 underline-offset-2 transition-colors duration-300 ease-in-out hover:text-black hover:decoration-black dark:decoration-white/50 dark:hover:text-white dark:hover:decoration-white">RenderCV</a>, an open-source resume builder.
+      </p>
+    </div>
+  </BottomLayout>
+</PageLayout>

@@ -1,5 +1,6 @@
 node_modules
 .astro
+.cache
 dist
 .DS_Store
 .DS_store
