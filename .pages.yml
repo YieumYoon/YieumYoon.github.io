@@ -14,9 +14,7 @@ content:
     path: src/content/blog
     subfolders: true
     format: yaml-frontmatter
-    filename:
-      template: "{year}-{month}-{day}-{title}/index.md"
-      field: create
+    filename: "{year}-{month}-{day}-{title}/index.md"
     exclude:
       - _template.md
     view:
