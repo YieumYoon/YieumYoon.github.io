@@ -1,3 +1,7 @@
+settings:
+  content:
+    merge: true
+
 media:
   - name: images
     label: Images
@@ -57,12 +61,60 @@ content:
         label: Draft
         type: boolean
         default: true
+      - name: time
+        label: Publish time
+        description: Optional. Use HH:mm only when the exact publish time matters.
+        type: string
+        default: ""
+        options:
+          placeholder: "HH:mm"
+      - name: timezone
+        label: Publish timezone
+        description: Optional. Leave blank to use the site default, UTC.
+        type: select
+        default: ""
+        options:
+          values:
+            - value: UTC
+              label: UTC
+            - value: America/New_York
+              label: America/New_York
+            - value: Asia/Seoul
+              label: Asia/Seoul
+      - name: updatedDate
+        label: Updated date
+        description: Optional. Use only after a published post has meaningful changes.
+        type: date
+        default: ""
+        options:
+          format: yyyy-MM-dd
+      - name: updatedTime
+        label: Updated time
+        description: Optional. Use HH:mm only when the exact update time matters.
+        type: string
+        default: ""
+        options:
+          placeholder: "HH:mm"
+      - name: updatedTimezone
+        label: Updated timezone
+        description: Optional. Leave blank to reuse the publish timezone.
+        type: select
+        default: ""
+        options:
+          values:
+            - value: UTC
+              label: UTC
+            - value: America/New_York
+              label: America/New_York
+            - value: Asia/Seoul
+              label: Asia/Seoul
       - name: image
         label: Social image
+        description: Optional. Used for link previews and social cards.
         type: image
         options:
           media: images
-          path: blog
+          path: public/images/blog
           rename: safe
           extensions: [jpg, jpeg, png, webp, gif, svg]
       - name: body
@@ -72,6 +124,6 @@ content:
         options:
           format: markdown
           media: images
-          path: blog
+          path: public/images/blog
           rename: safe
           switcher: true

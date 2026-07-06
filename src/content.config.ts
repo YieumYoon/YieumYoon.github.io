@@ -2,8 +2,23 @@ import { defineCollection } from "astro:content"
 import { glob } from "astro/loaders"
 import { z } from "astro/zod"
 
-const dateString = z.string().regex(/^\d{4}-\d{2}-\d{2}$/)
+const dateString = z.preprocess((value) => {
+  if (value instanceof Date) return value.toISOString().slice(0, 10)
+  return value
+}, z.string().regex(/^\d{4}-\d{2}-\d{2}$/))
 const timeString = z.string().regex(/^\d{2}:\d{2}(:\d{2})?$/)
+const optionalDateString = z.preprocess((value) => {
+  if (value === "") return undefined
+  return value
+}, dateString.optional())
+const optionalTimeString = z.preprocess((value) => {
+  if (value === "") return undefined
+  return value
+}, timeString.optional())
+const optionalString = z.preprocess((value) => {
+  if (value === "") return undefined
+  return value
+}, z.string().optional())
 
 const blog = defineCollection({
   loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/blog" }),
@@ -11,12 +26,12 @@ const blog = defineCollection({
     title: z.string(),
     summary: z.string(),
     date: dateString,
-    time: timeString.optional(),
+    time: optionalTimeString,
     timezone: z.string().default("UTC"),
-    updatedDate: dateString.optional(),
-    updatedTime: timeString.optional(),
-    updatedTimezone: z.string().optional(),
-    image: z.string().optional(),
+    updatedDate: optionalDateString,
+    updatedTime: optionalTimeString,
+    updatedTimezone: optionalString,
+    image: optionalString,
     tags: z.array(z.string()),
     draft: z.boolean().optional(),
   }),
