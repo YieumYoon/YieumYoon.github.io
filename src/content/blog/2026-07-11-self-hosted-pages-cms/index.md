@@ -1,5 +1,6 @@
 ---
 title: "VS Code 없이 글을 쓰고 싶어서 Pages CMS를 직접 호스팅했다"
+slug: self-hosted-pages-cms
 summary: "Astro 블로그를 브라우저에서 편집하기 위해 Pages CMS를 포크하고, Oracle Cloud와 Tailscale을 이용해 내 기기에서만 접근할 수 있는 개인 CMS를 구축한 과정이다."
 date: "2026-07-11"
 timezone: "America/New_York"
@@ -17,7 +18,7 @@ Astro와 GitHub Pages로 블로그를 운영하면 글이 Markdown 파일로 남
 
 처음에는 Notion 연동부터 생각했지만, 결국 기존 GitHub 저장소를 그대로 원본으로 유지하면서 브라우저 편집 화면만 추가하는 방향을 선택했다. 그 결과 Pages CMS를 직접 포크하고 Oracle Cloud Free Tier 서버에 올린 뒤, Tailscale에 연결된 내 기기에서만 접근할 수 있는 개인 CMS를 만들었다.
 
-이 글은 그 과정에서 내린 선택과 시행착오를 정리한 경험기다. 같은 구성을 직접 재현하려면 별도로 작성한 [Oracle VM에 Pages CMS를 직접 호스팅하는 방법](/blog/2026-07-11-self-hosted-pages-cms-guide/)에서 명령어와 설정 예시를 확인할 수 있다.
+이 글은 그 과정에서 내린 선택과 시행착오를 정리한 경험기다. 같은 구성을 직접 재현하려면 별도로 작성한 [Oracle VM에 Pages CMS를 직접 호스팅하는 방법](/blog/self-hosted-pages-cms-guide/)에서 명령어와 설정 예시를 확인할 수 있다.
 
 ## 원했던 것
 
@@ -66,7 +67,7 @@ content:
     type: collection
     path: src/content/blog
     subfolders: true
-    filename: "{year}-{month}-{day}-{title}/index.md"
+    filename: "{year}-{month}-{day}-{fields.slug}/index.md"
     view:
       layout: tree
       node:
@@ -75,6 +76,8 @@ content:
 ```
 
 이 설정 이후에는 폴더 구조를 의식하지 않고 일반 블로그 관리자 화면처럼 글을 선택할 수 있었다.
+
+한국어 제목을 그대로 filename에 사용하면 영문 slug 변환 과정에서 한글이 제거될 수 있다. 이후에는 `restarting-github-blog`처럼 짧은 영문 slug를 직접 입력하고, CMS가 그 값을 폴더와 URL에 사용하도록 분리했다.
 
 ## GitHub App 설정에서 만난 문제
 

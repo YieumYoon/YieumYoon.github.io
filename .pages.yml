@@ -2,6 +2,9 @@ settings:
   content:
     merge: true
 
+# Note: GitHub-hosted images are fine for small/temporary assets.
+# If posts become image-heavy, move media to Cloudflare R2 and store image URLs
+# in frontmatter/body instead of committing binaries to this repository.
 media:
   - name: images
     label: Images
@@ -18,7 +21,7 @@ content:
     path: src/content/blog
     subfolders: true
     format: yaml-frontmatter
-    filename: "{year}-{month}-{day}-{title}/index.md"
+    filename: "{year}-{month}-{day}-{fields.slug}/index.md"
     exclude:
       - _template.md
     view:
@@ -40,6 +43,16 @@ content:
         required: true
         options:
           maxlength: 120
+      - name: slug
+        label: URL slug
+        description: Short English identifier used in the post URL. Use lowercase letters, numbers, and hyphens.
+        type: string
+        required: true
+        pattern:
+          regex: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          message: "Use lowercase letters, numbers, and single hyphens only."
+        options:
+          placeholder: "restarting-github-blog"
       - name: summary
         label: Summary
         type: text
@@ -61,6 +74,11 @@ content:
         label: Draft
         type: boolean
         default: true
+      - name: timestampActions
+        label: Date shortcuts
+        description: Fill publish or updated metadata with the current local time and timezone.
+        type: timestamp-actions
+        default: ""
       - name: time
         label: Publish time
         description: Optional. Use HH:mm only when the exact publish time matters.
@@ -71,16 +89,10 @@ content:
       - name: timezone
         label: Publish timezone
         description: Optional. Leave blank to use the site default, UTC.
-        type: select
+        type: string
         default: ""
         options:
-          values:
-            - value: UTC
-              label: UTC
-            - value: America/New_York
-              label: America/New_York
-            - value: Asia/Seoul
-              label: Asia/Seoul
+          placeholder: "IANA timezone, e.g. Asia/Seoul"
       - name: updatedDate
         label: Updated date
         description: Optional. Use only after a published post has meaningful changes.
@@ -98,16 +110,10 @@ content:
       - name: updatedTimezone
         label: Updated timezone
         description: Optional. Leave blank to reuse the publish timezone.
-        type: select
+        type: string
         default: ""
         options:
-          values:
-            - value: UTC
-              label: UTC
-            - value: America/New_York
-              label: America/New_York
-            - value: Asia/Seoul
-              label: Asia/Seoul
+          placeholder: "IANA timezone, e.g. America/New_York"
       - name: image
         label: Social image
         description: Optional. Used for link previews and social cards.

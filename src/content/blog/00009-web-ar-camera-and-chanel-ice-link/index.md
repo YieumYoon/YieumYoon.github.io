@@ -1,5 +1,6 @@
 ---
 title: "샤넬 아이스링크장에서 발견한 Web AR 카메라 들여다보기"
+slug: 00009-web-ar-camera-and-chanel-ice-link
 summary: "샤넬에서 제공한 웹기반 ar 카메라가 어떻게 작동하는지 기술을 파악하고 어떻게 구현했는지 찾아보았어요"
 date: "2024-12-12"
 draft: False

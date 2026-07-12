@@ -19,15 +19,24 @@ const optionalString = z.preprocess((value) => {
   if (value === "") return undefined
   return value
 }, z.string().optional())
+const optionalSlugString = z.preprocess((value) => {
+  if (value === "") return undefined
+  return value
+}, z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).optional())
+const timezoneString = z.preprocess((value) => {
+  if (value === "") return undefined
+  return value
+}, z.string().default("UTC"))
 
 const blog = defineCollection({
   loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/blog" }),
   schema: z.object({
     title: z.string(),
+    slug: optionalSlugString,
     summary: z.string(),
     date: dateString,
     time: optionalTimeString,
-    timezone: z.string().default("UTC"),
+    timezone: timezoneString,
     updatedDate: optionalDateString,
     updatedTime: optionalTimeString,
     updatedTimezone: optionalString,

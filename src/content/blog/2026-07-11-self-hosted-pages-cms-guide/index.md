@@ -1,5 +1,6 @@
 ---
 title: "Oracle VM에 Pages CMS를 직접 호스팅하는 방법"
+slug: self-hosted-pages-cms-guide
 summary: "Oracle Cloud Ubuntu VM에 Pages CMS와 PostgreSQL을 Docker 없이 설치하고, systemd와 Tailscale Serve로 내 기기에서만 접근 가능한 Astro 블로그 편집 환경을 구성하는 가이드다."
 date: "2026-07-11"
 timezone: "America/New_York"
@@ -16,7 +17,7 @@ draft: true
 
 이 글은 GitHub 저장소의 Markdown을 원본으로 사용하는 Astro 블로그에 개인용 웹 편집기를 추가하는 과정을 정리한 설치 가이드다. Pages CMS와 PostgreSQL은 Oracle Cloud의 Ubuntu VM에서 직접 실행하고, 관리자 화면은 공개 인터넷이 아니라 Tailscale에 연결된 기기에서만 접근할 수 있게 만든다.
 
-왜 이 구성을 선택했고 어떤 문제를 만났는지는 [VS Code 없이 글을 쓰고 싶어서 Pages CMS를 직접 호스팅했다](/blog/2026-07-11-self-hosted-pages-cms/)에 별도로 정리했다. 여기서는 재현에 필요한 설정과 운영 방법에 집중한다.
+왜 이 구성을 선택했고 어떤 문제를 만났는지는 [VS Code 없이 글을 쓰고 싶어서 Pages CMS를 직접 호스팅했다](/blog/self-hosted-pages-cms/)에 별도로 정리했다. 여기서는 재현에 필요한 설정과 운영 방법에 집중한다.
 
 > 이 글은 2026년 7월, Ubuntu 24.04 ARM64, Node.js 24, PostgreSQL 16, Pages CMS 2.1.8을 기준으로 작성했다. 설치 시점의 Pages CMS 문서와 보안 업데이트를 다시 확인해야 한다.
 
@@ -444,7 +445,7 @@ content:
     path: src/content/blog
     subfolders: true
     format: yaml-frontmatter
-    filename: "{year}-{month}-{day}-{title}/index.md"
+    filename: "{year}-{month}-{day}-{fields.slug}/index.md"
     view:
       layout: tree
       node:
@@ -452,9 +453,22 @@ content:
         hideDirs: nodes
       fields: [title, date, draft, tags]
       primary: title
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: slug
+        label: URL slug
+        description: Use lowercase English words, numbers, and hyphens.
+        type: string
+        required: true
+        pattern:
+          regex: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          message: "Use lowercase letters, numbers, and single hyphens only."
 ```
 
-`node.filename`과 `hideDirs`가 없으면 CMS 목록에서 폴더와 글이 따로 보일 수 있다. 실제 frontmatter schema에 맞춰 `title`, `summary`, `date`, `tags`, `draft`, 본문과 이미지 필드도 정의한다.
+`node.filename`과 `hideDirs`가 없으면 CMS 목록에서 폴더와 글이 따로 보일 수 있다. 한국어 제목은 자동 slug 변환 결과가 비거나 숫자만 남을 수 있으므로, URL에 사용할 짧은 영문 `slug`를 별도 필드로 받는다. Astro는 frontmatter의 `slug`를 공개 글 경로로 사용하므로 발행 후에는 이 값을 바꾸지 않는다. 실제 frontmatter schema에 맞춰 `summary`, `date`, `tags`, `draft`, 본문과 이미지 필드도 이어서 정의한다.
 
 CMS에서 테스트 글을 `draft: true`로 저장하고 다음을 확인한다.
 

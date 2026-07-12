@@ -1,5 +1,6 @@
 ---
 title: "Study Progress - December 12, 2024"
+slug: study-progress-2024-12-12
 date: "2024-12-12"
 summary: "Sample log 1."
 tags:

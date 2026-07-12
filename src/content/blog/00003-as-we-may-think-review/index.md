@@ -1,5 +1,6 @@
 ---
 title: "As We May Think(우리가 생각한 대로): 1945년 글에서 예견된 개인용 컴퓨터와 미래의 인터페이스 기술 🖥️"
+slug: 00003-as-we-may-think-review
 summary: "As We May Think(우리가 생각한 대로, 우리가 생각하는 것처럼)을 읽고 든 현대 컴퓨터와 인터페이스에 대한 생각, HCI 분야에 대한 관심"
 date: "2024-08-01"
 draft: False
