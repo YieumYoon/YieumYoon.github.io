@@ -4,3 +4,8 @@ node_modules
 dist
 .DS_Store
 .DS_store
+
+# Self-hosted Pages CMS runtime files
+deploy/pagescms/.env
+deploy/pagescms/*.pem
+deploy/pagescms/backups/

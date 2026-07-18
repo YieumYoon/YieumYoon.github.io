@@ -1,0 +1,10 @@
+[Unit]
+Description=Interactive personal services
+
+[Slice]
+CPUAccounting=true
+MemoryAccounting=true
+IOAccounting=true
+TasksAccounting=true
+CPUWeight=100
+IOWeight=100

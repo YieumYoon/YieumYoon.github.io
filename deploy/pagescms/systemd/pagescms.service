@@ -1,0 +1,49 @@
+[Unit]
+Description=Private Pages CMS
+Wants=network-online.target tailscaled.service
+After=network-online.target postgresql.service tailscaled.service
+Requires=postgresql.service
+
+[Service]
+Type=simple
+User=pagescms
+Group=pagescms
+Slice=personal-services.slice
+WorkingDirectory=/opt/pagescms/current
+EnvironmentFile=/etc/pagescms/pagescms.env
+Environment=NODE_ENV=production
+Environment=NEXT_TELEMETRY_DISABLED=1
+Environment=PATH=/opt/pagescms/node/current:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+ExecStart=/opt/pagescms/bin/start.sh
+Restart=on-failure
+RestartSec=5s
+TimeoutStartSec=120s
+TimeoutStopSec=30s
+KillSignal=SIGTERM
+UMask=0077
+
+StateDirectory=pagescms
+CacheDirectory=pagescms
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=read-only
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+ProtectClock=true
+ProtectHostname=true
+RestrictSUIDSGID=true
+RestrictRealtime=true
+RestrictNamespaces=true
+LockPersonality=true
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+SystemCallArchitectures=native
+TasksMax=256
+OOMPolicy=stop
+
+[Install]
+WantedBy=multi-user.target
