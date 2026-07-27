@@ -4,14 +4,22 @@ import type { CollectionEntry } from "astro:content"
 
 type Props = {
   entry: CollectionEntry<"blog">
+  position?: number
 }
 
-const { entry } = Astro.props
+const { entry, position = 1 } = Astro.props
 const slug = entry.id.replace(/\/index$/, "")
 const { date, time, timezone } = entry.data
 ---
 
-<a href={`/blog/${slug}`} class="group block py-5">
+<a
+  href={`/blog/${slug}`}
+  data-analytics-event="article_open"
+  data-analytics-id={slug}
+  data-analytics-impression="article_impression"
+  data-analytics-position={String(position)}
+  class="group block py-5"
+>
   <div class="grid gap-2 sm:grid-cols-[8rem_1fr] sm:gap-6">
     <time datetime={getPostDateTime({ date, time, timezone }).toISOString()} class="text-sm text-black/50 dark:text-white/50">
       {formatPostDateTime({ date, time, timezone })}

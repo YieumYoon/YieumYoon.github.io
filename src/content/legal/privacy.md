@@ -1,28 +1,89 @@
 ---
-title: "Privacy Policy"
-date: "03/07/2024"
+title: "개인정보처리방침"
+date: "2026-07-26"
 ---
 
-This Privacy Policy governs the manner in which [Your Company Name] collects, uses, maintains, and discloses information collected from users (each, a "User") of the [Your Website URL] website ("Site"). This privacy policy applies to the Site and all products and services offered by [Your Company Name].
+Yieum Yoon(이하 "운영자")은 [Yieum Yoon 블로그](https://yieumyoon.github.io)(이하 "블로그") 방문자의 개인정보를 중요하게 생각합니다. 이 방침은 블로그 이용 과정에서 어떤 정보가 처리되는지와 방문자가 이를 통제하는 방법을 설명합니다.
 
-#### Personal identification information
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet massa ut neque consequat congue. Sed id ipsum vitae sem imperdiet suscipit. Nulla facilisi. Morbi quis nibh at nunc pulvinar rhoncus. Proin porttitor dapibus dolor, id fermentum urna eleifend et. In feugiat pretium erat nec vestibulum.
+## 1. 처리하는 정보와 수집 방법
 
-#### Non-personal identification information
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet massa ut neque consequat congue. Sed id ipsum vitae sem imperdiet suscipit. Nulla facilisi. Morbi quis nibh at nunc pulvinar rhoncus. Proin porttitor dapibus dolor, id fermentum urna eleifend et. In feugiat pretium erat nec vestibulum.
+블로그는 회원가입 기능을 제공하지 않으며, 운영자가 방문자의 이름이나 연락처를 직접 입력받는 양식을 운영하지 않습니다. 다만 다음 정보가 서비스 이용 과정에서 자동으로 처리될 수 있습니다.
 
-#### Web browser cookies
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet massa ut neque consequat congue. Sed id ipsum vitae sem imperdiet suscipit. Nulla facilisi. Morbi quis nibh at nunc pulvinar rhoncus. Proin porttitor dapibus dolor, id fermentum urna eleifend et. In feugiat pretium erat nec vestibulum.
+- Google Analytics 4(GA4): 방문 페이지와 페이지 제목, 접속 시각, 유입 경로, 대략적인 지역, 브라우저·운영체제·기기 및 화면 정보, 쿠키에 저장되는 클라이언트 식별자와 세션 정보
+- GitHub Pages: 사이트 제공과 보안에 필요한 접속 정보가 GitHub의 시스템에서 처리될 수 있습니다.
+- Giscus 댓글: 방문자가 글 하단의 **Load comments** 버튼을 누른 경우에만 Giscus가 로드됩니다. 댓글을 작성하려면 GitHub 로그인이 필요하며, GitHub 계정 정보와 작성한 댓글·반응은 GitHub Discussions 및 Giscus를 통해 처리됩니다. 운영자는 GitHub 비밀번호를 수집하지 않습니다.
 
-#### How we use collected information
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet massa ut neque consequat congue. Sed id ipsum vitae sem imperdiet suscipit. Nulla facilisi. Morbi quis nibh at nunc pulvinar rhoncus. Proin porttitor dapibus dolor, id fermentum urna eleifend et. In feugiat pretium erat nec vestibulum.
+GA4는 IP 주소를 데이터 전송과 대략적인 위치 산출 등에 사용할 수 있으나, 운영자에게 원본 IP 주소를 제공하지 않습니다. 자세한 내용은 [Google Analytics의 데이터 수집 안내](https://support.google.com/analytics/answer/11593727)에서 확인할 수 있습니다.
 
-#### How we protect your information
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet massa ut neque consequat congue. Sed id ipsum vitae sem imperdiet suscipit. Nulla facilisi. Morbi quis nibh at nunc pulvinar rhoncus. Proin porttitor dapibus dolor, id fermentum urna eleifend et. In feugiat pretium erat nec vestibulum.
+블로그의 GA4 웹 데이터 스트림은 측정 ID `G-Y2R1J7YMNE`를 사용하며 향상된 측정 기능이 켜져 있습니다. 이에 따라 페이지 조회, 스크롤, 외부 링크 클릭, 사이트 검색, 동영상 참여, 파일 다운로드 및 양식 상호작용이 해당 기능을 사용하거나 이벤트가 발생할 때 측정될 수 있습니다. 이메일 데이터 수정 기능은 켜져 있어 GA4가 감지한 이메일 주소를 전송 전에 수정하도록 설정되어 있습니다. URL 쿼리 매개변수 수정 기능은 현재 켜져 있지 않으므로 방문 URL의 쿼리 문자열이 페이지 URL 정보에 포함될 수 있습니다.
 
-#### Sharing your personal information
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet massa ut neque consequat congue. Sed id ipsum vitae sem imperdiet suscipit. Nulla facilisi. Morbi quis nibh at nunc pulvinar rhoncus. Proin porttitor dapibus dolor, id fermentum urna eleifend et. In feugiat pretium erat nec vestibulum.
+블로그는 콘텐츠 이용 현황을 더 구체적으로 이해하기 위해 페이지 유형, 글 식별자와 태그, 링크가 위치한 화면 영역, 내부 링크의 경로 또는 외부 링크의 도메인, 글 읽기 진행 단계(25%, 50%, 75%, 90%, 100%), 화면이 활성화된 상태에서의 읽기 시간 단계(15초, 30초, 60초, 120초, 300초), 글·프로젝트 선택, 이전·다음 글 이동, 댓글 열기, 이력서 다운로드, 연락처·소셜·RSS 링크 및 일부 화면 조작을 이벤트로 측정할 수 있습니다. 이 추가 측정에는 링크의 쿼리 문자열, 이메일 주소, 클릭한 문구나 복사한 내용은 포함하지 않습니다.
 
-#### Changes to this privacy policy
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet massa ut neque consequat congue. Sed id ipsum vitae sem imperdiet suscipit. Nulla facilisi. Morbi quis nibh at nunc pulvinar rhoncus. Proin porttitor dapibus dolor, id fermentum urna eleifend et. In feugiat pretium erat nec vestibulum.
+또한 글·프로젝트 카드가 화면에 절반 이상 1초 동안 표시되었는지, 글의 어느 제목 구간까지 도달했는지, 코드 복사 버튼의 사용 여부와 성공 여부, 외부 자료의 종류, 찾을 수 없는 페이지, 실제 방문 환경에서의 페이지 속도 지표(LCP, INP, CLS, FCP, TTFB) 및 최대 5건의 클라이언트 오류를 측정할 수 있습니다. 코드 내용, 오류 메시지와 스택, URL 쿼리는 이 측정에 포함하지 않으며 오류 종류, 내부 파일 경로 또는 외부 호스트 이름과 줄 번호처럼 문제를 구분하는 데 필요한 제한된 정보만 사용합니다.
 
+현재 블로그는 `analytics_storage`, `ad_storage`, `ad_user_data`, `ad_personalization`에 관한 Google Consent Mode 신호를 전송하지 않으며, 별도의 동의 관리 화면 없이 페이지가 열릴 때 GA4가 로드됩니다. 방문자는 제3항과 제6항의 방법으로 브라우저에서 분석 기능을 제한할 수 있습니다.
+
+## 2. 처리 목적
+
+자동으로 수집되는 정보는 다음 목적으로만 이용합니다.
+
+- 방문자 수, 유입 경로 및 콘텐츠 이용 현황 파악
+- 인기 글과 사이트 사용성 분석 및 개선
+- 사이트 제공, 장애 대응 및 보안 유지
+- 방문자가 선택한 경우 댓글과 반응 기능 제공
+
+## 3. 쿠키
+
+블로그는 측정을 위해 GA4의 자사 쿠키를 사용할 수 있습니다.
+
+| 쿠키 | 목적 | 기본 만료기간 |
+| --- | --- | --- |
+| `_ga` | 방문자 구분 | 2년 |
+| `_ga_<측정 ID>` | 세션 상태 유지 | 2년 |
+
+위 표는 방문자의 브라우저에 저장되는 쿠키의 기본 만료기간입니다. GA4 서버에 저장되는 분석 데이터의 보유기간과는 서로 다르며, 실제 쿠키 보관기간은 브라우저 정책, 방문 시점 및 GA4 설정에 따라 더 짧아질 수 있습니다. 방문자는 브라우저 설정에서 쿠키를 차단하거나 삭제할 수 있으며, [Google Analytics 차단 브라우저 부가 기능](https://tools.google.com/dlpage/gaoptout)을 사용할 수도 있습니다. 분석 쿠키를 거부해도 블로그 글을 읽는 핵심 기능에는 영향이 없습니다.
+
+## 4. 외부 서비스 및 국외 처리
+
+블로그는 다음 외부 서비스를 이용합니다. 서비스 이용 과정에서 정보가 암호화된 네트워크를 통해 국외 서버로 전송되어 각 제공자의 정책과 운영자가 설정한 기간 동안 처리될 수 있습니다.
+
+| 제공자 | 이용 서비스와 목적 | 처리될 수 있는 정보 |
+| --- | --- | --- |
+| Google LLC | Google Analytics 4를 통한 방문 통계와 이용 분석 | 제1항의 GA4 정보 |
+| GitHub, Inc. | GitHub Pages를 통한 사이트 호스팅 | 접속·기기 정보 등 서비스 제공에 필요한 정보 |
+| GitHub, Inc. 및 Giscus | 사용자가 선택한 댓글·반응 기능 제공 | GitHub 계정 정보, 댓글·반응 및 관련 접속 정보 |
+
+운영자는 법령상 요구되는 경우를 제외하고 방문자 정보를 판매하지 않습니다. 외부 서비스의 구체적인 처리 방식은 [Google 개인정보처리방침](https://policies.google.com/privacy), [GitHub 개인정보처리방침](https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement) 및 [Giscus 개인정보 안내](https://github.com/giscus/giscus/blob/main/PRIVACY-POLICY.md)를 따릅니다.
+
+## 5. 보유 및 파기
+
+운영자는 블로그 운영 목적에 필요한 기간 동안만 서비스별 관리 화면에서 제공되는 정보를 이용합니다. 현재 GA4 속성의 보유 설정은 다음과 같습니다.
+
+- 이벤트 데이터: 2개월
+- 사용자 데이터: 14개월
+- 새 사용자 활동 시 사용자 데이터 보유기간 재설정: 사용
+
+이 기간은 GA4의 사용자 단위·이벤트 단위 데이터에 적용되며, 제3항의 브라우저 쿠키 만료기간과는 별개입니다. 보유기간이 지나면 해당 데이터는 자동 삭제되며, 집계된 통계는 더 오래 남을 수 있습니다. 댓글은 작성자가 GitHub에서 삭제하거나 운영상 삭제될 때까지 GitHub Discussions에 남을 수 있습니다. 외부 서비스가 자체적으로 보유하는 데이터는 각 제공자의 보유·삭제 정책을 따릅니다.
+
+## 6. 방문자의 선택과 권리
+
+방문자는 다음 방법으로 정보 처리를 제한하거나 관련 요청을 할 수 있습니다.
+
+- 브라우저에서 쿠키 차단 또는 삭제
+- Google Analytics 차단 부가 기능 사용
+- **Load comments** 버튼을 누르지 않아 Giscus를 로드하지 않기
+- GitHub에서 본인이 작성한 댓글·반응을 수정하거나 삭제하기
+- 아래 연락처로 열람, 정정, 삭제 또는 처리 제한 문의하기
+
+요청 내용에 따라 본인 확인이 필요하거나, 법령 및 외부 서비스의 기술적 범위에 따라 처리가 제한될 수 있습니다.
+
+## 7. 개인정보 관련 문의
+
+- 운영자: Yieum Yoon
+- 이메일: [junsueddie@gmail.com](mailto:junsueddie@gmail.com)
+
+## 8. 방침 변경
+
+서비스나 관련 정책이 변경되면 이 방침을 수정할 수 있습니다. 중요한 변경 사항은 이 페이지에 변경 내용과 적용일을 게시하여 알립니다.
+
+시행일: 2026년 7월 26일

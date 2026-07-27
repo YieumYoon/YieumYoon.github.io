@@ -11,11 +11,11 @@ const posts = (await getCollection("blog"))
   .slice(0,8)
 ---
 
-<PageLayout title="Home" description={SITE.DESCRIPTION}>
+<PageLayout title="Home" description={SITE.DESCRIPTION} pageType="home">
   <div class="relative bg-white dark:bg-black">
     <div class="mx-auto max-w-screen-lg px-5 pt-28 pb-16 space-y-20">
 
-      <section class="animate">
+      <section class="animate" data-analytics-region="home_intro">
         <div class="space-y-5">
           <p class="text-sm text-black/50 dark:text-white/50">
             책 좋아하는 개발자
@@ -43,7 +43,7 @@ const posts = (await getCollection("blog"))
         </div>
       </section>
 
-      <section class="animate">
+      <section class="animate" data-analytics-region="home_latest_writing">
         <div class="space-y-2">
           <div class="flex items-center justify-between gap-4">
             <p class="font-semibold text-black dark:text-white">
@@ -56,16 +56,16 @@ const posts = (await getCollection("blog"))
             </a>
           </div>
           <ul class="divide-y divide-black/10 dark:divide-white/15">
-            {posts.map((post) => (
+            {posts.map((post, index) => (
               <li>
-                <ArrowCard entry={post} />
+                <ArrowCard entry={post} position={index + 1} />
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      <section class="animate">
+      <section class="animate" data-analytics-region="home_elsewhere">
         <div class="space-y-3">
           <p class="font-semibold text-black dark:text-white">
             Elsewhere
@@ -82,7 +82,14 @@ const posts = (await getCollection("blog"))
                   </span>
                 </div>
                 <div class="col-span-3 truncate">
-                  <a href={social.HREF} target="_blank" rel="noopener" class="group w-fit col-span-3 underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
+                  <a
+                    href={social.HREF}
+                    target="_blank"
+                    rel="noopener"
+                    data-analytics-event={social.HREF.startsWith("mailto:") ? "contact_click" : "social_click"}
+                    data-analytics-id={social.NAME.toLowerCase()}
+                    class="group w-fit col-span-3 underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend"
+                  >
                     <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
                       {social.TEXT}
                     </span>

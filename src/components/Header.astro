@@ -6,7 +6,7 @@ const subpath = pathname.match(/[^/]+/g)
 import Container from "@components/Container.astro"
 ---
 
-<header id="header" class="fixed top-0 w-full h-16 z-50 ">
+<header id="header" data-analytics-region="header" class="fixed top-0 w-full h-16 z-50 ">
   <Container size="lg">
     <div class="relative h-full w-full">
       <div class="absolute left-0 top-1/2 -translate-y-1/2 flex gap-1 font-semibold">
@@ -33,13 +33,13 @@ import Container from "@components/Container.astro"
     </div>
 
     <div class="buttons absolute right-0 top-1/2 -translate-y-1/2 flex gap-1">
-      <a href="/rss.xml" aria-label={`Rss feed for ${SITE.TITLE}`} class={cn("hidden md:flex", "size-9 rounded-full p-2 items-center justify-center", "bg-transparent hover:bg-black/5 dark:hover:bg-white/20", "stroke-current hover:stroke-black hover:dark:stroke-white", "border border-black/10 dark:border-white/25", "transition-colors duration-300 ease-in-out")}>
+      <a href="/rss.xml" data-analytics-event="rss_open" data-analytics-id="header" aria-label={`Rss feed for ${SITE.TITLE}`} class={cn("hidden md:flex", "size-9 rounded-full p-2 items-center justify-center", "bg-transparent hover:bg-black/5 dark:hover:bg-white/20", "stroke-current hover:stroke-black hover:dark:stroke-white", "border border-black/10 dark:border-white/25", "transition-colors duration-300 ease-in-out")}>
         <svg class="size-full">
           <use href="/ui.svg#rss"></use>
         </svg>
       </a>
 
-      <button id="header-theme-button" aria-label={`Toggle light and dark theme`} class={cn("hidden md:flex", "size-9 rounded-full p-2 items-center justify-center", "bg-transparent hover:bg-black/5 dark:hover:bg-white/20", "stroke-current hover:stroke-black hover:dark:stroke-white", "border border-black/10 dark:border-white/25", "transition-colors duration-300 ease-in-out")}>
+      <button id="header-theme-button" data-analytics-event="theme_toggle" data-analytics-id="header" aria-label={`Toggle light and dark theme`} class={cn("hidden md:flex", "size-9 rounded-full p-2 items-center justify-center", "bg-transparent hover:bg-black/5 dark:hover:bg-white/20", "stroke-current hover:stroke-black hover:dark:stroke-white", "border border-black/10 dark:border-white/25", "transition-colors duration-300 ease-in-out")}>
         <svg class="size-full block dark:hidden">
           <use href="/ui.svg#sun"></use>
         </svg>
@@ -48,7 +48,7 @@ import Container from "@components/Container.astro"
         </svg>
       </button>
 
-      <button id="header-drawer-button" aria-label={`Toggle drawer open and closed`} class={cn("flex md:hidden", "size-9 rounded-full p-2 items-center justify-center", "bg-transparent hover:bg-black/5 dark:hover:bg-white/20", "stroke-current hover:stroke-black hover:dark:stroke-white", "border border-black/10 dark:border-white/25", "transition-colors duration-300 ease-in-out")}>
+      <button id="header-drawer-button" data-analytics-event="menu_toggle" data-analytics-id="mobile_drawer" aria-label={`Toggle drawer open and closed`} class={cn("flex md:hidden", "size-9 rounded-full p-2 items-center justify-center", "bg-transparent hover:bg-black/5 dark:hover:bg-white/20", "stroke-current hover:stroke-black hover:dark:stroke-white", "border border-black/10 dark:border-white/25", "transition-colors duration-300 ease-in-out")}>
         <svg id="drawer-open" class="size-full">
           <use href="/ui.svg#menu"></use>
         </svg>

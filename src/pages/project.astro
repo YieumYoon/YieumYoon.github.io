@@ -16,7 +16,7 @@ const projects = (await getCollection("blog"))
   .sort((a, b) => getPostDateTime(b.data).getTime() - getPostDateTime(a.data).getTime())
 ---
 
-<PageLayout title={PROJECT.TITLE} description={PROJECT.DESCRIPTION}>
+<PageLayout title={PROJECT.TITLE} description={PROJECT.DESCRIPTION} pageType="project_index">
   <TopLayout>
     <div class="animate page-heading">
       {PROJECT.TITLE}
@@ -33,11 +33,18 @@ const projects = (await getCollection("blog"))
         </p>
       </div>
 
-      <div class="grid gap-4 md:grid-cols-2">
-        {projects.map((project) => {
+      <div class="grid gap-4 md:grid-cols-2" data-analytics-region="project_grid">
+        {projects.map((project, index) => {
           const slug = project.id.replace(/\/index$/, "")
           return (
-            <a href={`/blog/${slug}`} class="group flex h-full flex-col justify-between rounded-lg border border-black/10 p-5 transition-colors duration-300 ease-in-out hover:border-black/25 hover:bg-black/[0.02] dark:border-white/15 dark:hover:border-white/35 dark:hover:bg-white/[0.04]">
+            <a
+              href={`/blog/${slug}`}
+              data-analytics-event="project_open"
+              data-analytics-id={slug}
+              data-analytics-impression="project_impression"
+              data-analytics-position={String(index + 1)}
+              class="group flex h-full flex-col justify-between rounded-lg border border-black/10 p-5 transition-colors duration-300 ease-in-out hover:border-black/25 hover:bg-black/[0.02] dark:border-white/15 dark:hover:border-white/35 dark:hover:bg-white/[0.04]"
+            >
               <div class="space-y-3">
                 <div class="flex flex-wrap gap-2">
                   {project.data.tags.slice(0, 3).map(tag => (

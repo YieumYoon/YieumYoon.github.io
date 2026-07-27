@@ -4,14 +4,39 @@ import BaseHead from "@components/BaseHead.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import Drawer from "@components/Drawer.astro";
-const { title, description, image, type } = Astro.props;
 import { SITE } from "@consts";
+
+type Props = {
+  title: string
+  description: string
+  image?: string
+  type?: "article" | "website"
+  pageType?: string
+  contentId?: string
+  contentTags?: string[]
+}
+
+const {
+  title,
+  description,
+  image,
+  type,
+  pageType = "page",
+  contentId,
+  contentTags = [],
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="ko">
   <head>
     <!-- Google tag (gtag.js) -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () {
+        window.dataLayer.push(arguments);
+      };
+    </script>
     <script is:inline type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-Y2R1J7YMNE"
     ></script>
     <script is:inline type="text/partytown">
@@ -21,16 +46,26 @@ import { SITE } from "@consts";
       }
       gtag("js", new Date());
 
-      gtag("config", "G-Y2R1J7YMNE");
+      if (window.location.hostname === "yieumyoon.github.io") {
+        gtag("config", "G-Y2R1J7YMNE");
+      }
+    </script>
+    <script is:inline src="/js/analytics.js" defer></script>
+    <script>
+      import "@scripts/web-vitals"
     </script>
     
     <BaseHead title={`${title} | ${SITE.TITLE}`} description={description} image={image} type={type} />
   </head>
 
-  <body>
+  <body
+    data-page-type={pageType}
+    data-content-id={contentId}
+    data-content-tags={contentTags.join("|")}
+  >
     <Header />
     <Drawer />
-    <main>
+    <main data-analytics-region="main">
       <slot />
     </main>
     <Footer />

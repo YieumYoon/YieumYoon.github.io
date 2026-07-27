@@ -89,13 +89,19 @@ function entryDate(entry: Exclude<ResumeEntry, string>) {
 }
 ---
 
-<PageLayout title={RESUME.TITLE} description={RESUME.DESCRIPTION}>
+<PageLayout title={RESUME.TITLE} description={RESUME.DESCRIPTION} pageType="resume">
   <TopLayout>
     <div class="animate flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
       <div class="page-heading">
         {RESUME.TITLE}
       </div>
-      <a href="/resume.pdf" download class="w-fit rounded-full border border-black/15 px-4 py-2 text-sm text-black transition-colors duration-300 ease-in-out hover:border-black/30 hover:bg-black/[0.03] dark:border-white/20 dark:text-white dark:hover:border-white/40 dark:hover:bg-white/[0.06]">
+      <a
+        href="/resume.pdf"
+        download
+        data-analytics-event="resume_download"
+        data-analytics-id="resume_pdf"
+        class="w-fit rounded-full border border-black/15 px-4 py-2 text-sm text-black transition-colors duration-300 ease-in-out hover:border-black/30 hover:bg-black/[0.03] dark:border-white/20 dark:text-white dark:hover:border-white/40 dark:hover:bg-white/[0.06]"
+      >
         Download PDF
       </a>
     </div>
@@ -112,11 +118,18 @@ function entryDate(entry: Exclude<ResumeEntry, string>) {
               {cv.headline}
             </p>
           )}
-          <div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs leading-5 text-black/70">
+          <div class="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs leading-5 text-black/70" data-analytics-region="resume_contact">
             {contactItems.map((item, index) => (
               <>
                 {item.href ? (
-                  <a href={item.href} target={item.href.startsWith("mailto:") ? undefined : "_blank"} rel={item.href.startsWith("mailto:") ? undefined : "noopener"} class="underline decoration-[.5px] decoration-black/35 underline-offset-2 hover:decoration-black">
+                  <a
+                    href={item.href}
+                    target={item.href.startsWith("mailto:") ? undefined : "_blank"}
+                    rel={item.href.startsWith("mailto:") ? undefined : "noopener"}
+                    data-analytics-event={item.href.startsWith("mailto:") ? "contact_click" : "social_click"}
+                    data-analytics-id={item.href.startsWith("mailto:") ? "email" : item.label.split(":")[0].toLowerCase()}
+                    class="underline decoration-[.5px] decoration-black/35 underline-offset-2 hover:decoration-black"
+                  >
                     {item.label}
                   </a>
                 ) : (

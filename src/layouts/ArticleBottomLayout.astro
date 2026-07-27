@@ -22,13 +22,16 @@ const nextSlug = next.id.replace(/\/index$/, "");
 ---
 
 <div>
-  <article>
+  <article data-analytics-article data-analytics-region="article_body">
     <Content />
   </article>
 
-  <div class="border-t border-black/10 py-8 dark:border-white/15">
+  <div class="border-t border-black/10 py-8 dark:border-white/15" data-analytics-region="article_comments">
     <button
       id="load-comments"
+      data-analytics-region="article_comments"
+      data-analytics-event="comments_load"
+      data-analytics-id="giscus"
       class="rounded border border-black/15 px-3 py-2 text-sm text-black/70 transition-colors duration-300 ease-in-out hover:bg-black/5 hover:text-black dark:border-white/20 dark:text-white/70 dark:hover:bg-white/10 dark:hover:text-white"
       type="button"
     >
@@ -76,9 +79,12 @@ const nextSlug = next.id.replace(/\/index$/, "");
     initializeComments()
   </script>
 
-  <div class="grid grid-cols-1 gap-6 border-t border-black/10 pt-8 dark:border-white/15 sm:grid-cols-2">
+  <div class="grid grid-cols-1 gap-6 border-t border-black/10 pt-8 dark:border-white/15 sm:grid-cols-2" data-analytics-region="article_navigation">
     <a
       href={`/blog/${prevSlug}`}
+      data-analytics-event="article_navigation"
+      data-analytics-id={prevSlug}
+      data-analytics-value="previous"
       class="group block"
     >
       <div class="space-y-2">
@@ -90,6 +96,9 @@ const nextSlug = next.id.replace(/\/index$/, "");
     </a>
     <a
       href={`/blog/${nextSlug}`}
+      data-analytics-event="article_navigation"
+      data-analytics-id={nextSlug}
+      data-analytics-value="next"
       class="group block sm:text-right"
     >
       <div class="space-y-2">

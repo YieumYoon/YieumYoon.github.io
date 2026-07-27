@@ -12,22 +12,22 @@ const posts = (await getCollection("blog"))
   .sort((a, b) => getPostDateTime(b.data).getTime() - getPostDateTime(a.data).getTime())
 ---
 
-<PageLayout title={BLOG.TITLE} description={BLOG.DESCRIPTION}>
+<PageLayout title={BLOG.TITLE} description={BLOG.DESCRIPTION} pageType="blog_index">
   <TopLayout>
     <div class="animate page-heading">
       {BLOG.TITLE}
     </div>
   </TopLayout>
   <BottomLayout>
-    <div class="animate">
+    <div class="animate" data-analytics-region="blog_index">
       <div class="flex flex-col">
         <div class="text-sm text-black/50 dark:text-white/50">
           {posts.length} posts
         </div>
         <ul class="divide-y divide-black/10 dark:divide-white/15">
-          {posts.map((post) => (
+          {posts.map((post, index) => (
             <li>
-              <ArrowCard entry={post} />
+              <ArrowCard entry={post} position={index + 1} />
             </li>
           ))}
         </ul>
