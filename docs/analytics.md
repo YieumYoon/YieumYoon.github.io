@@ -27,7 +27,6 @@
 | `resource_download` | 글에서 자료 파일 다운로드 | `resource_type`, `link_target` |
 | `code_copy` | 코드 블록 복사 시도 결과 | `code_index`, `code_language`, `copy_status` |
 | `article_navigation` | 이전/다음 글 선택 | `content_id`, `link_value` |
-| `comments_load` | 댓글 영역 열기 | `action_area`, `action_id` |
 | `project_impression` | 프로젝트 카드가 실제로 노출 | `content_area`, `content_item_id`, `content_position` |
 | `project_open` | 프로젝트 링크 선택 | `link_id`, `content_position`, `link_target` |
 | `resume_download` | 이력서 PDF 다운로드 | `link_id`, `link_target` |
@@ -91,7 +90,7 @@
 
 ## 핵심 이벤트와 보고서
 
-우선 `resume_download`, `contact_click`, `project_open`, `comments_load`를 핵심 이벤트 후보로
+우선 `resume_download`, `contact_click`, `project_open`을 핵심 이벤트 후보로
 사용한다. GA4 **관리 > 데이터 표시 > 이벤트**에서 실제 이벤트가 들어온 것을 확인한 다음,
 사이트 목표에 맞는 이벤트만 핵심 이벤트로 표시한다.
 

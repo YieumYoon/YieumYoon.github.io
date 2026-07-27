@@ -27,52 +27,48 @@ const nextSlug = next.id.replace(/\/index$/, "");
   </article>
 
   <div class="border-t border-black/10 py-8 dark:border-white/15" data-analytics-region="article_comments">
-    <button
-      id="load-comments"
-      data-analytics-region="article_comments"
-      data-analytics-event="comments_load"
-      data-analytics-id="giscus"
-      class="rounded border border-black/15 px-3 py-2 text-sm text-black/70 transition-colors duration-300 ease-in-out hover:bg-black/5 hover:text-black dark:border-white/20 dark:text-white/70 dark:hover:bg-white/10 dark:hover:text-white"
-      type="button"
-    >
-      Load comments
-    </button>
-    <div id="comments" class="mt-6"></div>
+    <div id="comments">
+      <p id="comments-status" class="text-sm text-black/60 dark:text-white/60" role="status">
+        Loading comments…
+      </p>
+    </div>
   </div>
 
   <script>
     function initializeComments() {
-      const button = document.getElementById("load-comments")
       const comments = document.getElementById("comments")
 
-      if (!button || !comments || button.dataset.ready === "true") return
+      if (!comments || comments.dataset.ready === "true") return
 
-      button.dataset.ready = "true"
-      button.addEventListener("click", () => {
-        if (comments.querySelector("script")) return
+      comments.dataset.ready = "true"
 
-        const script = document.createElement("script")
-        script.src = "https://giscus.app/client.js"
-        script.async = true
-        script.crossOrigin = "anonymous"
-        script.dataset.repo = "YieumYoon/YieumYoon.github.io"
-        script.dataset.repoId = "R_kgDOMFPW6g"
-        script.dataset.category = "Announcements"
-        script.dataset.categoryId = "DIC_kwDOMFPW6s4Cf82h"
-        script.dataset.mapping = "pathname"
-        script.dataset.strict = "0"
-        script.dataset.reactionsEnabled = "1"
-        script.dataset.emitMetadata = "0"
-        script.dataset.inputPosition = "top"
-        script.dataset.theme = document.documentElement.classList.contains("dark")
-          ? "noborder_dark"
-          : "noborder_light"
-        script.dataset.lang = "en"
-        script.dataset.loading = "lazy"
-
-        comments.appendChild(script)
-        button.remove()
+      const script = document.createElement("script")
+      script.src = "https://giscus.app/client.js"
+      script.async = true
+      script.crossOrigin = "anonymous"
+      script.dataset.repo = "YieumYoon/YieumYoon.github.io"
+      script.dataset.repoId = "R_kgDOMFPW6g"
+      script.dataset.category = "Announcements"
+      script.dataset.categoryId = "DIC_kwDOMFPW6s4Cf82h"
+      script.dataset.mapping = "pathname"
+      script.dataset.strict = "0"
+      script.dataset.reactionsEnabled = "1"
+      script.dataset.emitMetadata = "0"
+      script.dataset.inputPosition = "top"
+      script.dataset.theme = document.documentElement.classList.contains("dark")
+        ? "noborder_dark"
+        : "noborder_light"
+      script.dataset.lang = "en"
+      script.dataset.loading = "lazy"
+      script.addEventListener("load", () => {
+        comments.querySelector("#comments-status")?.remove()
       })
+      script.addEventListener("error", () => {
+        const status = comments.querySelector("#comments-status")
+        if (status) status.textContent = "Comments could not be loaded."
+      })
+
+      comments.appendChild(script)
     }
 
     document.addEventListener("astro:after-swap", initializeComments)
