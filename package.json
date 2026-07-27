@@ -10,6 +10,7 @@
     "dev:network": "astro dev --host",
     "start": "astro dev",
     "build": "astro check && astro build",
+    "test:sitemap": "node --test tests/sitemap-lastmod.test.mjs",
     "preview": "astro preview",
     "preview:network": "astro dev --host",
     "astro": "astro",
