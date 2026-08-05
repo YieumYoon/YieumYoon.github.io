@@ -1,8 +1,10 @@
 ---
 title: "Spot Fiducial AprilTag Plate Generator"
 slug: spot-fiducial-3dprint-generator
-summary: "Boston Dynamics Spot용 fiducial plate SVG를 브라우저에서 생성할 수 있는 웹 도구입니다. 146 mm tag36h11 AprilTag, print SVG, CAD SVG export를 지원합니다."
+summary: "Boston Dynamics Spot이 쓰는 fiducial plate를 브라우저에서 만들고, 3D 프린터로 직접 뽑아 벽에 붙이기까지의 과정을 정리했습니다."
 date: "2026-03-26"
+updatedDate: "2026-08-04"
+image: "/images/blog/spot-fiducial-plate-installed.webp"
 draft: false
 tags:
   - Robotics
@@ -10,12 +12,17 @@ tags:
   - SVG
   - JavaScript
   - GitHub Pages
+  - 3D Printing
 ---
 
 Boston Dynamics Spot용 fiducial plate를 더 빠르게 만들기 위해 만든 정적 웹 프로젝트입니다. 반복적으로 CAD 파일을 열어서 텍스트와 태그 번호를 수정하는 과정을 줄이고, 브라우저에서 바로 확인하고 SVG로 내보낼 수 있도록 만들었습니다.
 
 - Live demo: [Spot Fiducial AprilTag Plate Generator](https://yieumyoon.github.io/spot-fiducial-3dprint-generator/)
 - Repository: [YieumYoon/spot-fiducial-3dprint-generator](https://github.com/YieumYoon/spot-fiducial-3dprint-generator)
+
+![흰색 벽에 고정된 3D 프린트 fiducial plate. 상단에 ROBOT LOCALIZATION FIDUCIAL 007, 하단에 DO NOT BLOCK OR MOVE 문구가 있고 가운데에 검은색 AprilTag가 있다](/images/blog/spot-fiducial-plate-installed.webp)
+
+위 사진은 이 도구로 만든 SVG를 STEP으로 변환한 뒤 듀얼 컬러 3D 프린터로 출력해서 실제로 벽에 설치한 결과물입니다. 흰색과 검은색을 필라멘트로 나눠 출력했기 때문에 스티커나 라미네이팅 없이 대비가 유지되고, 모서리에 구멍을 내서 나사로 고정할 수 있습니다. 아니면 양면 테이프로 고정해도 되고요. 저는 양면 테이프로 고정했습니다.
 
 ## What this project does
 
@@ -27,6 +34,7 @@ Boston Dynamics Spot용 fiducial plate를 더 빠르게 만들기 위해 만든 
 
 - `tag36h11` AprilTag ID `001-586` 지원
 - 고정된 Spot fiducial plate geometry 유지
+- localization 태그와 dock 태그의 ID 범위 구분, 각각 다른 plate 레이아웃 적용
 - 회사명, 로봇명, 태그 ID 텍스트 입력
 - 기본 로고, 빈 로고, 사용자 SVG 로고 업로드 지원
 - print SVG / CAD SVG 두 가지 export
@@ -36,12 +44,23 @@ Boston Dynamics Spot용 fiducial plate를 더 빠르게 만들기 위해 만든 
 
 이 프로젝트를 만든 이유는 Spot용 fiducial plate를 만들 때마다 같은 템플릿을 수작업으로 다시 수정하는 과정이 비효율적으로 느껴졌기 때문입니다. plate 규격은 고정하고, 실제로 자주 바뀌는 값인 tag ID, 텍스트, 로고만 빠르게 바꿀 수 있는 작은 도구가 있으면 훨씬 편하겠다고 생각했습니다.
 
+현장 쪽 이유도 있었습니다. Boston Dynamics가 제공하는 파일은 종이에 인쇄해서 쓰는 PDF라 테스트할 때는 충분하지만, 먼지와 열이 있고 카트가 벽을 긁고 지나가는 공간에서는 오래 버티지 못합니다. 내구성을 위해 권장되는 방식은 무광 라미네이팅한 접착 비닐인데, 제가 확인했던 견적은 25장에 $400 정도, 한 장당 $16 수준이었습니다. 게다가 태그가 손상되거나, 위치를 옮기거나, 잘못 붙였을 때마다 다시 주문하고 기다려야 합니다.
+
+듀얼 컬러 3D 프린터로 직접 출력하면 실패한 출력까지 포함해도 한 장당 재료비가 $2를 넘지 않았고, 필요한 날 바로 만들 수 있었습니다. 다만 그렇게 하려면 정확한 치수의 소스 파일이 필요했는데, 온라인에 있는 AprilTag 파일은 대부분 PDF거나 Spot 규격과 맞지 않는 SVG여서 이 도구를 만들게 됐습니다.
+
+이 방식이 인쇄 fiducial을 전부 대체한다고 생각하지는 않습니다. 예산과 일정이 맞으면 비닐이 더 간편합니다. 다만 Spot과 듀얼 컬러 프린터를 이미 갖고 있는 팀이라면 직접 만드는 선택지가 생깁니다.
+
+## From SVG to STEP
+
+CAD SVG는 Fusion 360에서 원하는 두께로 돌출시키면 바로 출력용 모델이 됩니다. 이 단계도 Fusion MCP connector를 통해 스크립트로 자동화해서, 태그 하나당 최대 두 시간까지 걸리던 CAD 작업을 10초 정도로 줄였습니다. 지금까지 테스트를 포함해 120장 이상을 이 방식으로 만들었습니다.
+
 ## Stack
 
 - Static HTML, CSS, JavaScript
 - SVG composition in the browser
 - `opentype.js` for text-to-path conversion
 - GitHub Pages for deployment
+- Fusion 360 + MCP connector for automated STEP conversion
 
 ## Notes
 
