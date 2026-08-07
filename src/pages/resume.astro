@@ -36,6 +36,7 @@ type ResumeData = {
     name: string
     headline?: string
     location?: string
+    phone?: string
     email?: string
     website?: string
     social_networks?: SocialNetwork[]
@@ -43,11 +44,12 @@ type ResumeData = {
   }
 }
 
-const resume = parse(readFileSync("src/content/resume/Yieum_Yoon_CV.yaml", "utf-8")) as ResumeData
+const resume = parse(readFileSync("src/content/resume/Junsu_Lee_Resume.yaml", "utf-8")) as ResumeData
 const { cv } = resume
 const sections = Object.entries(cv.sections ?? {})
 const contactItems = [
   cv.location ? { label: cv.location } : undefined,
+  cv.phone ? { label: cv.phone, href: `tel:${cv.phone.replace(/[^+\d]/g, "")}` } : undefined,
   cv.email ? { label: cv.email, href: `mailto:${cv.email}` } : undefined,
   cv.website ? { label: cv.website.replace(/^https?:\/\//, ""), href: cv.website } : undefined,
   ...(cv.social_networks ?? []).map(social => {
@@ -66,10 +68,9 @@ function socialUrl(social: SocialNetwork) {
 }
 
 function entryTitle(entry: Exclude<ResumeEntry, string>) {
+  if (entry.position) return entry.position
   if (entry.name) return entry.name
-  if (entry.company && entry.position) return `${entry.company} - ${entry.position}`
   if (entry.company) return entry.company
-  if (entry.institution && entry.area) return `${entry.institution} - ${entry.area}`
   if (entry.institution) return entry.institution
   if (entry.organization) return entry.organization
   if (entry.label) return entry.label
@@ -78,7 +79,11 @@ function entryTitle(entry: Exclude<ResumeEntry, string>) {
 
 function entryDetails(entry: Exclude<ResumeEntry, string>) {
   if (entry.details) return entry.details
+  if (entry.position && entry.company) return entry.company
+  if (entry.position && entry.organization) return entry.organization
+  if (entry.organization) return entry.organization
   if (entry.degree) return entry.degree
+  if (entry.area) return entry.area
   return entry.summary
 }
 
@@ -97,7 +102,7 @@ function entryDate(entry: Exclude<ResumeEntry, string>) {
       </div>
       <a
         href="/resume.pdf"
-        download
+        download="Junsu-Lee-Resume.pdf"
         data-analytics-event="resume_download"
         data-analytics-id="resume_pdf"
         class="w-fit rounded-full border border-black/15 px-4 py-2 text-sm text-black transition-colors duration-300 ease-in-out hover:border-black/30 hover:bg-black/[0.03] dark:border-white/20 dark:text-white dark:hover:border-white/40 dark:hover:bg-white/[0.06]"
@@ -124,10 +129,10 @@ function entryDate(entry: Exclude<ResumeEntry, string>) {
                 {item.href ? (
                   <a
                     href={item.href}
-                    target={item.href.startsWith("mailto:") ? undefined : "_blank"}
-                    rel={item.href.startsWith("mailto:") ? undefined : "noopener"}
-                    data-analytics-event={item.href.startsWith("mailto:") ? "contact_click" : "social_click"}
-                    data-analytics-id={item.href.startsWith("mailto:") ? "email" : item.label.split(":")[0].toLowerCase()}
+                    target={item.href.startsWith("mailto:") || item.href.startsWith("tel:") ? undefined : "_blank"}
+                    rel={item.href.startsWith("mailto:") || item.href.startsWith("tel:") ? undefined : "noopener"}
+                    data-analytics-event={item.href.startsWith("mailto:") || item.href.startsWith("tel:") ? "contact_click" : "social_click"}
+                    data-analytics-id={item.href.startsWith("mailto:") ? "email" : item.href.startsWith("tel:") ? "phone" : item.label.split(":")[0].toLowerCase()}
                     class="underline decoration-[.5px] decoration-black/35 underline-offset-2 hover:decoration-black"
                   >
                     {item.label}
@@ -179,7 +184,7 @@ function entryDate(entry: Exclude<ResumeEntry, string>) {
                 const date = entryDate(entry)
 
                 return (
-                  <article class="space-y-1">
+                  <div class="space-y-1">
                     <div class="grid gap-1 sm:grid-cols-[1fr_auto] sm:items-start">
                       <div>
                         {title && (
@@ -212,7 +217,7 @@ function entryDate(entry: Exclude<ResumeEntry, string>) {
                         ))}
                       </ul>
                     )}
-                  </article>
+                  </div>
                 )
               })}
             </div>
@@ -221,7 +226,7 @@ function entryDate(entry: Exclude<ResumeEntry, string>) {
       </div>
 
       <p class="border-t border-black/10 pt-5 text-sm text-black/45 dark:border-white/15 dark:text-white/45">
-        Resume PDF generated with <a href="https://github.com/rendercv/rendercv" target="_blank" rel="noopener" class="underline decoration-[.5px] decoration-black/25 underline-offset-2 transition-colors duration-300 ease-in-out hover:text-black hover:decoration-black dark:decoration-white/50 dark:hover:text-white dark:hover:decoration-white">RenderCV</a>, an open-source resume builder.
+        Prefer a one-page copy? Use the PDF download above.
       </p>
     </div>
   </BottomLayout>

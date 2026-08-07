@@ -14,7 +14,6 @@
     "preview": "astro preview",
     "preview:network": "astro dev --host",
     "astro": "astro",
-    "resume:pdf": "UV_CACHE_DIR=.cache/uv UV_TOOL_DIR=.cache/uv-tools uvx --from \"rendercv[full]==2.8\" rendercv render src/content/resume/Yieum_Yoon_CV.yaml --pdf-path ../../../public/resume.pdf --typst-path ../../../.cache/rendercv/resume.typ -nomd -nohtml -nopng",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },

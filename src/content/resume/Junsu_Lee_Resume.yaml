@@ -1,0 +1,91 @@
+cv:
+  name: Junsu Lee
+  headline: Computer Science Senior, CWRU | AI Systems, Robot Deployment & Data Engineering
+  location: United States
+  email: junsulee.tech@gmail.com
+  social_networks:
+    - network: LinkedIn
+      username: junsuleetech
+    - network: GitHub
+      username: YieumYoon
+  sections:
+    Education:
+      - institution: Case Western Reserve University
+        degree: B.A. in Computer Science - GPA 3.4
+        date: Aug 2020 - Dec 2026 (expected; incl. 18-month military service)
+        location: Cleveland, OH
+    Skills:
+      - label: Programming & Data
+        details: Python, SQL, Bash, Pandas, NumPy, Tableau
+      - label: Physical AI & Robotics
+        details: NVIDIA GR00T N1.5, LeRobot, Boston Dynamics Spot (Orbit), SO-101, Teleoperation
+      - label: Model Training & Operations
+        details: Hugging Face, Weights & Biases, NVIDIA Brev, Modal
+      - label: Backend & Infrastructure
+        details: FastAPI, MSSQL, PostgreSQL, Snowflake, Docker, Apache Airflow, dbt
+      - label: Web
+        details: React, Next.js, TypeScript
+      - label: Hardware & Prototyping
+        details: SolidWorks (CSWA Certified), Autodesk Fusion 360, 3D Printing, Hardware Integration
+      - label: Languages
+        details: English (fluent), Korean (native)
+    Experience:
+      - position: Advanced Manufacturing Engineer - Co-op
+        company: Bendix Commercial Vehicle Systems
+        date: Jan 2026 - Present
+        location: Avon, OH
+        highlights:
+          - Implemented a Boston Dynamics Spot inspection program, translating maintenance requirements into 450+ SAP-aligned inspection points.
+          - Built a Python/MSSQL integration layer that normalizes 11 Orbit API resource types into a 16-table schema and maps robot inspection data to the SAP asset hierarchy.
+          - Designed light-and-sound behaviors that signal robot state and direction, turning shop-floor feedback into a production feature.
+          - Fabricated 120+ 3D-printed AprilTag plates for Spot localization, reducing 3d modeling time from ~2 hours to 2 minutes and unit cost from approximately $16 to $2 per tag.
+      - position: Weather AI Research Intern
+        company: "xLab @ CWRU - Industry Partner: Progressive"
+        date: Jun 2025 - Aug 2025
+        location: Cleveland, OH
+        highlights:
+          - Developed an HPC weather-model pipeline with Python and NVIDIA Earth2Studio, generating 7-day global forecasts in under 3 minutes.
+          - Evaluated FourCastNet, StormCast, CorrDiff, and cBottle for extreme-weather forecasting, presenting tradeoffs to stakeholders.
+      - position: Frontend Developer - AI Call Center Training System
+        company: "xLab @ CWRU - Industry Partner: Eaton"
+        date: Jan 2025 - May 2025
+        location: Cleveland, OH
+        highlights:
+          - Built frontend components with Next.js, TypeScript, and Material UI for an AI call-center training platform (FastAPI backend).
+      - position: Squad Leader / IT Technician (Signaler)
+        company: Republic of Korea Army
+        date: Jan 2023 - Jul 2024
+        location: South Korea
+        highlights:
+          - Designed a CCTV bench-testing process cutting install time 70%; trained a five-person team maintaining 400+ networked devices.
+    Projects:
+      - name: Language-Guided Bimanual Manipulation with NVIDIA GR00T N1.5
+        summary: CWRU Senior Capstone
+        date: Jul 2025 - Dec 2025
+        highlights:
+          - Engineered a 12-DoF bimanual SO-101 embodiment in LeRobot with leader-follower teleoperation and a three-camera capture stage.
+          - Collected 360 synchronized teleoperation episodes across 12 configurations after diagnosing timestamp misalignment and discarding approximately 200 corrupted episodes.
+          - Fine-tuned GR00T N1.5-3B on H200/L40S GPUs, raising task success from 0% untuned baseline to ~25%
+          - Cut training time from a projected 15 hours to 2.5 by profiling video decoding and tuning batch size and data-loader parallelism.
+      - name: "Environmental & HR Data Pipelines (CSDS 397: Data Pipelines & Visualization)"
+        date: Jan 2025 - May 2025
+        highlights:
+          - Architected a Python/Airflow pipeline automating environmental data ingestion, producing interactive Tableau air-quality dashboards.
+          - Engineered dbt ELT transformations to cleanse and validate HR datasets, deploying 6 tested models with automated refresh.
+    Leadership & Awards:
+      - position: Vice President
+        organization: CWRU Association of Computing Machinery Student Chapter
+        date: Aug 2025 - Present
+        highlights:
+          - Hosted a hands-on OpenClaw agentic-AI meetup, guiding ~8 attendees through setup and deployment on Oracle Cloud instances.
+          - Organized a chapter trip to NVIDIA GTC Washington, D.C. (Oct 2025), bringing 12 students to the conference.
+      - name: Excellence Prize (3rd), Asan Doers Startup Bootcamp
+        organization: Asan Nanum Foundation
+        date: Aug 2024
+        highlights:
+          - Developed a business model and prototype as product developer, validated through user interviews.
+    Certifications:
+      - label: NVIDIA-Certified Associate
+        details: "Generative AI LLMs | NVIDIA - Oct 2025"
+      - label: Deep Learning Specialization
+        details: DeepLearning.AI - Mar 2024
