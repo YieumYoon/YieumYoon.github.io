@@ -20,7 +20,7 @@ export const PROJECT: Page = {
 
 export const RESUME: Page = {
   TITLE: "Resume",
-  DESCRIPTION: "A concise resume profile of my interests, projects, skills, and contact links.",
+  DESCRIPTION: "Junsu Lee's experience in AI systems, robotics deployment, data engineering, and software development.",
 }
 
 // Links
@@ -48,8 +48,8 @@ export const SOCIALS: Socials = [
   { 
     NAME: "Email",
     ICON: "email", 
-    TEXT: "junsueddie@gmail.com",
-    HREF: "mailto:junsueddie@gmail.com",
+    TEXT: "junsulee.tech@gmail.com",
+    HREF: "mailto:junsulee.tech@gmail.com",
   },
   { 
     NAME: "GitHub",
@@ -61,7 +61,7 @@ export const SOCIALS: Socials = [
     NAME: "LinkedIn",
     ICON: "linkedin",
     TEXT: "Junsu Lee",
-    HREF: "https://www.linkedin.com/in/junsueddie",
+    HREF: "https://www.linkedin.com/in/junsuleetech",
   },
   { 
     NAME: "Threads",

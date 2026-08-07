@@ -4,6 +4,7 @@ node_modules
 dist
 .DS_Store
 .claude
+temp
 
 # Self-hosted Pages CMS runtime files
 deploy/pagescms/.env
