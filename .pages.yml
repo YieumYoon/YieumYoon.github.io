@@ -116,7 +116,7 @@ content:
           placeholder: "IANA timezone, e.g. America/New_York"
       - name: image
         label: Social image
-        description: Optional. Used for link previews and social cards.
+        description: Optional. Used for link previews and social cards. New JPEG and PNG uploads are converted to WebP.
         type: image
         options:
           media: images

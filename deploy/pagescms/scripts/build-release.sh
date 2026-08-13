@@ -2,20 +2,16 @@
 set -euo pipefail
 
 PAGESCMS_ROOT=${PAGESCMS_ROOT:-/opt/pagescms}
-PAGESCMS_REPOSITORY=${PAGESCMS_REPOSITORY:-https://github.com/pagescms/pagescms.git}
-PAGESCMS_COMMIT=${PAGESCMS_COMMIT:-6f4e860a35d934406580287e7042e5e111e207a1}
+PAGESCMS_REPOSITORY=${PAGESCMS_REPOSITORY:-https://github.com/YieumYoon/pagescms.git}
+PAGESCMS_COMMIT=${PAGESCMS_COMMIT:-a381d7a9345777e80711a295687d962cdae3bd2b}
 NODE_VERSION=${NODE_VERSION:-24}
-
-SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
-DEPLOY_DIR=$(dirname "$SCRIPT_DIR")
-OVERLAY_DIR="$DEPLOY_DIR/overlay"
 
 if [[ $(id -un) != pagescms ]]; then
   echo "Run this script as the pagescms service account." >&2
   exit 1
 fi
 
-for command in fnm git sha256sum; do
+for command in fnm git; do
   if ! command -v "$command" >/dev/null 2>&1; then
     echo "Missing required command: $command" >&2
     exit 1
@@ -27,14 +23,7 @@ fnm install "$NODE_VERSION"
 fnm use "$NODE_VERSION"
 
 NODE_BIN_DIR=$(dirname "$(readlink -f "$(command -v node)")")
-OVERLAY_HASH=$(
-  find "$OVERLAY_DIR" -type f -print0 \
-    | sort -z \
-    | xargs -0 sha256sum \
-    | sha256sum \
-    | cut -d ' ' -f 1
-)
-RELEASE_ID="${PAGESCMS_COMMIT:0:12}-${OVERLAY_HASH:0:12}"
+RELEASE_ID="${PAGESCMS_COMMIT:0:12}"
 RELEASE_DIR="$PAGESCMS_ROOT/releases/$RELEASE_ID"
 BUILD_DIR="$PAGESCMS_ROOT/releases/.build-$RELEASE_ID-$$"
 
@@ -50,7 +39,6 @@ if [[ ! -d "$RELEASE_DIR" ]]; then
   git clone --filter=blob:none --no-checkout "$PAGESCMS_REPOSITORY" "$BUILD_DIR"
   git -C "$BUILD_DIR" checkout --detach "$PAGESCMS_COMMIT"
   rm -rf "$BUILD_DIR/.git"
-  cp -a "$OVERLAY_DIR/." "$BUILD_DIR/"
 
   cd "$BUILD_DIR"
   npm ci --no-audit --no-fund
