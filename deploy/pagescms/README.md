@@ -5,15 +5,15 @@ Cloud VM. PostgreSQL runs as the host database service and listens only on
 localhost. Pages CMS also listens only on `127.0.0.1:3000`; Tailscale Serve
 provides the private HTTPS endpoint.
 
-The release builder uses `fnm`, pins Pages CMS to commit
-`6f4e860a35d934406580287e7042e5e111e207a1` (release 2.1.8), and applies the
-files under `overlay/`. The overlay contains the private-email login fallback
-and timestamp buttons used by this blog.
+The release builder uses `fnm` and pins the personal Pages CMS fork to commit
+`a381d7a9345777e80711a295687d962cdae3bd2b`. The fork contains the
+private-email login fallback, timestamp buttons, and browser-side WebP upload
+conversion used by this blog.
 
 ## Filesystem layout
 
 ```text
-/opt/pagescms/releases/<upstream>-<overlay>/  immutable application releases
+/opt/pagescms/releases/<fork-commit>/         immutable application releases
 /opt/pagescms/current                         active release symlink
 /opt/pagescms/node/current                    fnm-selected Node bin symlink
 /opt/pagescms/bin/start.sh                    systemd start wrapper
@@ -128,7 +128,7 @@ sudo journalctl -u pagescms -f
 sudo systemctl status pagescms
 ```
 
-Build and activate a changed overlay:
+Build and activate the pinned fork release:
 
 ```bash
 sudo -iu pagescms /path/to/deploy/pagescms/scripts/build-release.sh
@@ -143,6 +143,14 @@ sudo -u pagescms env \
   bash -lc 'set -a; source /etc/pagescms/pagescms.env; set +a; cd /opt/pagescms/current; npm run db:clear-cache'
 sudo systemctl restart pagescms
 ```
+
+### Image uploads
+
+The fork converts new JPEG and PNG uploads to WebP in the browser at quality 82
+before they are sent to Pages CMS or GitHub. This covers the media library,
+image fields such as `Social image`, and rich-text image paste/drop. Existing
+repository images are not rewritten, and WebP, GIF, SVG, and non-image files
+pass through unchanged.
 
 Back up the CMS database:
 
@@ -165,7 +173,7 @@ session, collaborator, and cache state.
 
 ## Updating upstream
 
-The upstream commit is deliberately pinned in `scripts/build-release.sh`.
-Updating it requires comparing the overlay files with the new upstream source,
-building a new release, and completing a create-draft round trip before the
-`current` symlink is activated. Do not deploy from a floating branch.
+The personal fork commit is deliberately pinned in `scripts/build-release.sh`.
+Integrate upstream updates in the fork's customization branch, verify a full
+production build and create-draft round trip, then update the pinned commit.
+Do not deploy from a floating branch.
