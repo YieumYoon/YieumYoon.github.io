@@ -15,6 +15,10 @@ image: /images/blog/google-cloud-agent-learning.png
 
 요즘은 진짜 AI가 대세인데 쓰레드에서 Google cloud채널에서 진행한 강의가 있다길래 재밌겠다 하고 들어보기로 했어요. 저도 ai모델들과 에이전트들을 사용만 하는게 아니라 구성요소들을 알고 실제로 구축도 해보고 싶어서요. 
 
+![nam_ai_ai's Thread · Threads.png](/images/blog/namaiais-thread-threads.png)
+
+
+
 [https://www.threads.com/share/BAdrG-9diF/](https://x.com/mahaximus_/status/2086078039440425273?s=46&t=I6f9eoeCvDIgyYmEKQK71Q)
 
 [https://x.com/mahaximus_/status/2086078039440425273?s=46&t=I6f9eoeCvDIgyYmEKQK71Q](https://x.com/mahaximus_/status/2086078039440425273?s=46&t=I6f9eoeCvDIgyYmEKQK71Q) 
