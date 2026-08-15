@@ -16,3 +16,5 @@ timezone: America/New_York
 
 ![코테용 C++ 핵심 정리 - HongLab.png](/images/blog/c-honglab.webp)
 
+![vscode-cpp.png](/images/blog/vscode-cpp.webp)
+
