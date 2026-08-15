@@ -14,5 +14,5 @@ timezone: America/New_York
 ---
 ㄱㄱ
 
-![코테용 C++ 핵심 정리 - HongLab.png](blob:https:/hermes.tail33db8f.ts.net/27cff2e1-ebd5-41cb-a0ff-b5042300efba)
+![코테용 C++ 핵심 정리 - HongLab.png](/images/blog/c-honglab.webp)
 
