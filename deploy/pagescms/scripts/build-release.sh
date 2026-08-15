@@ -3,7 +3,7 @@ set -euo pipefail
 
 PAGESCMS_ROOT=${PAGESCMS_ROOT:-/opt/pagescms}
 PAGESCMS_REPOSITORY=${PAGESCMS_REPOSITORY:-https://github.com/YieumYoon/pagescms.git}
-PAGESCMS_COMMIT=${PAGESCMS_COMMIT:-a381d7a9345777e80711a295687d962cdae3bd2b}
+PAGESCMS_COMMIT=${PAGESCMS_COMMIT:-f8b82455e303bb22ca7b603ba091ea9c1cd7a098}
 NODE_VERSION=${NODE_VERSION:-24}
 
 if [[ $(id -un) != pagescms ]]; then
