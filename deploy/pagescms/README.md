@@ -6,7 +6,7 @@ localhost. Pages CMS also listens only on `127.0.0.1:3000`; Tailscale Serve
 provides the private HTTPS endpoint.
 
 The release builder uses `fnm` and pins the personal Pages CMS fork to commit
-`f8b82455e303bb22ca7b603ba091ea9c1cd7a098`. The fork contains the
+`34954af9d0cb491cf8e3840e3df5379da2c1b223`. The fork contains the
 private-email login fallback, timestamp buttons, and browser-side WebP upload
 conversion used by this blog.
 
@@ -152,7 +152,9 @@ image fields such as `Social image`, and rich-text image paste/drop. Existing
 repository images are not rewritten, and WebP, GIF, SVG, and non-image files
 pass through unchanged. Oversized images are reduced to browser-safe canvas
 dimensions, and a failed rich-text upload cannot leave a temporary `blob:` URL
-in saved content.
+in saved content. Browsers that cannot encode WebP, including affected Safari
+versions, send the original JPEG or PNG to Pages CMS for server-side WebP
+conversion before the file is committed to GitHub.
 
 Back up the CMS database:
 
