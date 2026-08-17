@@ -135,7 +135,10 @@ sudo -iu pagescms /path/to/deploy/pagescms/scripts/build-release.sh
 sudo systemctl restart pagescms
 ```
 
-Clear stale CMS cache after editing content outside Pages CMS:
+Pages CMS checks the GitHub branch every five minutes while it is in use. If
+the branch changed outside Pages CMS, the next collection or media request
+clears that branch's file cache and returns fresh GitHub content. If cache state
+is already stale or corrupted, clear it manually:
 
 ```bash
 sudo -u pagescms env \
