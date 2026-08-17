@@ -29,9 +29,11 @@ qwen 3.8 27b 모델이 화제인데요. 성능이 너무 좋다길래 저도 사
 
 
 
-실제
+실제 스크린샷이랑 compute use gif입니다. 
 
+![774076421_17983041252106419_3651025433588643498_n.jpg](/images/blog/774076421179830412521064193651025433588643498n.webp)
 
+[gif 위치]
 
 ## 최종 구성
 
@@ -79,9 +81,9 @@ RTX 5090, CUDA, Python, vLLM 버전 조합에 따라 설치 과정이 달라질 
 
 개인적으로는 이 방식이 더 편했다. 다만 AI가 제시한 명령을 전부 그대로 실행하기보다는 어떤 파일을 바꾸는지, 기존 ComfyUI 환경에 영향을 주지는 않는지 정도는 확인하는 것이 좋다.
 
-OpenCodex는 설치 전에 [provider 설정 페이지]([https://opencodex.me/reference/configuration/providers/)를](https://opencodex.me/reference/configuration/providers/)를) 한 번 읽어보는 것을 추천한다. 특히 provider 이름과 모델 ID의 차이, 사설 네트워크 허용, 모델 카탈로그 동기화 정도는 알고 시작하는 편이 덜 헷갈린다.
+OpenCodex는 설치 전에 [provider 설정 페이지]([https://opencodex.me/reference/configuration/providers/)를]([https://opencodex.me/reference/configuration/providers/)를](https://opencodex.me/reference/configuration/providers/)를)) 한 번 읽어보는 것을 추천한다. 특히 provider 이름과 모델 ID의 차이, 사설 네트워크 허용, 모델 카탈로그 동기화 정도는 알고 시작하는 편이 덜 헷갈린다.
 
-Codex 자체의 모델 카탈로그와 컨텍스트 설정 구조가 궁금하다면 [공식 OpenAI Docs의 설정 레퍼런스]([https://learn.chatgpt.com/docs/config-file/config-reference)도](https://learn.chatgpt.com/docs/config-file/config-reference)도) 참고할 만하다.
+Codex 자체의 모델 카탈로그와 컨텍스트 설정 구조가 궁금하다면 [공식 OpenAI Docs의 설정 레퍼런스]([https://learn.chatgpt.com/docs/config-file/config-reference)도]([https://learn.chatgpt.com/docs/config-file/config-reference)도](https://learn.chatgpt.com/docs/config-file/config-reference)도)) 참고할 만하다.
 
 ## 생각보다 모델을 띄우는 것보다 연결하는 과정이 복잡했다
 
@@ -136,7 +138,6 @@ rtx5090/qwen3.8-27b-nvfp4-fp8kv-128k
 ```
 
 - `rtx5090`: 어느 서버로 요청을 보낼 것인가
-
 - `qwen3.8-27b-nvfp4-fp8kv-128k`: 해당 서버의 어떤 모델을 사용할 것인가
 
 provider 설정을 바꾼 뒤에는 OpenCodex 서비스를 다시 불러오고 Codex 모델 카탈로그도 동기화해야 했다. 실행 중이던 Codex 앱이 이전 모델 목록을 계속 들고 있는 경우에는 앱 재시작도 필요했다.
@@ -200,9 +201,7 @@ Qwen을 사용할 때는 모델 서버만 실행하고, 이미지 생성이 필�
 일단 지금 상태로 사용하면서 다음 문제가 나타나는지만 지켜볼 생각이다.
 
 - 컨텍스트 초과 오류
-
 - 답변이 중간에 끊기는 현상
-
 - reasoning이나 도구 호출이 갑자기 종료되는 현상
 
 문제가 생긴다면 그때 입력과 출력 예산을 나눠 설정하면 된다.
@@ -230,3 +229,4 @@ RTX 5090 컴퓨터에서 모델 서버를 켜고, Mac에서 Codex를 실행하�
 아직 더 사용해봐야겠지만, 적어도 64K에서 실패하던 작업들이 128K에서는 별문제 없이 돌아가고 있다. 생각했던 것보다 실사용 가능한 상태에 가까운 것 같다.
 
 ---
+
