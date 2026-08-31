@@ -71,7 +71,7 @@ content:
         type: string
         default: ""
         pattern:
-          regex: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          regex: "^(?:[a-z0-9]+(?:-[a-z0-9]+)*)?$"
           message: "Use the original post slug without /en."
       - name: translationMethod
         label: Translation method
