@@ -1,21 +1,28 @@
 ---
 import { formatPostDateTime, getPostDateTime } from "@lib/utils"
-import type { CollectionEntry } from "astro:content"
+import type { WritingViewItem } from "@lib/blog"
 
 type Props = {
-  entry: CollectionEntry<"blog">
+  item: WritingViewItem
   position?: number
+  showStatus?: boolean
 }
 
-const { entry, position = 1 } = Astro.props
-const slug = entry.id.replace(/\/index$/, "")
-const { date, time, timezone } = entry.data
+const { item, position = 1, showStatus = false } = Astro.props
+const { source, display, path, status } = item
+const analyticsId = source.data.slug ?? source.id.replace(/\/index$/, "")
+const { date, time, timezone } = source.data
+const statusLabel = status === "en-translation"
+  ? "EN Translation"
+  : status === "en-original"
+    ? "EN Original"
+    : "KO Original"
 ---
 
 <a
-  href={`/blog/${slug}`}
+  href={path}
   data-analytics-event="article_open"
-  data-analytics-id={slug}
+  data-analytics-id={analyticsId}
   data-analytics-impression="article_impression"
   data-analytics-position={String(position)}
   class="group block py-5"
@@ -24,15 +31,20 @@ const { date, time, timezone } = entry.data
     <time datetime={getPostDateTime({ date, time, timezone }).toISOString()} class="text-sm text-black/50 dark:text-white/50">
       {formatPostDateTime({ date, time, timezone })}
     </time>
-    <div class="space-y-2">
+    <div class="space-y-2" lang={display.data.lang}>
+      {showStatus && (
+        <p class="text-xs font-medium uppercase tracking-wide text-black/45 dark:text-white/45">
+          {statusLabel}
+        </p>
+      )}
       <h2 class="font-semibold text-black dark:text-white group-hover:underline group-hover:decoration-[.5px] group-hover:underline-offset-4">
-      {entry.data.title}
+      {display.data.title}
       </h2>
       <p class="text-sm leading-6 text-black/65 dark:text-white/65 line-clamp-2">
-        {entry.data.summary}
+        {display.data.summary}
       </p>
       <p class="text-xs uppercase text-black/45 dark:text-white/45">
-        {entry.data.tags.join(", ")}
+        {display.data.tags.join(", ")}
       </p>
     </div>
   </div>

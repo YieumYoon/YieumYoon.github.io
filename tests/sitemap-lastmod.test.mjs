@@ -1,30 +1,34 @@
-import assert from "node:assert/strict"
-import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises"
-import { tmpdir } from "node:os"
-import { join } from "node:path"
-import { afterEach, test } from "node:test"
+import assert from "node:assert/strict";
+import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { afterEach, test } from "node:test";
 
-import { getBlogSitemapLastmods } from "../src/lib/sitemap-lastmod.ts"
+import { getBlogSitemapLastmods } from "../src/lib/sitemap-lastmod.ts";
 
-const temporaryDirectories = []
+const temporaryDirectories = [];
 
 afterEach(async () => {
-  await Promise.all(temporaryDirectories.splice(0).map((directory) => (
-    rm(directory, { recursive: true, force: true })
-  )))
-})
+  await Promise.all(
+    temporaryDirectories
+      .splice(0)
+      .map((directory) => rm(directory, { recursive: true, force: true })),
+  );
+});
 
 async function createContentDirectory(files) {
-  const directory = await mkdtemp(join(tmpdir(), "sitemap-lastmod-"))
-  temporaryDirectories.push(directory)
+  const directory = await mkdtemp(join(tmpdir(), "sitemap-lastmod-"));
+  temporaryDirectories.push(directory);
 
-  await Promise.all(Object.entries(files).map(async ([filePath, source]) => {
-    const absolutePath = join(directory, filePath)
-    await mkdir(join(absolutePath, ".."), { recursive: true })
-    await writeFile(absolutePath, source)
-  }))
+  await Promise.all(
+    Object.entries(files).map(async ([filePath, source]) => {
+      const absolutePath = join(directory, filePath);
+      await mkdir(join(absolutePath, ".."), { recursive: true });
+      await writeFile(absolutePath, source);
+    }),
+  );
 
-  return directory
+  return directory;
 }
 
 test("uses publication timestamps and excludes draft and template posts", async () => {
@@ -46,13 +50,16 @@ Draft`,
 date: 2099-01-01
 ---
 Template`,
-  })
+  });
 
-  const lastmods = await getBlogSitemapLastmods(directory)
+  const lastmods = await getBlogSitemapLastmods(directory);
 
-  assert.deepEqual([...lastmods.keys()], ["/blog/public-url"])
-  assert.equal(lastmods.get("/blog/public-url")?.toISOString(), "2026-07-12T00:26:00.000Z")
-})
+  assert.deepEqual([...lastmods.keys()], ["/blog/public-url"]);
+  assert.equal(
+    lastmods.get("/blog/public-url")?.toISOString(),
+    "2026-07-12T00:26:00.000Z",
+  );
+});
 
 test("prefers the updated timestamp and its timezone", async () => {
   const directory = await createContentDirectory({
@@ -65,15 +72,15 @@ updatedTime: 09:15
 updatedTimezone: America/New_York
 ---
 Updated`,
-  })
+  });
 
-  const lastmods = await getBlogSitemapLastmods(directory)
+  const lastmods = await getBlogSitemapLastmods(directory);
 
   assert.equal(
     lastmods.get("/blog/nested/post")?.toISOString(),
-    "2026-07-12T13:15:00.000Z"
-  )
-})
+    "2026-07-12T13:15:00.000Z",
+  );
+});
 
 test("falls back to the publication timezone for a date-only update", async () => {
   const directory = await createContentDirectory({
@@ -83,9 +90,39 @@ timezone: America/Chicago
 updatedDate: 2026-01-03
 ---
 Updated`,
-  })
+  });
 
-  const lastmods = await getBlogSitemapLastmods(directory)
+  const lastmods = await getBlogSitemapLastmods(directory);
 
-  assert.equal(lastmods.get("/blog/post")?.toISOString(), "2026-01-03T06:00:00.000Z")
-})
+  assert.equal(
+    lastmods.get("/blog/post")?.toISOString(),
+    "2026-01-03T06:00:00.000Z",
+  );
+});
+
+test("maps an English translation to the original post's en suffix", async () => {
+  const directory = await createContentDirectory({
+    "source/index.md": `---
+slug: source-post
+date: 2026-08-01
+---
+Source`,
+    "source/en.md": `---
+slug: source-post/en
+translationOf: source-post
+date: 2026-08-05
+---
+Translation`,
+  });
+
+  const lastmods = await getBlogSitemapLastmods(directory);
+
+  assert.equal(
+    lastmods.get("/blog/source-post")?.toISOString(),
+    "2026-08-01T00:00:00.000Z",
+  );
+  assert.equal(
+    lastmods.get("/blog/source-post/en")?.toISOString(),
+    "2026-08-05T00:00:00.000Z",
+  );
+});

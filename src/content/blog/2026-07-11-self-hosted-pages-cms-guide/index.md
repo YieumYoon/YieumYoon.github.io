@@ -1,6 +1,7 @@
 ---
 title: "Oracle VM에 Pages CMS를 직접 호스팅하는 방법"
 slug: self-hosted-pages-cms-guide
+lang: ko
 summary: "Oracle Cloud Ubuntu VM에 Pages CMS와 PostgreSQL을 Docker 없이 설치하고, systemd와 Tailscale Serve로 내 기기에서만 접근 가능한 Astro 블로그 편집 환경을 구성하는 가이드다."
 date: "2026-07-11"
 timezone: "America/New_York"

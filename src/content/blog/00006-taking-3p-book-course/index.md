@@ -1,6 +1,7 @@
 ---
 title: "3P 프로과정에 이은 3P 독서 기본 과정을 수료했어요"
 slug: taking-3p-book-course
+lang: ko
 summary: "3P 프로과정에 이어 3P 독서 기본 과정을 수료하게 된 이유, 3P 독서 기본 과정을 듣고 난 이후 변화"
 date: "2024-09-12"
 draft: True

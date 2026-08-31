@@ -1,6 +1,7 @@
 ---
 title: "Astro 깃허브 블로그를 만들었어요 🍸"
 slug: 00001-started-astro-github-blog
+lang: ko
 summary: "Astro 깃허브 블로그 시작, Github를 선택한 이유, Astro를 프레임워크로 선택한 이유"
 date: "2024-06-08"
 draft: false

@@ -3,12 +3,11 @@ import { getCollection } from "astro:content"
 import PageLayout from "@layouts/PageLayout.astro"
 import ArrowCard from "@components/ArrowCard.astro"
 import { SITE, SOCIALS } from "@consts"
-import { getPostDateTime } from "@lib/utils"
+import { getEnglishPreferredItems, validateBlogPosts } from "@lib/blog"
 
-const posts = (await getCollection("blog"))
-  .filter(post => !post.data.draft)
-  .sort((a, b) => getPostDateTime(b.data).getTime() - getPostDateTime(a.data).getTime())
-  .slice(0,8)
+const posts = await getCollection("blog")
+validateBlogPosts(posts)
+const items = getEnglishPreferredItems(posts).slice(0, 8)
 ---
 
 <PageLayout title="Home" description={SITE.DESCRIPTION} pageType="home">
@@ -18,26 +17,26 @@ const posts = (await getCollection("blog"))
       <section class="animate" data-analytics-region="home_intro">
         <div class="space-y-5">
           <p class="text-sm text-black/50 dark:text-white/50">
-            책 좋아하는 개발자
+            A developer who loves books
           </p>
           <h1 class="text-3xl font-semibold text-black dark:text-white">
-            이음의 개발블로그
+            Yieum's development blog
           </h1>
           <div class="space-y-4 text-base leading-7 text-black/70 dark:text-white/70">
             <p>
-              기계공학 공부하다가 컴퓨터공학으로 넘어온 학부생 개발자입니다.
+              I am an undergraduate developer who moved from mechanical engineering to computer science.
             </p>
             <p>
-              안녕하세요. 스스로 <b><i>만들어 나가는 것들</i></b>과 <b><i>그 과정</i></b>을 좋아하는 이음입니다. 현재 군 복무 중이고 <b><i>독서</i></b>와 <b><i>개발 공부</i></b>에 집중하고 있습니다. 아직 프로그래밍 초보자 단계이지만 초보자의 시선에서 하나하나 성장해 나가는 <b><i>과정을 기록</i></b>해 보고 싶어 블로그를 시작했습니다. 어디로 갈지 모르겠고, 어느 분야를 좋아하고 또 지속해 나갈 수 있을지 항상 고민하고 있습니다.
+              Hi, I'm Yieum. I like making things and understanding the process behind them. I started this blog to document how I learn, build, and grow from a beginner's point of view.
             </p>
             <p>
-              제가 생각할 때 제 장점은 영어로 읽고 쓰고 공부하는 데 익숙하다는 점, 그리고 스스로 궁금점을 찾아서 해결하려는 태도, 새로운 것들을 끊임없이 찾아보고 적용해 보려고 노력하는 점, 그리고 책을 많이 읽는다는 점입니다.
+              I am comfortable reading, writing, and studying in English. I enjoy finding my own questions, working through them, and applying unfamiliar tools and ideas.
             </p>
             <p>
-              컴퓨터 공학에 관심 가지게 된 계기는 스스로 무언가를 만들어내려 했을 때 빠르게 시도하고 제품들을 만들어 볼 수 있다는 점이 매력적이었습니다. 개발자가 되는데도 관심이 있지만 문제를 해결하는 데 집중하는 삶을 살고 싶습니다. 그렇기 때문에 디자인, 사용자경험 등등 개발 외적인 부분도 관심을 두고 공부해 나가고 있습니다.
+              Computer science appealed to me because it lets me test ideas and turn them into working products quickly. I care about software, but I am equally interested in problem solving, design, and user experience.
             </p>
             <p>
-              20대인 시절에 최선을 다해서 살고 발전해 나가는 삶을 살고 싶습니다.
+              This is where I keep notes on software, robotics, books, and the things I am learning to build.
             </p>
           </div>
         </div>
@@ -49,19 +48,25 @@ const posts = (await getCollection("blog"))
             <p class="font-semibold text-black dark:text-white">
               Latest writing
             </p>
-            <a href="/blog" class="group w-fit text-sm underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
+            <a href="/blog/english/" class="group w-fit text-sm underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
               <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
-                All posts
+                English view
               </span>
             </a>
           </div>
+          <p class="text-sm leading-6 text-black/50 dark:text-white/50">
+            English translations are shown when available. Other posts remain in Korean.
+          </p>
           <ul class="divide-y divide-black/10 dark:divide-white/15">
-            {posts.map((post, index) => (
+            {items.map((item, index) => (
               <li>
-                <ArrowCard entry={post} position={index + 1} />
+                <ArrowCard item={item} position={index + 1} showStatus />
               </li>
             ))}
           </ul>
+          <a href="/blog/" class="inline-block text-sm underline decoration-[.5px] underline-offset-2 text-black/65 hover:text-black dark:text-white/65 dark:hover:text-white">
+            Browse all originals
+          </a>
         </div>
       </section>
 

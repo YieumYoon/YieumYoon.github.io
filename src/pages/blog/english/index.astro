@@ -5,25 +5,32 @@ import TopLayout from "@layouts/TopLayout.astro"
 import BottomLayout from "@layouts/BottomLayout.astro"
 import ArrowCard from "@components/ArrowCard.astro"
 import WritingViewTabs from "@components/WritingViewTabs.astro"
-import { BLOG } from "@consts"
-import { getAllWritingItems, validateBlogPosts } from "@lib/blog"
+import { getEnglishPreferredItems, validateBlogPosts } from "@lib/blog"
 
 const posts = await getCollection("blog")
 validateBlogPosts(posts)
-const items = getAllWritingItems(posts)
+const items = getEnglishPreferredItems(posts)
 ---
 
-<PageLayout title={BLOG.TITLE} description={BLOG.DESCRIPTION} pageType="blog_index">
+<PageLayout
+  title="English writing"
+  description="English translations when available, with untranslated posts shown in their original Korean."
+  pageType="blog_index"
+  lang="en"
+>
   <TopLayout>
     <div class="animate page-heading">
-      {BLOG.TITLE}
+      Writing
     </div>
   </TopLayout>
   <BottomLayout>
     <div class="animate" data-analytics-region="blog_index">
       <div class="flex flex-col">
-        <WritingViewTabs active="all" />
-        <div class="pt-5 text-sm text-black/50 dark:text-white/50">
+        <WritingViewTabs active="english" />
+        <p class="max-w-2xl pt-5 text-sm leading-6 text-black/60 dark:text-white/60">
+          English translations are shown when available. Untranslated posts remain in Korean.
+        </p>
+        <div class="pt-3 text-sm text-black/50 dark:text-white/50">
           {items.length} posts
         </div>
         <ul class="divide-y divide-black/10 dark:divide-white/15">

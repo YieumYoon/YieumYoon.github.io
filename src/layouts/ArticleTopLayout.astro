@@ -1,14 +1,21 @@
 ---
 import type { CollectionEntry } from "astro:content"
 import { formatPostDateTime, getPostDateTime, readingTime } from "@lib/utils"
+import { getOriginalFor, getPostPath, getTranslationFor, isTranslation } from "@lib/blog"
 
 type Props = {
   entry: CollectionEntry<"blog">
+  posts: CollectionEntry<"blog">[]
 }
 
-const { entry } = Astro.props
+const { entry, posts } = Astro.props
 const { data, body } = entry
 const { title, summary, date, time, timezone, updatedDate, updatedTime, updatedTimezone } = data
+const translation = !isTranslation(entry) && data.lang === "ko"
+  ? getTranslationFor(entry, posts)
+  : undefined
+const original = isTranslation(entry) ? getOriginalFor(entry, posts) : undefined
+const writingIndexPath = data.lang === "en" ? "/blog/english/" : "/blog/"
 const publishedDateTime = getPostDateTime({ date, time, timezone }).toISOString()
 const updatedDateTime = updatedDate
   ? getPostDateTime({
@@ -20,9 +27,30 @@ const updatedDateTime = updatedDate
 ---
 
 <div>
-  <a href="/blog" class="text-sm underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black/70 dark:text-white/70 underline-offset-2 blend">
-    All posts
+  <a href={writingIndexPath} class="text-sm underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black/70 dark:text-white/70 underline-offset-2 blend">
+    {data.lang === "en" ? "English writing" : "All writing"}
   </a>
+  {original && (
+    <aside class="mt-8 rounded-lg border border-black/10 bg-black/[.025] p-4 text-sm leading-6 text-black/70 dark:border-white/15 dark:bg-white/[.04] dark:text-white/70">
+      <p class="font-semibold text-black dark:text-white">English translation</p>
+      <p class="mt-1">
+        {data.translationMethod === "ai-assisted"
+          ? "Translated from the Korean original with AI assistance and reviewed by the author."
+          : "Translated from the Korean original and reviewed by the author."}
+        {" "}
+        <a href={getPostPath(original)} class="underline decoration-[.5px] underline-offset-2 hover:decoration-current">
+          View the Korean original.
+        </a>
+      </p>
+    </aside>
+  )}
+  {translation && (
+    <div class="mt-8 text-sm">
+      <a href={getPostPath(translation)} class="underline decoration-[.5px] underline-offset-2 hover:decoration-current">
+        Read the English translation →
+      </a>
+    </div>
+  )}
   <div class="flex flex-wrap text-sm uppercase mt-12 gap-3 opacity-75">
     <time datetime={publishedDateTime} class="flex items-center gap-2">
       <svg class="size-5 stroke-current">

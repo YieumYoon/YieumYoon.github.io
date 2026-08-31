@@ -29,7 +29,7 @@ content:
       node:
         filename: index.md
         hideDirs: nodes
-      fields: [title, date, draft, tags]
+      fields: [title, lang, date, draft, tags]
       primary: title
       sort: [date, title]
       search: [title, summary, tags]
@@ -45,14 +45,48 @@ content:
           maxlength: 120
       - name: slug
         label: URL slug
-        description: Short English identifier used in the post URL. Use lowercase letters, numbers, and hyphens.
+        description: Short English identifier used in the post URL. English translations use original-slug/en.
         type: string
         required: true
         pattern:
-          regex: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
-          message: "Use lowercase letters, numbers, and single hyphens only."
+          regex: "^[a-z0-9]+(?:-[a-z0-9]+)*(?:/en)?$"
+          message: "Use lowercase letters, numbers, single hyphens, and an optional /en suffix."
         options:
           placeholder: "restarting-github-blog"
+      - name: lang
+        label: Content language
+        description: Choose the language used by the main article body.
+        type: select
+        required: true
+        default: ko
+        options:
+          values:
+            - value: ko
+              label: Korean
+            - value: en
+              label: English
+      - name: translationOf
+        label: Translation of
+        description: For an English translation, enter the Korean original's slug. Leave blank for original posts.
+        type: string
+        default: ""
+        pattern:
+          regex: "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          message: "Use the original post slug without /en."
+      - name: translationMethod
+        label: Translation method
+        description: Leave blank for original posts.
+        type: select
+        options:
+          values:
+            - value: ai-assisted
+              label: AI-assisted
+            - value: human
+              label: Human translation
+      - name: translationReviewed
+        label: Translation reviewed
+        description: Published translations must be reviewed by the author.
+        type: boolean
       - name: summary
         label: Summary
         type: text

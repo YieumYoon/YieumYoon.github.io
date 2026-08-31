@@ -1,6 +1,7 @@
 ---
 title: "코덱스에서 공짜 opus 4.6 사용하기. Qwen3.8 27B + opencodex + codex app"
 slug: trying-qwen38-model-with-codex-app
+lang: ko
 summary: Qwen 3.8 27B 모델을 리눅스 환경에서 돌리고 opencodex와 codex app을 활용해서 Mac 기기에서 사용할 수
   있게 세팅하고 사용해봤어요. compute use도 되네요.
 date: 2026-08-17
@@ -159,4 +160,3 @@ rtx5090/qwen3.8-27b-nvfp4-fp8kv-128k
 정리하면, 로컬 모델로서 정말 쓸 수 있을 정도까지 올라온 모델이다 싶어요.
 
 ---
-

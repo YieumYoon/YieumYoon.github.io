@@ -1,6 +1,7 @@
 ---
 title: "Spot Fiducial AprilTag Plate Generator"
 slug: spot-fiducial-3dprint-generator
+lang: ko
 summary: "Boston Dynamics Spot이 쓰는 fiducial plate를 브라우저에서 만들고, 3D 프린터로 직접 뽑아 벽에 붙이기까지의 과정을 정리했습니다."
 date: "2026-03-26"
 updatedDate: "2026-08-04"

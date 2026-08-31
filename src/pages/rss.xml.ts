@@ -1,27 +1,27 @@
-import rss from "@astrojs/rss"
-import { getCollection } from "astro:content"
-import { SITE } from "@consts"
-import { getPostDateTime } from "@lib/utils"
+import rss from "@astrojs/rss";
+import { getCollection } from "astro:content";
+import { SITE } from "@consts";
+import { getAllWritingItems, validateBlogPosts } from "@lib/blog";
+import { getPostDateTime } from "@lib/utils";
 
 type Context = {
-  site: string
-}
+  site: string;
+};
 
 export async function GET(context: Context) {
-	const items = (await getCollection("blog"))
-    .filter((post) => !post.data.draft)
-
-  items.sort((a, b) => getPostDateTime(b.data).getTime() - getPostDateTime(a.data).getTime())
+  const posts = await getCollection("blog");
+  validateBlogPosts(posts);
+  const items = getAllWritingItems(posts);
 
   return rss({
     title: SITE.TITLE,
     description: SITE.DESCRIPTION,
     site: context.site,
     items: items.map((item) => ({
-      title: item.data.title,
-      description: item.data.summary,
-      pubDate: getPostDateTime(item.data),
-      link: `/blog/${item.id.replace(/\/index$/, "")}/`,
+      title: item.source.data.title,
+      description: item.source.data.summary,
+      pubDate: getPostDateTime(item.source.data),
+      link: item.path,
     })),
-  })
+  });
 }

@@ -1,6 +1,7 @@
 ---
 title: "Agentic AI 시스템에 대해 더 알고싶어서 Google Cloud를 통해 공부를 시작했습니다."
 slug: using-google-cloud-to-learn-agentic-ai-system
+lang: ko
 summary: Agentic AI에 대해 더 자세히 알고 싶어 Google Cloud쪽에서 제공하는 유튜브나 강의들로 공부하려고 합니다.
   구글이 잘 정리해놓은것도 있고 수요일마다 강의도 하고 재밌는것 같아요.
 date: 2026-08-13

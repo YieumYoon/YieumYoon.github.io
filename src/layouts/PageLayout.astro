@@ -5,6 +5,7 @@ import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import Drawer from "@components/Drawer.astro";
 import { SITE } from "@consts";
+import type { LanguageAlternate } from "@lib/blog";
 
 type Props = {
   title: string
@@ -14,6 +15,9 @@ type Props = {
   pageType?: string
   contentId?: string
   contentTags?: string[]
+  contentLanguage?: "ko" | "en"
+  lang?: "ko" | "en"
+  alternates?: LanguageAlternate[]
 }
 
 const {
@@ -24,11 +28,14 @@ const {
   pageType = "page",
   contentId,
   contentTags = [],
+  contentLanguage,
+  lang = "en",
+  alternates = [],
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="ko">
+<html lang={lang}>
   <head>
     <!-- Google tag (gtag.js) -->
     <script is:inline>
@@ -55,13 +62,21 @@ const {
       import "@scripts/web-vitals"
     </script>
     
-    <BaseHead title={`${title} | ${SITE.TITLE}`} description={description} image={image} type={type} />
+    <BaseHead
+      title={`${title} | ${SITE.TITLE}`}
+      description={description}
+      image={image}
+      type={type}
+      lang={lang}
+      alternates={alternates}
+    />
   </head>
 
   <body
     data-page-type={pageType}
     data-content-id={contentId}
     data-content-tags={contentTags.join("|")}
+    data-content-language={contentLanguage}
   >
     <Header />
     <Drawer />

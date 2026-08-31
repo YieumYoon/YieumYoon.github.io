@@ -4,11 +4,23 @@ interface Props {
   description: string
   image?: string
   type?: "website" | "article"
+  lang?: "ko" | "en"
+  alternates?: {
+    lang: "ko" | "en"
+    path: string
+  }[]
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
-const { title, description, image = "/open-graph.jpg", type = "website" } = Astro.props
+const {
+  title,
+  description,
+  image = "/open-graph.jpg",
+  type = "website",
+  lang = "en",
+  alternates = [],
+} = Astro.props
 ---
 
 <!-- Global Metadata -->
@@ -28,6 +40,13 @@ const { title, description, image = "/open-graph.jpg", type = "website" } = Astr
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
+{alternates.map((alternate) => (
+  <link
+    rel="alternate"
+    hreflang={alternate.lang}
+    href={new URL(alternate.path, Astro.site)}
+  />
+))}
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
@@ -40,6 +59,7 @@ const { title, description, image = "/open-graph.jpg", type = "website" } = Astr
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={type} />
 <meta property="og:url" content={Astro.url} />
+<meta property="og:locale" content={lang === "ko" ? "ko_KR" : "en_US"} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={new URL(image, Astro.url)} />

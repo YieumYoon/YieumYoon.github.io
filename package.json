@@ -10,6 +10,8 @@
     "dev:network": "astro dev --host",
     "start": "astro dev",
     "build": "astro check && astro build",
+    "new:translation": "node scripts/create-translation.mjs",
+    "test": "node --test tests/*.test.mjs",
     "test:sitemap": "node --test tests/sitemap-lastmod.test.mjs",
     "preview": "astro preview",
     "preview:network": "astro dev --host",

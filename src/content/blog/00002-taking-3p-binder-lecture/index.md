@@ -1,6 +1,7 @@
 ---
 title: "42만원 내고 3P 바인더 프로과정을 신청했어요 🚀"
 slug: 00002-taking-3p-binder-lecture
+lang: ko
 summary: "내돈 42만원 내고 3P 바인더를 신청한 이유, 기대하는 부분"
 date: "2024-06-13"
 draft: False

@@ -1,6 +1,7 @@
 ---
 title: 현재 만들고 있는 3P 바인더를 어떻게 분리해서 개발용과 실사용용을 따로 구축할까?
 slug: establishing-dev-environment-for-digitized-3p-binder
+lang: ko
 summary: "3P 바인더를 디지털화 하는 중에 개발용과 실사용용을 분리할 필요성이 생겼어요."
 image: /images/blog/create-icloud-vault-on-ipad-2.webp
 date: 2026-07-19
@@ -30,4 +31,4 @@ timezone: America/New_York
 
 ![새로 생성된 빈 3P_Binder 볼트 화면](/images/blog/create-icloud-vault-on-ipad-3.webp)
 
-이렇게 3P_Binder라는 이름의 새 아이클라우드 볼트가 만들어졌어요. 이제 여기에 실사용 데이터를 옮기고, 기존 볼트는 깃허브 리포 기반 개발용으로 정리해 나가면 될 것 같아요. 
+이렇게 3P_Binder라는 이름의 새 아이클라우드 볼트가 만들어졌어요. 이제 여기에 실사용 데이터를 옮기고, 기존 볼트는 깃허브 리포 기반 개발용으로 정리해 나가면 될 것 같아요.

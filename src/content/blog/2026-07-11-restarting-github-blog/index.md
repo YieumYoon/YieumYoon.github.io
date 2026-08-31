@@ -1,6 +1,7 @@
 ---
 title: "2년간 안쓰던 깃허브 블로그 다시 시작해 봅니다. "
 slug: restarting-github-blog
+lang: ko
 summary: 깃허브 블로그 다시 시작합니다
 date: 2026-07-11
 tags:

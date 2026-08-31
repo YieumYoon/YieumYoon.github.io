@@ -1,24 +1,24 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
-import { getPostDateTime } from "@lib/utils";
+import { getAllWritingItems, getEnglishPreferredItems } from "@lib/blog";
 
 type Props = {
   entry: CollectionEntry<"blog">;
+  posts?: CollectionEntry<"blog">[];
 };
 
 // Get the requested entry
-const { entry } = Astro.props;
+const { entry, posts: suppliedPosts } = Astro.props;
 const { Content } = await render(entry);
 
 // Get the next and prev entries (modulo to wrap index)
-const items = (await getCollection("blog"))
-  .filter((post) => !post.data.draft)
-  .sort((a, b) => getPostDateTime(b.data).getTime() - getPostDateTime(a.data).getTime());
-const index = items.findIndex((x) => x.id === entry.id);
+const posts = suppliedPosts ?? await getCollection("blog");
+const items = entry.data.lang === "en"
+  ? getEnglishPreferredItems(posts)
+  : getAllWritingItems(posts);
+const index = items.findIndex((item) => item.display.id === entry.id || item.source.id === entry.id);
 const prev = items[(index - 1 + items.length) % items.length];
 const next = items[(index + 1) % items.length];
-const prevSlug = prev.id.replace(/\/index$/, "");
-const nextSlug = next.id.replace(/\/index$/, "");
 ---
 
 <div>
@@ -77,30 +77,30 @@ const nextSlug = next.id.replace(/\/index$/, "");
 
   <div class="grid grid-cols-1 gap-6 border-t border-black/10 pt-8 dark:border-white/15 sm:grid-cols-2" data-analytics-region="article_navigation">
     <a
-      href={`/blog/${prevSlug}`}
+      href={prev.path}
       data-analytics-event="article_navigation"
-      data-analytics-id={prevSlug}
+      data-analytics-id={prev.source.data.slug ?? prev.source.id}
       data-analytics-value="previous"
       class="group block"
     >
       <div class="space-y-2">
         <div class="text-sm uppercase text-black/45 dark:text-white/45">Previous</div>
         <div class="font-semibold text-black dark:text-white group-hover:underline group-hover:decoration-[.5px] group-hover:underline-offset-4">
-          {prev.data.title}
+          {prev.display.data.title}
         </div>
       </div>
     </a>
     <a
-      href={`/blog/${nextSlug}`}
+      href={next.path}
       data-analytics-event="article_navigation"
-      data-analytics-id={nextSlug}
+      data-analytics-id={next.source.data.slug ?? next.source.id}
       data-analytics-value="next"
       class="group block sm:text-right"
     >
       <div class="space-y-2">
         <div class="text-sm uppercase text-black/45 dark:text-white/45">Next</div>
         <div class="font-semibold text-black dark:text-white group-hover:underline group-hover:decoration-[.5px] group-hover:underline-offset-4">
-          {next.data.title}
+          {next.display.data.title}
         </div>
       </div>
     </a>

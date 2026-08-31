@@ -2,6 +2,7 @@
 title: bimanual so101 building, data collection, NVIDIA Gr00t 1.5n model tuning,
   and deploying the trained model
 slug: bimanual-so101-project
+lang: en
 summary: hmm
 date: 2026-07-26
 tags:

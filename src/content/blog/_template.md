@@ -1,6 +1,8 @@
 ---
 # Required
 title: "글 제목"
+slug: "short-english-slug"
+lang: ko
 summary: "목록, 검색 결과, 공유 카드에 보일 1-2문장 요약입니다."
 date: "YYYY-MM-DD"
 tags:
@@ -53,6 +55,13 @@ Post rules
    - Prefer Markdown image syntax when possible.
    - Always write useful alt text.
    - Use HTML <img> only when you need width or special attributes.
+
+8. Language and translation metadata:
+   - Original Korean post: `lang: ko`
+   - Original English post: `lang: en`
+   - English translation: use `lang: en`, `slug: original-slug/en`,
+     `translationOf: original-slug`, `translationMethod: ai-assisted`, and
+     `translationReviewed: true` after author review.
 -->
 
 첫 문단에는 이 글을 왜 쓰는지, 독자가 무엇을 얻을 수 있는지 적습니다. 검색이나 목록에서 들어온 사람이 바로 맥락을 잡을 수 있도록 2-4문장 정도가 좋습니다.

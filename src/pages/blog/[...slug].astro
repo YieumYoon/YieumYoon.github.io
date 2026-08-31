@@ -5,12 +5,21 @@ import TopLayout from "@layouts/TopLayout.astro"
 import BottomLayout from "@layouts/BottomLayout.astro"
 import ArticleTopLayout from "@layouts/ArticleTopLayout.astro"
 import ArticleBottomLayout from "@layouts/ArticleBottomLayout.astro"
+import {
+  getPostAlternates,
+  getPostPath,
+  getSourceSlug,
+  isPublished,
+  validateBlogPosts,
+} from "@lib/blog"
 
 // Create the static blog pages
 export async function getStaticPaths() {
 	const posts = await getCollection("blog")
-	return posts.filter((post) => !post.data.draft).map((post) => ({
-		params: { slug: post.id.replace(/\/index$/, "") },
+	validateBlogPosts(posts)
+
+	return posts.filter(isPublished).map((post) => ({
+		params: { slug: getPostPath(post).replace(/^\/blog\//, "").replace(/\/$/, "") },
 		props: post,
 	}))
 }
@@ -19,7 +28,10 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<"blog">
 const post = Astro.props
 const { title, summary, image, tags } = post.data
-const contentId = post.id.replace(/\/index$/, "")
+const posts = await getCollection("blog")
+validateBlogPosts(posts)
+const contentId = getSourceSlug(post)
+const alternates = getPostAlternates(post, posts)
 ---
 
 <PageLayout
@@ -30,15 +42,18 @@ const contentId = post.id.replace(/\/index$/, "")
   pageType="article"
   contentId={contentId}
   contentTags={tags}
+  contentLanguage={post.data.lang}
+  lang={post.data.lang}
+  alternates={alternates}
 >
   <TopLayout size="md">
     <div class="animate">
-      <ArticleTopLayout entry={post}/>
+      <ArticleTopLayout entry={post} posts={posts}/>
     </div>
   </TopLayout>
   <BottomLayout size="md">
     <div class="animate">
-      <ArticleBottomLayout entry={post} />
+      <ArticleBottomLayout entry={post} posts={posts} />
     </div>
   </BottomLayout>
 </PageLayout>

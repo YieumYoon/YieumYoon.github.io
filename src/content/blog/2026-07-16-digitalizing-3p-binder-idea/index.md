@@ -1,6 +1,7 @@
 ---
 title: 3P 바인더를 완전히 디지털화할 수 있을까? Can I fully digitize a physical 3P binder?
 slug: digitalizing-3p-binder-idea
+lang: ko
 summary: >-
   I wanted to explore the possibility of fully digitizing a paper-based 3P
   binder so I can use it with AI tools and agentic systems.
@@ -54,4 +55,3 @@ c. 그리고 인생 목표나 연간 목표 역시 처음부터 막 고민해서
 밑에 사진이 현재 구현한 주간 계획표 양식이에요. 일단은 맥북 기준으로만 돌아가는데요, 점진적으로 계속 사용해 나가면서 기능을 추가해 나가려고요.
 
 이걸 AI의 도움을 받아서 구현할 수 있다는 점이 너무 좋은 것 같아요. 다음 글에서는 실제로 월간계획, 연간계획 등등 다른 부분도 옵시디언에서 플러그인으로 양식을 만들어서 어떻게 하면 더 기존의 바인더와 비슷한 경험을 만들어낼 수 있을지 과정을 더 남길것 같아요.
-

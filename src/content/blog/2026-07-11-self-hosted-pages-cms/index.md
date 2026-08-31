@@ -1,6 +1,7 @@
 ---
 title: "VS Code 없이 글을 쓰고 싶어서 Pages CMS를 직접 호스팅했다"
 slug: self-hosted-pages-cms
+lang: ko
 summary: "Astro 블로그를 브라우저에서 편집하기 위해 Pages CMS를 포크하고, Oracle Cloud와 Tailscale을 이용해 내 기기에서만 접근할 수 있는 개인 CMS를 구축한 과정이다."
 date: "2026-07-11"
 timezone: "America/New_York"
