@@ -78,12 +78,7 @@ com.samsung.android.settings.wifi.mobileap.WifiApBroadcastReceiver
 
 이 구성요소는 외부 앱의 신호를 받을 수 있는데도 별도의 호출 권한을 요구하지 않았어요. 일반 앱이 핫스팟 시스템 API를 직접 실행하면 권한 부족으로 실패하지만, 이 Receiver에 복구 신호를 보내면 시스템 권한을 가진 설정 앱이 대신 실행합니다.
 
-```text
-권한 없는 일반 앱
-→ Samsung 설정 앱의 복구 Receiver
-→ 프로비저닝 성공 상태로 처리
-→ 설정 앱이 시스템 권한으로 SoftAP 시작
-```
+![권한이 없는 일반 앱이 외부에 공개된 Samsung Settings 구성요소를 거쳐 시스템 권한으로 핫스팟을 켜고 끄는 구조](/images/blog/galaxy-s8-hotspot-permission-boundary.svg)
 
 구형 Samsung 펌웨어에서 외부에 노출된 시스템 구성요소를 발견한 셈이에요. 정상적인 공개 Android API는 아니었습니다. 편리한 우회 경로이면서 다른 일반 앱도 같은 방식으로 핫스팟 상태를 바꿀 수 있다는 보안 문제이기도 합니다. 하지만 여기서는 필요한 기능이니 사용합니다. 이미 보안 업데이트 끝난지 한참 지나기도 했고요.
 
@@ -125,11 +120,17 @@ intent.putExtra("wifi_ap_error_code", 14);
 sendBroadcast(intent);
 ```
 
+![S8 Hotspot 앱의 Start Hotspot 요청이 Samsung Settings Receiver와 WifiService를 거쳐 SoftAP을 시작하는 순서](/images/blog/galaxy-s8-hotspot-start-sequence.svg)
+
 이 앱을 S8에 설치해 일반 앱 상태에서 실행했고, 핫스팟과 Wi-Fi 인터넷 중계가 다시 켜지는 것을 확인했어요. 그런데 직접 사용해보니 켜기만 되는 버튼으로는 조금 불편했습니다. 앱 안에서는 핫스팟이 켜졌는지 알 수 없었고, 끄려면 다시 Samsung 설정으로 들어가야 했어요.
 
 그래서 앱을 영문으로 바꾸고 `WIFI_AP_STATE_CHANGED`를 받아 핫스팟 상태를 실시간으로 표시하도록 만들었습니다. 현재 상태가 `OFF`면 `Start Hotspot`, `ON`이면 `Stop Hotspot`으로 같은 버튼이 바뀌고, 켜지거나 꺼지는 중에는 버튼을 잠시 비활성화해요. 상태 Broadcast를 읽지 못하면 `swlan0` 인터페이스를 확인하고, 8초 안에 전환이 끝나지 않으면 실패 상태로 돌아옵니다.
 
+![S8 Hotspot 앱이 핫스팟 상태를 확인하고 시작, 실패, 종료 상태 사이를 오가는 상태도](/images/blog/galaxy-s8-hotspot-state-machine.svg)
+
 끄는 기능은 켜기와 다른 Samsung 설정 경로를 사용했어요. 앱이 외부에 공개된 `WifiWarning` Activity를 열면 시스템 권한을 가진 Settings가 핫스팟을 끕니다. 기기에 따라 처음 한 번은 Samsung 확인창이 나타날 수 있어요.
+
+![S8 Hotspot 앱의 Stop Hotspot 요청이 Samsung WifiWarning Activity를 거쳐 핫스팟을 끄는 순서](/images/blog/galaxy-s8-hotspot-stop-sequence.svg)
 
 ```text
 S8 Hotspot 앱 · 요청 권한 0개
