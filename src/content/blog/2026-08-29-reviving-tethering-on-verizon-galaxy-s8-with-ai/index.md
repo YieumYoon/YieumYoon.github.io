@@ -23,8 +23,6 @@ timezone: America/New_York
 
 그렇게 시작한 궁금증에서 codex와 논의하며 결국은 [공개 GitHub 저장소](https://github.com/YieumYoon/galaxy-s8-hotspot-toggle)와 정식 서명한 `v1.0.0` APK까지 만들었습니다. 지금은 S8에서 앱 하나로 핫스팟을 켜고 끄고, 현재 상태도 확인할 수 있습니다.
 
-![Galaxy S8 홈 화면에 설치된 S8 Hotspot 앱 아이콘](/images/blog/galaxy-s8-hotspot-app-icon.webp)
-
 ## 1.
 
 처음 찾은 방법은 구글 ai 검색 결과에서 ADB에서 `tether_dun_required` 값을 `0`으로 바꾸는 것이었어요.
@@ -64,7 +62,10 @@ SIM: 없음
 
 Wi-Fi 칩이나 안드로이드 테더링 엔진이 실패한 것은 아니었어요. 핫스팟을 실제로 시작하는 단계까지 가기도 전에 설정 화면에서 멈추고 있었습니다.
 
-![SIM 카드가 없어 모바일 핫스팟과 테더링을 사용할 수 없다는 Galaxy S8 경고 화면](/images/blog/galaxy-s8-hotspot-no-sim.webp)
+<figure class="phone-shot-single">
+  <img src="/images/blog/galaxy-s8-hotspot-no-sim.webp" alt="SIM 카드가 없어 모바일 핫스팟과 테더링을 사용할 수 없다는 Galaxy S8 경고 화면" loading="lazy" />
+  <figcaption>SIM이 없으면 기본 설정 화면에서 바로 막혔습니다.</figcaption>
+</figure>
 
 ## 3.
 
@@ -88,7 +89,16 @@ com.samsung.android.settings.wifi.mobileap.WifiApBroadcastReceiver
 
 화면에 스위치만 켜진 것은 아닌지도 확인했어요. 제 iPhone을 S8의 핫스팟에 연결하자 IP 주소를 받았고 인터넷이 됐습니다. Apple Watch도 다시 연결됐고, DNS 트래픽이 S8의 핫스팟 인터페이스에서 집 Wi-Fi 쪽으로 전달되는 것도 확인했어요.
 
-![SSID와 비밀번호를 가린 Galaxy S8 설정에서 Mobile Hotspot과 Wi-Fi Sharing이 모두 켜진 화면](/images/blog/galaxy-s8-hotspot-settings-on.webp)
+<div class="phone-shot-grid">
+  <figure>
+    <img src="/images/blog/galaxy-s8-hotspot-settings-on.webp" alt="SSID와 비밀번호를 가린 Galaxy S8 설정에서 Mobile Hotspot과 Wi-Fi Sharing이 모두 켜진 화면" loading="lazy" />
+    <figcaption>Mobile Hotspot과 Wi-Fi Sharing이 모두 켜졌습니다.</figcaption>
+  </figure>
+  <figure>
+    <img src="/images/blog/galaxy-s8-hotspot-no-sim-running.webp" alt="개인 알림을 가린 상태에서 No SIM found와 Mobile Hotspot 알림이 동시에 표시된 화면" loading="lazy" />
+    <figcaption>No SIM found 상태에서도 Mobile Hotspot이 실행 중입니다.</figcaption>
+  </figure>
+</div>
 
 ```text
 집 Wi-Fi
@@ -100,11 +110,7 @@ com.samsung.android.settings.wifi.mobileap.WifiApBroadcastReceiver
 
 여기까지 되자 저도 진짜 “이게 된다고???” 싶었어요. 하드웨어가 안 되는 기기라고 생각했는데, 데이터 경로는 모두 살아 있었고 설정 앱의 검사만 통과하지 못하고 있었던 거니까요. 왜 이렇게 막아 놓은건지 잘 모르겠어요. 멀쩡히 있는 기능을.
 
-![개인 알림을 가린 상태에서 No SIM found와 Mobile Hotspot 알림이 동시에 표시된 화면](/images/blog/galaxy-s8-hotspot-no-sim-running.webp)
-
 다만 핫스팟을 끈 뒤 기본 스위치로 다시 켜면 또 SIM 검사에 막혔습니다. 펌웨어를 영구적으로 고친 것이 아니라 필요할 때 복구 경로를 다시 실행하는 방식이었어요. 그래서 컴퓨터 없이 이 신호를 보낼 수 있는 버튼 앱을 만들었습니다.
-
-![초기 S8 Hotspot 개발판에서 핫스팟이 켜지고 Wi-Fi 연결이 공유 중이라고 표시된 화면](/images/blog/galaxy-s8-hotspot-on.webp)
 
 ## 5.
 
@@ -132,18 +138,20 @@ sendBroadcast(intent);
 
 ![S8 Hotspot 앱의 Stop Hotspot 요청이 Samsung WifiWarning Activity를 거쳐 핫스팟을 끄는 순서](/images/blog/galaxy-s8-hotspot-stop-sequence.svg)
 
-```text
-S8 Hotspot 앱 · 요청 권한 0개
-├─ Start → Settings의 복구 Receiver → SoftAP ON
-├─ Stop  → Settings의 WifiWarning Activity → SoftAP OFF
-└─ 상태  ← WIFI_AP_STATE_CHANGED 또는 swlan0 확인
-```
-
 최종 앱은 필요한 Samsung 구성요소가 실제로 존재하고 외부에 공개되어 있는지도 먼저 확인해요. 없으면 `This firmware is not compatible`라고 표시하고 버튼을 비활성화합니다. 다만 구성요소가 있다는 것만으로 내부 코드까지 같은지는 알 수 없기 때문에 이 검사가 호환성을 보장하는 것은 아닙니다.
 
 아이콘은 단색 파란 배경에 Google Material `wifi_tethering` 심볼을 사용했어요. 최종 APK의 패키지명은 개인 이름을 뺀 `dev.legacyhotspot.s8`이고, 앱 이름은 `S8 Hotspot`입니다.
 
-![핫스팟이 꺼져 있어 Start Hotspot 버튼을 사용할 수 있는 앱 화면](/images/blog/galaxy-s8-hotspot-off.webp)
+<div class="phone-shot-grid">
+  <figure>
+    <img src="/images/blog/galaxy-s8-hotspot-on.webp" alt="초기 S8 Hotspot 개발판에서 핫스팟이 켜지고 Wi-Fi 연결이 공유 중이라고 표시된 화면" loading="lazy" />
+    <figcaption>초기판은 핫스팟을 켜는 데 집중했습니다.</figcaption>
+  </figure>
+  <figure>
+    <img src="/images/blog/galaxy-s8-hotspot-off.webp" alt="핫스팟이 꺼져 있어 Start Hotspot 버튼을 사용할 수 있는 최종 앱 화면" loading="lazy" />
+    <figcaption>최종판은 현재 상태에 따라 버튼이 바뀝니다.</figcaption>
+  </figure>
+</div>
 
 ## 6.
 
@@ -189,6 +197,11 @@ v1.0.0 ─ 같은 패키지명 + 다른 서명키 ─ 업데이트 거부
 [APK는 GitHub Release에서 직접 받을 수 있습니다.](https://github.com/YieumYoon/galaxy-s8-hotspot-toggle/releases/download/v1.0.0/galaxy-s8-hotspot-toggle.apk) 저장소의 README에는 공식 서명 인증서 지문도 공개해서 다른 곳에서 받은 파일의 서명을 비교할 수 있게 했어요.
 
 마지막으로 S8에서 임시 서명 테스트판을 제거하고 정식 APK를 설치했습니다. 정식 서명과 패키지가 맞는지, 앱이 충돌 없이 실행되는지 확인했고 이전 개발판도 지워서 지금은 `v1.0.0`만 남아 있어요.
+
+<figure class="phone-shot-single">
+  <img src="/images/blog/galaxy-s8-hotspot-app-icon.webp" alt="Galaxy S8 홈 화면에 설치된 S8 Hotspot 앱 아이콘" loading="lazy" />
+  <figcaption>정식 APK를 설치한 Galaxy S8의 홈 화면입니다.</figcaption>
+</figure>
 
 처음에는 버튼 하나가 되나 확인해보는 실험이었는데, 상태 표시와 시작·종료, 호환성 사전 검사, 공개 소스, CI, 개인정보 검사, 릴리스 서명까지 갖춘 작은 프로젝트가 됐습니다.
 

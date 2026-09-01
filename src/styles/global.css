@@ -100,6 +100,43 @@ article img {
   margin: 0 auto;
 }
 
+article .phone-shot-single {
+  width: min(100%, 22rem);
+  margin: 2rem auto;
+}
+
+article .phone-shot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: start;
+  margin: 2rem auto;
+}
+
+article .phone-shot-grid figure {
+  margin: 0;
+}
+
+article .phone-shot-single img,
+article .phone-shot-grid img {
+  width: 100%;
+  height: auto;
+  padding: 0;
+  margin: 0 auto;
+}
+
+article .phone-shot-single figcaption,
+article .phone-shot-grid figcaption {
+  @apply mt-2 text-center text-sm text-black/60 dark:text-white/60;
+}
+
+@media (max-width: 640px) {
+  article .phone-shot-grid {
+    width: min(100%, 22rem);
+    grid-template-columns: 1fr;
+  }
+}
+
 article pre.analytics-code-block {
   position: relative;
   padding-top: 2.75rem;
