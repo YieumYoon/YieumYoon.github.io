@@ -34,4 +34,6 @@ I also wanted to have digital twin of the plant environment to test Bostondynami
 
 
 
-Even for testing custom spot software that I was developing, if I had digital model of spot that kind of a simulation of spot robot not just the shape but also payloads like coreio, spot cam, and accustic sensor, I could also test and veryfy the software in the computer and do the final testing on the actual spot robot and not have to get near to the robot so I can get stable wireless connection and walk around so many distances with my laptiop to test custom softa
+Even for testing custom spot software that I was developing, if I had digital model of spot that kind of a simulation of spot robot not just the shape but also payloads like coreio, spot cam, and accustic sensor, I could also test and veryfy the software in the computer and do the final testing on the actual spot robot and not have to get near to the robot so I can get stable wireless connection and walk around so many distances with my laptiop(it is heavy) to test custom softaware and collect logs. 
+
+Also, with integration with AR glasses and possibly humanids deployment, digital twin will be one of the core tech i would iamgine in the future.
