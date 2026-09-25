@@ -14,4 +14,4 @@ draft: true
 time: 12:48
 timezone: America/New_York
 ---
-placeholder
+I attended fireside chat from Thinkbox 'The Evolution and future of Digital Twin' with Dr.Michael Grieves. After the session one core idea left in my mind, the digital twin will become one of the core technology that all the industry want as AI models are also trying to deployed on the physical world over sittign in the computer, but the models makes mistakes a lot therefore, it is unstalbe and dangorous to connect real machins and equiptments to ai models. Therefore, you need an safe enviroment that ai can interact and experiment. Digital Twin can be a core gym so ai can experiement and makes mistakes safely without affecting real world. 
