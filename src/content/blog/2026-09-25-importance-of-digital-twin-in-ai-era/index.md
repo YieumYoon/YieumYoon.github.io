@@ -1,39 +1,39 @@
 ---
-title: Imagining the role of Digital Twin in the era of AI optimizing and
-  experimenting itself for optimization
+title: Imagining the role of digital twins as AI moves into the physical world
 slug: importance-of-digital-twin-in-ai-era
 lang: en
 translationReviewed: false
-summary: "I attended the fireside chat 'The Evolution and future of Digital
-  Twin' with Dr.Michael Grieves in CWRU Thinkbox on Sep 23, 2026 Wed. Learned
-  mental model on how to establish digital twin. "
+summary: "Thoughts after a fireside chat with Dr. Michael Grieves at CWRU:
+  digital twins as a place for AI to experiment, and how that connects to my
+  robotics projects and experience deploying Spot."
 date: 2026-09-25
 tags:
   - digital twin
+  - AI
+  - robotics
+  - simulation
 draft: true
 time: 12:48
 timezone: America/New_York
 ---
-I attended fireside chat from Thinkbox 'The Evolution and future of Digital Twin' with Dr.Michael Grieves. After the session one core idea left in my mind, the digital twin will become one of the core technology that all the industry want as AI models are also trying to deployed on the physical world over sittign in the computer, but the models makes mistakes a lot therefore, it is unstalbe and dangorous to connect real machins and equiptments to ai models. Therefore, you need an safe enviroment that ai can interact and experiment. Digital Twin can be a core gym so ai can experiement and makes mistakes safely without affecting real world. 
+I attended a fireside chat, “The Evolution and Future of Digital Twins,” with Dr. Michael Grieves at Sears think[box] at CWRU on September 23. I was already interested in this area, and one thought stayed with me after the session: digital twins could become increasingly useful as AI moves beyond computers and starts acting in the physical world. AI models make mistakes, and those mistakes can be dangerous when real machines and equipment are involved. They need somewhere to interact, experiment, and fail without damaging real equipment or hurting anyone. I imagine digital twins could be a kind of gym for that.
 
-I also asked question at the end after the session ended. what is the most advanced digital twin you have seen in the industry. He said oil and gas plant in Saudi Arabia. The cost of failure is hugh so even though it cost a lot to establish digital twin they did it anyway I guess. I thought it would be a good reference if I would like to bring digital twin technology in the different industry. 
+After the session, I asked about the most advanced digital twin he had seen in industry. The example mentioned was Abu Dhabi National Oil Company in the UAE, described as probably the biggest one he had seen. I guessed that the cost of failure might help justify such a large investment, though that was my own interpretation. I thought it would be a useful reference if I wanted to bring digital twin technology into another industry.
 
+He also talked about how much definitions of digital twins vary. He described physical objects, virtual objects, and a persistent connection between them, but he pushed back on the need for one standardized definition. In our conversation afterward, he kept coming back to the problem: what are you trying to do, and what is preventing it?
 
+The digital twin does not have to be a fancy view of an entire factory. He gave an example of little boxes representing equipment, with data telling you whether a machine works, does not work, or is going to fail. If that helps you predict a failure and reduce its impact, even a simple representation can be useful. My takeaway was that I should not be afraid to start small or make it complicated just to look impressive.
 
-He also emphsized that the definition of digtal twin so varies so I cound not hear the one definition about the digital twin. Instead, he said the start of every digial twin starts from the problem. As long as digital twin solves the problem, th e simiplist digital twin that you can imagine, which tells you like the machine is in operation or not can be super useful, so don't be afraid to start with something simple and do not complicate it just to look fancy,
+I wanted to hear more about digital twins he had worked on, but there was not enough time. Still, the conversation gave me a better idea of where to start if I wanted to build one for an industrial use case.
 
-I also wanted to listen more about the examples of digital twins that he extablished, but there was not enough time. However, it was a good sesstion to know at least give me the starting point to where to start if I want to establish digital twin in the industry. 
+Another thought I had was that NVIDIA is working in a related direction with robotics training and deployment. Isaac Sim provides the simulation environment, Isaac Lab supports robot learning, and Cosmos can help with things like synthetic data generation. I had also been thinking of Isaac Gym, although that is now deprecated in favor of Isaac Lab. These tools have different roles, but the idea of training and testing a robot in a computer before deploying it is what interests me. I am working on a project using Isaac Sim to train a pick-and-place task, with the goal of deploying it on a real SO-101 arm and its setup. So let’s see.
 
+I also wanted a digital twin of the plant environment when I was deploying Boston Dynamics’ Spot robot. I wanted to test scenarios like a forklift driver not noticing Spot and driving toward it, a blocked corridor, a floor with less friction, or different lighting conditions.
 
+I spent nearly a month implementing Spot inspections at the plant, doing most of the work on my own. I added about 500 inspection points and tested GraphNav paths and robot behavior, spending 8–10 hours a day walking around the plant.
 
-Another thought after I had was this is what Nivida is trying to also do on robitics trainging and deployment as they have isaac sim, isaac gym and nvidia cosmos so the model to train the robit can be self trained in the computer. I am doing one project which is using issac sim to train pick and place task and then deploy in the real so101 arm with the stage so let's see.
+I did not have a virtual environment where I could work through those tests first. I wanted to get more of that work done on the computer, potentially run some tests faster than real time, and not worry about draining the battery. In my use, the battery lasted a little over an hour. Going back to the dock or swapping batteries was really annoying when I was trying to keep testing.
 
+Even for the custom Spot software I was developing, I wished I had a simulation that included more than the robot’s shape. I wanted to test the parts of my software that interacted with Core I/O, Spot CAM, and the acoustic sensor. That would need models or interfaces that reproduced the behavior I was testing, not just their appearance. Then I could do some of the testing on the computer and the final testing on the actual robot. I would not have to stay near Spot for a stable wireless connection and walk so far with my laptop (it is heavy) just to test software and collect logs.
 
-
-I also wanted to have digital twin of the plant environment to test Bostondynamics Spot robot and test different synarios such as forklift driver do not see the Spot robot and run ito it, or the blocked corridor or floor with less friction and diffrent lightign condigiotn and so on as when I implemented the Spot robot and add 500 inspection points and test grapthnav paths and beavior and everything, I had to walk aroudn the plant for 8-10 hours every single day I implement spot for inspection as I did not have enviroment to test it virtual so I can finalize 80% in the computer, also do it faster as I can speed up time in the computer and also did not have to worry about battery drainage becasue battery lasts littie bit more than an hour and it is super annoing to go back to dock and swap the battery because it is such a waste of time. 
-
-
-
-Even for testing custom spot software that I was developing, if I had digital model of spot that kind of a simulation of spot robot not just the shape but also payloads like coreio, spot cam, and accustic sensor, I could also test and veryfy the software in the computer and do the final testing on the actual spot robot and not have to get near to the robot so I can get stable wireless connection and walk around so many distances with my laptiop(it is heavy) to test custom softaware and collect logs. 
-
-Also, with integration with AR glasses and possibly humanids deployment, digital twin will be one of the core tech i would iamgine in the future.
+With AR glasses and possibly more humanoid robots being deployed, I can also imagine digital twins becoming a bigger part of how we interact with and test things in the physical world.
