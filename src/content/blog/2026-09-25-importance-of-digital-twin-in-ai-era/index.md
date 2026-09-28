@@ -15,10 +15,13 @@ tags:
 draft: true
 time: 12:48
 timezone: America/New_York
+image: /images/blog/michael-grieves-fireside-chat-2026-09-23.webp
 ---
 I attended a fireside chat, “The Evolution and Future of Digital Twins,” with Dr. Michael Grieves at Sears think[box] at CWRU on September 23. I was already interested in this area, and one thought stayed with me after the session: digital twins could become increasingly useful as AI moves beyond computers and starts acting in the physical world. AI models make mistakes, and those mistakes can be dangerous when real machines and equipment are involved. They need somewhere to interact, experiment, and fail without damaging real equipment or hurting anyone. I imagine digital twins could be a kind of gym for that.
 
-![Event poster for The Evolution and Future of Digital Twins, a fireside chat with Dr. Michael Grieves at CWRU on September 23, 2026.](/images/blog/michael-grieves-fireside-chat-2026-09-23.webp)
+![Event poster for The Evolution and Future of Digital Twins, a fireside chat with Dr. Michael Grieves at CWRU on September 23, 2026.](/images/blog/michael-grieves-fireside-chat-2026-09-23-small.webp)
+
+[View full-size poster](/images/blog/michael-grieves-fireside-chat-2026-09-23.webp)
 
 After the session, I asked about the most advanced digital twin he had seen in industry. The example mentioned was Abu Dhabi National Oil Company in the UAE, described as probably the biggest one he had seen. I guessed that the cost of failure might help justify such a large investment, though that was my own interpretation. I thought it would be a useful reference if I wanted to bring digital twin technology into another industry.
 
