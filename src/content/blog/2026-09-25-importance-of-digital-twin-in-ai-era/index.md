@@ -6,14 +6,14 @@ translationReviewed: false
 summary: "Thoughts after a fireside chat with Dr. Michael Grieves at CWRU:
   digital twins as a place for AI to experiment, and how that connects to my
   robotics projects and experience deploying Spot."
-date: 2026-09-25
+date: 2026-09-27
 tags:
   - digital twin
   - AI
   - robotics
   - simulation
-draft: true
-time: 12:48
+draft: false
+time: 22:55
 timezone: America/New_York
 image: /images/blog/michael-grieves-fireside-chat-2026-09-23.webp
 ---
