@@ -41,4 +41,4 @@ Challenges I had are 1. Ikea switch, lights, and ulanzi ua12 tube lights does no
 
 I connected Blender and Codex so Astra can control blender. 
 
-Somthig I thought whithe stage was not ment for sim to real transfer so it was large. Also used web cam which was hard to have fixed location all the time. 
+I had to discard the first stage I created because overall Astra model can create 3d stage and environment, but it still has limited understanding on how the physical stage and environment work so so101 arm could not sit in an idle position because there were not enough space which I noticed after I assembled the stage. The second problem I have seen was, it does not fully understand how each other pannels can side and fit so the stage can hold itself with the panel and the screws and nuts can help the stage pannels to hold each other. 
