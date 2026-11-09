@@ -50,3 +50,5 @@ Another problem is it is really slow to change the models so I was just sitting 
 Overall, the stage is finished so I can proceed to create simulation environment on Isaac sim now and collect episodes. 
 
 Actually, I need to check the camera pov first on the actual stages. 
+
+I burnt lots of codex tokens. I was able to this 3d stage design and setup experiment because I was using chatGPT pro $200. 
