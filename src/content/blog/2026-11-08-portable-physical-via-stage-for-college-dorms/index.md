@@ -35,6 +35,8 @@ Sixth, I wanted to add at least one more task on my vla stage because I have see
 
 Seventh, I wanted to open source this stage so anyone across the world can build and experiment the same stage. Therefore, I decided to use 1/4(6mm) plywood, 3d printed parts, metic bits and nuts, and standard camera for so101 wrist camera (innomaker 1080p), ulanzi ua12, Ikea smart switch and lights.
 
+Eights, I wanted to include apriltags on each side with the solid background so in the future if I want to add AR feature support for ar glasses I can use those as anchors. I imagine I can use those so I can visualize expected robot movement in 3d using ar glasses so ar can added to physical envorioont. I see that possibility for intuitive human understanding purposes. 
+
 
 
 Challenges I had are 1. Ikea switch, lights, and ulanzi ua12 tube lights does not have 3d asset online. Therefore, I used Artec Leo light Scanner (because the laser scanner was down) to capture objects in 3d and convert into assets which was not easy because light scanner was not that accurate and ua12 was a tube shape so the 3d scan would still not that accurate. Especially, the light and light switch were hard to create 3d asset because to do sim to real and also let ChatGPT Astra model create design based on the real world measurement, I had to measure using caliper and also use 2d scanner and multiple pictures to capture accurate measurement and also especially for light switch, as this needs to be sim ready asset, the distance and distortion when it is pressed need to be precisely measured. Creting sim ready asset, I am not sure entirely it is sim ready, but I also find a guidelines on Nvidia ([https://www.nvidia.com/en-us/glossary/simready/](https://www.nvidia.com/en-us/glossary/simready/)) so I will look into more if I need to. 
@@ -42,3 +44,9 @@ Challenges I had are 1. Ikea switch, lights, and ulanzi ua12 tube lights does no
 I connected Blender and Codex so Astra can control blender. 
 
 I had to discard the first stage I created because overall Astra model can create 3d stage and environment, but it still has limited understanding on how the physical stage and environment work so so101 arm could not sit in an idle position because there were not enough space which I noticed after I assembled the stage. The second problem I have seen was, it does not fully understand how each other pannels can side and fit so the stage can hold itself with the panel and the screws and nuts can help the stage pannels to hold each other. 
+
+Another problem is it is really slow to change the models so I was just sitting for like an hour just to make my 3d print parts to change the design so I can have more simple, support free angled, and requires less filaement as possible. 
+
+Overall, the stage is finished so I can proceed to create simulation environment on Isaac sim now and collect episodes. 
+
+Actually, I need to check the camera pov first on the actual stages. 
