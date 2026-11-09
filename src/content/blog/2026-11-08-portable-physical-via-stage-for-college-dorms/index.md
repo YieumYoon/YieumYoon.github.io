@@ -10,7 +10,7 @@ tags:
   - so101
   - vla
 draft: true
-time: 00:33
+time: 20:37
 timezone: America/New_York
 ---
 Last year, I did bimanual task data collection and training for my senior project. And that involved 200 valid teleoperation episode collection. I also wanted to do sim to real transfer. However, only for a semester and a side project, I ran out of time so I disassembled the stage and that sim-to-real learning was in the backlog ever since. I did learn that what would be a better condition to collect data and deploy in the real world. 
@@ -29,6 +29,12 @@ Third, the camera location should be fixed. Web camera seems like a poorly chose
 
 Fourth, the price to build cannot be high. I though about using acriyc panel like old 3d printer such as Anet a3(? I forgot the exact name) or aluminum extrusion profiles, but the cost for those materials are too high which seems unnecessary for me. Also as a college student, I wanted to use some cost effective material. Therefore I decided to use 1/4 in thickness wood panel because I have access to laser cutter from Thinkbox and 2x2 size panels aren't that expensive.
 
-Fifth, 
+Fifth, I wanted to also minimize the amount of plywood sheet to use so I created the design and layout so everything can fit within four sheet of 2x2 panel. There is also 2x4 sheet, but it is larger sheet so it is harder to transprort, and little bit more expensive than two 2x2 plywood, and also it has more bends than 2x2 panel on the laser cutting machine bed so I decided to use smaller plywood.
+
+Sixth, I wanted to add at least one more task on my vla stage because I have seen demos like ChatGPT Astra controlling the robot with zero shot learning, so I wanted to have some more task than just putting tube in a rack. I wanted to add a demo to turn the light on and off. Therefore, light and lightswithch is also added to the stage on the left. 
+
+Seventh, I wanted to open source this stage so anyone across the world can build and experiment the same stage. Therefore, I decided to use 1/4(6mm) plywood, 3d printed parts, metic bits and nuts, and standard camera for so101 wrist camera (innomaker 1080p), ulanzi ua12, Ikea smart switch and lights.
+
+
 
 Somthig I thought whithe stage was not ment for sim to real transfer so it was large. Also used web cam which was hard to have fixed location all the time. 
