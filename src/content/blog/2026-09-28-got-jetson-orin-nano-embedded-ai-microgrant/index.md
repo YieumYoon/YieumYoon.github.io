@@ -18,3 +18,8 @@ timezone: America/New_York
 
 스테이지 만들어서 VLA학습해서 돌려보려고 하는데 Task는 nvidia tutiroal에 나온데로 tube를 rack에 집어넣기, 언어로 명령해서 전구 키고 끄기 이렇게 하려고요. 
 
+다만 sd카드로는 카메라 3대에서 나오는 비디오 데이터 스트림 속도가 감당이 안될것 같아서 ssd는 사비로 구입했습니다... ㅜ
+
+
+
+&nbsp;
