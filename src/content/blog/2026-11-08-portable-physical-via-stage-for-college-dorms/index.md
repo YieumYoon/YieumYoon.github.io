@@ -37,4 +37,6 @@ Seventh, I wanted to open source this stage so anyone across the world can build
 
 
 
+Challenges I had are 1. Ikea switch, lights, and ulanzi ua12 tube lights does not have 3d asset online. Therefore, I used Artec Leo light Scanner (because the laser scanner was down) to capture objects in 3d and convert into assets which was not easy because light scanner was not that accurate and ua12 was a tube shape so the 3d scan would still not that accurate. Especially, the light and light switch were hard to create 3d asset because to do sim to real and also let ChatGPT Astra model create design based on the real world measurement, I had to measure using caliper and also use 2d scanner and multiple pictures to capture accurate measurement and also especially for light switch, 
+
 Somthig I thought whithe stage was not ment for sim to real transfer so it was large. Also used web cam which was hard to have fixed location all the time. 
