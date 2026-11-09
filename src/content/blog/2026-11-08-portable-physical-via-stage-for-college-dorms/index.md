@@ -1,54 +1,117 @@
 ---
-title: Built A portable stage for Nvidia VLA tutorial online with Astra
-slug: portable-physical-via-stage-for-college-dorms
+title: Designing a portable SO-101 sim-to-real workcell with GPT-6 Astra
+slug: so101-sim-to-real-workcell
 lang: en
 translationReviewed: false
-summary: "Created controlled stage envoronment for sim to real transfer using
-  so-101 arm using Astra. "
+summary: "A portable SO-101 workcell cut from four 2x2 ft plywood sheets with
+  about $154 in purchased parts, designed with GPT-6 Astra working in Blender
+  through Codex. I scrapped the first revision, use the second, and published
+  the third as open-source hardware."
 date: 2026-11-08
 tags:
+  - robotics
   - so101
   - vla
-draft: true
+  - sim-to-real
+  - Isaac Sim
+  - digital twin
+  - GPT-6 Astra
+  - Codex
+  - AprilTag
+draft: false
 time: 20:37
 timezone: America/New_York
+image: /images/blog/so101-workcell-front-light-on.webp
 ---
-Last year, I did bimanual task data collection and training for my senior project. And that involved 200 valid teleoperation episode collection. I also wanted to do sim to real transfer. However, only for a semester and a side project, I ran out of time so I disassembled the stage and that sim-to-real learning was in the backlog ever since. I did learn that what would be a better condition to collect data and deploy in the real world. 
+I built a portable workcell for the SO-101 arm so I can follow NVIDIA's [Sim-to-Real SO-101 tutorial](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/index.html) from a college dorm. The frame comes out of four 2x2 ft sheets of 1/4 in plywood plus 3D-printed mounts. The robot, three cameras, the light, and the Jetson all mount at fixed positions, and the purchased parts come to about $154. I designed most of it with GPT-6 Astra working in Blender through Codex. That got me a working workcell, and it also got me a first revision I had to throw away. The design files are open source in [so101-vla-portable-workcell](https://github.com/YieumYoon/so101-vla-portable-workcell).
 
-The problem I faced was 1. the stage was too large so transportation was not easy also it too much space. 2. The camera location and angle was hard to make it consistent beacsue the top view was a webcam with the neck adjustment feature which was almost impossible to have a fixed camera angle if I disassembled the stage and assembled again. 3. The simulation environment will be hard to build as nothing is concisely measured and built. The camera height even depends on the camera extension pole that the height of the camera is not properly selected. It was rather just trial and error that can fit the entire stage. 4. The camera pov and settings were not able to get or find online as it is a webcam.
+![Front view of the plywood SO-101 workcell with the work light on, showing the follower arm, a yellow tube rack, a lamp, a remote on the left wall, AprilTags, and a ChArUco calibration board in front](/images/blog/so101-workcell-front-light-on.webp)
 
-This year, when the semester started, and I got an email that Thinkbox is having an AI micro grant program which provides embedded board for the project. I am interested in Jetson nano so I wanted to come up with some idea that uses Jetson Orin Nano board for my project which is a vla sim to real transfer using Isaac sim. "[https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/index.html#](https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/index.html#)" This is the tutorial I saw and I wanted to do it. 
+## What went wrong with my last setup
 
-However, there are some challenges for me to follow that stage setup and instruction. 
+Last year, for my senior project, I collected teleoperation data and trained a policy for a bimanual task. That took about 360 validated episodes. The [GR00T policy](https://huggingface.co/YieumYoon/groot-bimanual-so100-cbasket-023) and its [training dataset](https://huggingface.co/datasets/YieumYoon/bimanual-center-basket-rblock-rlmerged-6) are still on Hugging Face. I also wanted to try sim-to-real transfer, but with only one semester, I ran out of time. I disassembled the stage, and sim-to-real has been in my backlog ever since. I did learn what better conditions for collecting data and deploying in the real world would look like.
 
-First, the instruction assumes that I have a stable and spacious space that I can set up the stage and let it sit there for a while. However, how can a college student who live in a dorm can have that space unless they are in a research lab or something. Therefore, the stage needs to be smaller.
+The old stage had four problems:
 
-Second, the stage is so flimsy and it is hard to reassemble back to the data collected envornemtn because robot location and different variations and conditions can change. Which means if I need to move somewhere I cannot disassemble the stage because if I reassemble later, the condition will never be same. Therefore, even though the stage and robot go through disassemble and assemble I still need to have same condition and envorioment setting. 
+1. It was too large. It was hard to move and took up too much space.
+2. I couldn't keep the camera position and angle consistent. The stage used a top camera and a wrist camera on each arm, and the top camera was a webcam with an adjustable neck, so once I disassembled and reassembled the stage, I could never get the same angle back.
+3. Nothing was measured or built to a spec, so building a matching simulation environment would have been hard. Even the camera height came from whatever the extension pole happened to be set to. I found it by trial and error until the whole stage fit in frame.
+4. I couldn't find the webcam's field of view or camera parameters online.
 
-Third, the camera location should be fixed. Web camera seems like a poorly chosen camera because it is hard to let it consistently point at the fixed location due to adjustment feature. Also, I wanted to add more camera so the camsra needs to be fixed on the stage with some brackets or something.
+## Why I started this one
 
-Fourth, the price to build cannot be high. I though about using acriyc panel like old 3d printer such as Anet a3(? I forgot the exact name) or aluminum extrusion profiles, but the cost for those materials are too high which seems unnecessary for me. Also as a college student, I wanted to use some cost effective material. Therefore I decided to use 1/4 in thickness wood panel because I have access to laser cutter from Thinkbox and 2x2 size panels aren't that expensive.
+When this semester started, I got an email about the [Sears think[box] Embedded AI Microgrants](https://case.edu/utech/about/utech-news/sears-thinkbox-embedded-ai-microgrants) at CWRU, which provide hardware such as the Jetson Orin Nano for student projects. I wanted the board, and I had an unfinished idea to use it for: VLA sim-to-real transfer with Isaac Sim, running on a Jetson Orin Nano and based on NVIDIA's tutorial.
 
-Fifth, I wanted to also minimize the amount of plywood sheet to use so I created the design and layout so everything can fit within four sheet of 2x2 panel. There is also 2x4 sheet, but it is larger sheet so it is harder to transprort, and little bit more expensive than two 2x2 plywood, and also it has more bends than 2x2 panel on the laser cutting machine bed so I decided to use smaller plywood.
+Part of why I picked this project is that I'm interested in fully autonomous labs, where AI models run experiments through physical robots. A setup like that needs a physical environment that stays the same between runs and a simulation that matches it. My last stage had neither.
 
-Sixth, I wanted to add at least one more task on my vla stage because I have seen demos like ChatGPT Astra controlling the robot with zero shot learning, so I wanted to have some more task than just putting tube in a rack. I wanted to add a demo to turn the light on and off. Therefore, light and lightswithch is also added to the stage on the left. 
+## Design requirements
 
-Seventh, I wanted to open source this stage so anyone across the world can build and experiment the same stage. Therefore, I decided to use 1/4(6mm) plywood, 3d printed parts, metic bits and nuts, and standard camera for so101 wrist camera (innomaker 1080p), ulanzi ua12, Ikea smart switch and lights.
+Following the tutorial's stage setup as written wasn't going to work for me, so I set these requirements:
 
-Eights, I wanted to include apriltags on each side with the solid background so in the future if I want to add AR feature support for ar glasses I can use those as anchors. I imagine I can use those so I can visualize expected robot movement in 3d using ar glasses so ar can added to physical envorioont. I see that possibility for intuitive human understanding purposes. 
+1. **Small enough for a dorm.** The tutorial assumes a stable, spacious place where the stage can sit for a while. Most college students living in a dorm don't have that unless they work in a research lab. The inner workspace is 425 × 425 × 570 mm.
+2. **Reassembles to the same state.** The tutorial's stage is flimsy, and when you reassemble it, the robot position and other conditions change. If I have to move, I need to take the workcell apart and still get the same environment back. The panels locate each other with tab-and-slot joints and are held together with M3 screws and captive nuts in T-slots. The robot bolts to the floor with four M4 screws, and every camera sits in a printed mount screwed to the frame.
+3. **Fixed cameras.** A webcam with an adjustable neck won't point at the same spot twice. I also wanted to add a corner camera, so the workcell uses three Innomaker U20CAM-1080P board cameras: overhead, corner, and wrist. It's the camera commonly used for the SO-101 wrist camera, so all three cameras are the same model, and I lock each lens after focusing.
+4. **Cheap materials.** I thought about acrylic panels, like the frame on older 3D printers such as the Anet A8, or aluminum extrusion. Both cost more than I needed to spend as a college student. I went with 1/4 in plywood because I have access to think[box]'s laser cutters and 2x2 ft panels are about $7 each.
+5. **As few sheets as possible.** I laid out all 15 panels to fit on four 2x2 ft sheets. A 2x4 ft sheet costs a bit more than two 2x2 sheets, is harder to carry, and bows more on the laser cutter bed.
+6. **A second task.** I've seen demos of GPT-6 Astra controlling a robot without task-specific training, like [ROBOTIS's AI Worker demo](https://discourse.openrobotics.org/t/gpt-6-astra-meets-the-real-world/59268), so I wanted more than the tutorial's tube-into-rack task. I added a lamp and a wall-mounted remote on the left side of the workcell so the robot can turn the light on and off.
+7. **Parts anyone can get.** I want anyone to be able to build the same workcell, so I stuck to 1/4 in (6 mm) plywood, 3D-printed parts, metric screws and nuts, and equipment sold internationally: the Innomaker cameras, a Ulanzi UA12 work light, and IKEA's GRILLPLATS smart plug and remote, STRÅLA cord set, and SOLHETTA bulb.
+8. **AprilTags as references.** The floor, left wall, and back wall each have an AprilTag on a solid background. They give me fixed reference points for calibration. Later, I want to use them as anchors for AR glasses, so I can see the robot's expected movement in 3D on top of the real workcell. I think that could help people understand what the robot is about to do.
 
+![Laser cut layout of all 15 workcell panels arranged on four 609.6 mm square plywood sheets](/images/blog/so101-workcell-laser-layout.webp)
 
+## Making sim-ready assets
 
-Challenges I had are 1. Ikea switch, lights, and ulanzi ua12 tube lights does not have 3d asset online. Therefore, I used Artec Leo light Scanner (because the laser scanner was down) to capture objects in 3d and convert into assets which was not easy because light scanner was not that accurate and ua12 was a tube shape so the 3d scan would still not that accurate. Especially, the light and light switch were hard to create 3d asset because to do sim to real and also let ChatGPT Astra model create design based on the real world measurement, I had to measure using caliper and also use 2d scanner and multiple pictures to capture accurate measurement and also especially for light switch, as this needs to be sim ready asset, the distance and distortion when it is pressed need to be precisely measured. Creting sim ready asset, I am not sure entirely it is sim ready, but I also find a guidelines on Nvidia ([https://www.nvidia.com/en-us/glossary/simready/](https://www.nvidia.com/en-us/glossary/simready/)) so I will look into more if I need to. 
+The Ulanzi UA12, the IKEA remote, and the IKEA bulb and socket have no 3D models online, so I scanned them with an Artec Leo structured-light scanner (the laser scanner was down) and converted the scans into assets. The scanner wasn't very accurate, and the UA12's tube shape made it worse.
 
-I connected Blender and Codex so Astra can control blender. 
+![An Artec Leo handheld scanner next to a monitor running Artec Studio 16, which shows a purple textured scan of a tapered object being cleaned up with the eraser tool](/images/blog/so101-workcell-artec-leo-scan.webp)
 
-I had to discard the first stage I created because overall Astra model can create 3d stage and environment, but it still has limited understanding on how the physical stage and environment work so so101 arm could not sit in an idle position because there were not enough space which I noticed after I assembled the stage. The second problem I have seen was, it does not fully understand how each other pannels can side and fit so the stage can hold itself with the panel and the screws and nuts can help the stage pannels to hold each other. 
+The bulb, the socket, and the remote were the hardest. For sim-to-real, and for Astra to design around real-world dimensions, I measured them with calipers and also used a flatbed scanner and multiple photos. The remote is the robot's light switch, so it needs to be a sim-ready asset, and I also had to measure how far its button travels and how it deforms when pressed. I recorded a video of pressing the button, but I still had to measure the press depth with calipers. To test the switch in simulation, I connected Codex to my Ubuntu desktop with an RTX 5090 so it could control Isaac Sim directly.
 
-Another problem is it is really slow to change the models so I was just sitting for like an hour just to make my 3d print parts to change the design so I can have more simple, support free angled, and requires less filaement as possible. 
+![The IKEA remote opened into its front cover and battery shell, laid out between a PCB ruler and a dial caliper for measuring](/images/blog/so101-workcell-remote-calipers.webp)
 
-Overall, the stage is finished so I can proceed to create simulation environment on Isaac sim now and collect episodes. 
+<video src="/images/blog/so101-workcell-remote-press.mp4" autoplay muted loop playsinline width="960" aria-label="Side view of a finger pressing the IKEA remote's button several times in front of a ruler, used to estimate how far the button travels"></video>
 
-Actually, I need to check the camera pov first on the actual stages. 
+I'm not entirely sure my assets count as sim-ready yet. NVIDIA has [SimReady guidelines](https://www.nvidia.com/en-us/glossary/simready/) that I'll look into if I need to.
 
-I burnt lots of codex tokens. I was able to this 3d stage design and setup experiment because I was using chatGPT pro $200. 
+## Designing the workcell with an AI agent
+
+I connected Codex to Blender so GPT-6 Astra could build and edit the models directly.
+
+I tried to give Astra enough to work from: photos from multiple angles with rulers in the frame, the camera's lens information, and videos, so it could extract accurate measurements from known reference dimensions and points. Even so, I still had to check its models by eye and tell it what was off, because Astra couldn't fully design the parts accurately in 3D.
+
+Astra can create a 3D stage and environment, but it has a limited understanding of how a physical stage works. I scrapped the first revision because the SO-101 couldn't rest in its idle position. There wasn't enough clearance, and I only noticed after I assembled it. Astra also didn't fully understand how the panels slide and fit into each other so the workcell holds itself up, with the screws and nuts keeping the panels together.
+
+The physical builds also caught fit problems that the digital checks missed. Laser-cut tolerances were larger than I expected, and the 3D-printed parts took several test prints to tune.
+
+Iterating was slow. I sat for about an hour waiting on changes to my 3D-printed parts, trying to make them simpler, printable without supports, and use as little filament as possible.
+
+I burned a lot of Codex tokens on this. I could only run this much 3D design experimentation because I was on the $200 ChatGPT Pro plan.
+
+![Close-up inside the workcell: the SO-101 follower arm with its wrist camera, the yellow tube rack with two tubes, the lamp and remote on the left wall, and AprilTags on the floor and walls](/images/blog/so101-workcell-interior.webp)
+
+## Other chores
+
+I had Codex split the tube rack into a yellow shell and a white inner structure. I already had white PLA, but yellow filament from think[box] costs $0.10 per gram, so printing the whole rack in yellow would have cost a lot. The shell has a 0.2 mm thin wall, so it took three or four tries to print it right.
+
+![The 3D-printed tube rack in two pieces: a white PLA inner structure with four tube holes next to a thin, translucent yellow PLA shell with four matching sleeves](/images/blog/so101-workcell-tube-rack-split.webp)
+
+I also had Codex turn the tube's sim-ready asset into printable STLs, with the tube and the screw cap as separate parts. Tubes on Amazon cost around $12 for a pack of at least 25, which is far more than I need. So I tested the tolerances and printed two tubes in the white PLA I already had and two caps in blue PLA from think[box]. The caps are small, so the think[box] filament cost very little.
+
+![Two 3D-printed white tubes with blue screw caps standing next to the IKEA remote on a desk](/images/blog/so101-workcell-printed-tubes.webp)
+
+I also lost one camera's connector cable. The Innomaker camera uses an MX1.25 (PicoBlade-style) connector, but that isn't listed in the Innomaker 1080p camera documentation or anywhere else I could find, so I had to search a lot and compare photos to figure it out. I bought [MX1.25 connector cables](https://www.amazon.com/dp/B0DR1S5981) and two USB cables, cut a USB cable, looked up its wiring diagram, tested the connections, and soldered all four wires to make the same cable. It works fine. If you have an Innomaker camera and lose its cable, the MX1.25 PicoBlade connector is what you need. I hope this helps.
+
+![An Innomaker camera board held in a helping-hands stand with USB cables clipped for soldering, next to a box of pre-crimped MX1.25 connector cables](/images/blog/so101-workcell-mx125-cable.webp)
+
+## Where it stands
+
+The workcell in the photos is the second revision. It's built and in use, with a few 3D-printed parts that work around its remaining design errors. The [published files](https://github.com/YieumYoon/so101-vla-portable-workcell) are a third revision that removes those workarounds, which I haven't fabricated yet. Three-camera capture and offline policy inference on the Jetson both work. I haven't validated how repeatable reassembly is, or how closely the physical workcell matches the digital one.
+
+![Blender render of the published third-revision workcell with the lamp, remote, tube rack, AprilTags, and SO-101 arm in place](/images/blog/so101-workcell-blender-v3.webp)
+
+## Next steps
+
+1. Check the camera views on the physical workcell.
+2. Set up the workcell and teleoperation in Isaac Sim, collect demonstrations, and train a tube pick-and-place policy.
+3. Evaluate the policy on the physical workcell, then move on to the light-switch task.
+4. Collect real demonstrations and compare training on simulated data, real data, and a mix of both.
